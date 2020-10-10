@@ -3,19 +3,23 @@ trait Iterator[A] {
   def next(): A
 }
 
-class IntIterator(to: Int) extends Iterator[Int] {
+class IntIterator(to: Int) extends Object with Iterator[Int] {
   private var current = 0
   override def hasNext: Boolean = current < to
   override def next(): Int = {
     if (hasNext) {
-      val t = current
-      current += 1
-      t
-    } else 0
+        val t = current
+        current += 1
+        return t
+    } else {
+        return 0
+    }
   }
 }
 
-
+class Construct(a: Int) {
+  println("Hello", a)
+}
 
 object Main {
     def main(args: Array[String]) {
@@ -31,5 +35,7 @@ object Main {
             println(s"Our planet is $distance million kilometers from the sun")
         case _ =>
         }
+
+        new Construct(3)
     }
 }
