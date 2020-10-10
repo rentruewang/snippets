@@ -1,13 +1,13 @@
-import logging.Logger
 import scala.math
 import scala.collection.mutable.ArrayBuffer 
+import logs.logging.Logger
 
 trait Iterator[A] {
   def hasNext: Boolean
   def next(): A
 }
 
-class IntIterator(to: Int) extends Object with Iterator[Int] {
+class IntIterator(to: Int) extends Iterator[Int] {
   private var current = 0
   override def hasNext: Boolean = current < to
   override def next(): Int = {
@@ -57,7 +57,7 @@ class PetContainer[P <: Pet](p: P) {
     def pet: P = p
 }
 
-object Main extends Object {
+object Main {
     def main(args: Array[String]) {
         val iterator = new IntIterator(10)
         val f = iterator.next()  // returns 0
@@ -100,8 +100,19 @@ object Main extends Object {
 
         val twentySomethings =
             for (user <- userBase if user.age >=20 && user.age < 30)
-              yield println(user.name)  // i.e. add this to a list
+                yield println(user.name)  // i.e. add this to a list
 
         twentySomethings.foreach(name => println(name))  // prints Travis Dennis
+
+        implicit def z(a: String):Int = 2
+
+        val x: String = "1"
+
+        val y: Int = x // compiler will use z here like val y:Int=z(x)
+
+        println(y) // result 2  & no error!
+
+        @deprecated("deprecation message", "release # which deprecates method")
+        def hello = "hola"
     }
 }
