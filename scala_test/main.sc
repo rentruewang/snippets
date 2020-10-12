@@ -1,6 +1,5 @@
 import scala.math
 import scala.collection.mutable.ArrayBuffer 
-import logs.logging.Logger
 
 trait Iterator[A] {
   def hasNext: Boolean
@@ -57,6 +56,33 @@ class PetContainer[P <: Pet](p: P) {
     def pet: P = p
 }
 
+class IsPrivate(private var _variable: Int) {
+    def variable: Int = {
+        println("getter called")
+        _variable
+    }
+    def variable_=(value: Int): Unit = {
+        println("setter called")
+        _variable = value
+    }
+}
+
+class PrivateThis(_variable: Int) {
+    // def add(that: PrivateThis): Int = {
+    //     this._variable + that._variable
+    // }
+    def add(i: Int): Int = {
+        this._variable + i
+    }
+    def get: Int = _variable
+}
+
+class PrivateClass(private[PrivateClass] val _variable: Int) {
+    def add(that: PrivateClass): Int = {
+        this._variable + that._variable
+    }
+    def get: Int = _variable
+}
 object Main {
     def main(args: Array[String]) {
         val iterator = new IntIterator(10)
@@ -85,8 +111,6 @@ object Main {
         matchTest(3)  // prints other
         matchTest(1)  // prints one
 
-        Logger.info("1234567890") // prints
-
         val c = new Circle(3)
         println(c.radius, c.area)
         c.radius = 1
@@ -114,5 +138,21 @@ object Main {
 
         @deprecated("deprecation message", "release # which deprecates method")
         def hello = "hola"
+
+        val isp = new IsPrivate(3)
+
+        println(isp.variable)
+    
+        isp.variable = 4
+
+        println(isp.variable)
+
+        val ao = new PrivateClass(6)
+        val bo = new PrivateClass(2)
+        println(ao.add(bo))
+
+        val pt = new PrivateThis(888)
+        println(pt.get)
+        println(pt.add(999))
     }
 }

@@ -1,10 +1,5 @@
-FROM ubuntu:latest
-ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get update 
-RUN apt-get install net-tools
-# CMD ["ifconfig"]
-RUN apt-get install apache2 -y
-RUN apt-get install apache2-utils -y
-RUN apt-get clean 
-EXPOSE 80
-CMD [“apache2ctl”, “-D”, “FOREGROUND”]
+FROM debian:slim
+
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
