@@ -1,28 +1,43 @@
 version: "3.3"
 
+# Docker containers to start
 services:
-  db:
-    image: mysql:5.7
-    volumes:
-      - db_data:/var/lib/mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: somewordpress
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
+    # Just a service name
+    db:
+        # Equivalent to Dockerfile FROM
+        image: mysql:5.7
+        # Connect to the persistent storage (device filesystem)
+        volumes:
+            - db_data:/var/lib/mysql
+        # Always restart the container regardless of how the container is shut down
+        restart: always
+        # Environment variables
+        environment:
+            MYSQL_ROOT_PASSWORD: somewordpress
+            MYSQL_DATABASE: wordpress
+            MYSQL_USER: wordpress
+            MYSQL_PASSWORD: wordpress
 
-  wordpress:
-    depends_on:
-      - db
-    image: wordpress:latest
-    ports:
-      - "8000:80"
-    restart: always
-    environment:
-      WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: wordpress
+    # Just a service name
+    wordpress:
+        # Requires another service to start up first
+        depends_on:
+            - db
+        # Equivalent to Dockerfile FROM
+        image: wordpress:latest
+        # Connects port 80 of the machine to port 80 of docker
+        expose:
+            - "80"
+            - "443"
+        # Always restart the container regardless of how the container is shut down
+        restart: always
+        # Environment variables
+        environment:
+            WORDPRESS_DB_HOST: db:3306
+            WORDPRESS_DB_USER: wordpress
+            WORDPRESS_DB_PASSWORD: wordpress
+            WORDPRESS_DB_NAME: wordpress
+
+# Persistent storage config
 volumes:
-  db_data: {}
+    db_data: {}
