@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.Arrays;
 
 public class Main {
@@ -7,6 +8,10 @@ public class Main {
 
         var array = Arrays.asList(new Integer[] { 1, 2, 3 });
 
-        array.stream().map((var x) -> x + 1).forEach(System.out::print);
+        // Java does not have the 'inference by return type' that Rust has.
+        // Which is the reason collect takes an argument rather than overloading (static
+        // dispatch).
+        var list = array.stream().map((var x) -> x + 1).collect(Collectors.toList());
+        System.out.println(list);
     }
 }
