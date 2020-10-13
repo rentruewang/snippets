@@ -56,8 +56,8 @@ func main() {
 
 	if err := json.Unmarshal(byt, &dat); err != nil {
 		panic(err)
-    }
-    fmt.Println("dat")
+	}
+	fmt.Println("dat")
 	fmt.Println(dat)
 
 	num := dat["num"].(float64)
