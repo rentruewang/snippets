@@ -2,6 +2,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Arrays;
 
+record SomeRecord(int x, long y) {}
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("hello");
