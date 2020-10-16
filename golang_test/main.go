@@ -15,6 +15,10 @@ const (
 	Zebra
 )
 
+func get() interface{} {
+	return 3
+}
+
 func (a *Animal) UnmarshalJSON(b []byte) error {
 	var s string
 	if err := json.Unmarshal(b, &s); err != nil {
@@ -60,5 +64,8 @@ func main() {
 
 	fmt.Printf("Zoo Census:\n* Gophers: %d\n* Zebras:  %d\n* Unknown: %d\n",
 		census[Gopher], census[Zebra], census[Unknown])
+
+	var s string = get()
+	fmt.Println(s)
 
 }
