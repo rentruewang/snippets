@@ -7,6 +7,10 @@ type Fooer interface {
 	Dummy()
 }
 
+type Fooerer interface {
+	Fooer
+}
+
 type Foo struct {
 	Field int
 }
@@ -34,9 +38,14 @@ func main() {
 
 	// DoFoo(f1)
 	DoFoo(f2)
+
+	_, ok := interface{}(&Foo{}).(Fooerer)
+	if ok {
+		fmt.Println("ok")
+	}
 }
 
-func DoFoo(f Fooer) {
+func DoFoo(f Fooerer) {
 	f.Add()
 	fmt.Printf("[%T] %+v\n", f, f)
 }
