@@ -1,88 +1,98 @@
+import dataclasses
 import json
 import os
-from collections import defaultdict
 from os import path as os_path
 
 
-class DataBase(object):
-    def __init__(
-        self,
-        directory="database",
-        words_file="words.json",
-        roots_file="roots.json",
-        encoding="utf-8",
-    ):
-        os.makedirs(directory, exist_ok=True)
+class Word:
+    def __init__(self, meaning, parent, children=()):
+        self.meaning = meaning
+        self.parent = set(parent)
+        self.children = set(children)
 
-        self.words_file = os_path.join(directory, words_file)
-        self.roots_file = os_path.join(directory, roots_file)
-        self.encoding = encoding
+    def dump(self):
+        return json.dumps([self.meaning, list(self.parent), list(self.children)])
 
+    @classmethod
+    def load(cls, string):
+        [m, p, c] = json.loads(string)
+        p = set(p)
+        c = set(c)
+        return cls(m, p, c)
+
+    @property
+    def isroot(self):
+        return len(self.children) != 0
+
+    def __str__(self):
+        meaning = f"Meaning: {self.meaning}"
+        parent = f"Parents: {list(self.parent)}"
+        children = f"Children: {list(self.children)}"
+
+        return f"{meaning}, {parent}, {children}"
+
+
+class DataBase:
+    def __init__(self, file="data.json", path="database", enc="utf-8"):
+        os.makedirs(path, exist_ok=True)
+
+        self.file = os_path.expanduser(os_path.join(path, file))
+        self.enc = enc
         try:
-            wf = open(self.words_file, "r", encoding=encoding)
-            rf = open(self.roots_file, "r", encoding=encoding)
+            with open(self.file, mode="r+", encoding=self.enc) as f:
+                # data: Dict[str, str]
+                data: dict = json.load(f)
+        except IOError:
+            data = {}
+        self.data = {k: Word.load(v) for (k, v) in data.items()}
 
-            words = json.load(wf)
-            roots = json.load(rf)
-
-            words = {k: set(v) for (k, v) in words.items()}
-            roots = {k: set(v) for (k, v) in roots.items()}
-
-            self.words = defaultdict(set, **words)
-            self.roots = defaultdict(set, **roots)
-        # OSError thrown by open
-        except OSError:
-            print("Error encoutered. Creating file")
-
-            wf = open(self.words_file, "w+", encoding=encoding)
-            rf = open(self.roots_file, "w+", encoding=encoding)
-
-            self.words = defaultdict(set)
-            self.roots = defaultdict(set)
-        # closing files
-        finally:
-            wf.close()
-            rf.close()
-
-    def add(self, word: str, *roots):
-        # words add root as their prefixes
-        self.words[word].update(roots)
-        # roots add word to their associated words
+    def Add(self, word: str, meaning: str, roots=()):
         for root in roots:
-            self.roots[root].add(word)
+            assert self.Has(root)
+            self.data[root].children.add(word)
 
-    def get(self, word: str) -> set:
-        roots = self.words[word]
+        if word in self.data.keys():
+            # python is copy by reference
+            w: Word = self.data[word]
+            w.meaning = meaning
+            w.parent.update(roots)
+        else:
+            self.data[word] = Word(meaning, roots)
 
-        for root in roots:
-            assert word in self.roots[root]
+    def Del(self, word: str = "", also_root=True):
+        if word == "":
+            self.data = {}
 
-        return roots
+        assert self.Has(word)
 
-    def delete(self, word: str):
-        # remove entry
-        roots = self.words[word]
-        del self.words[word]
+        w: Word = self.data[word]
+        del self.data[word]
 
-        # doesn't matter if in the final state root is empty
-        # defaultdict will return an empty set anyways
-        for root in roots:
-            self.roots[root].discard(word)
+        # also delete roots
+        if not also_root:
+            return
+
+        for root in w.parent:
+            assert self.Has(root)
+
+            r: Word = self.data[root]
+            r.children.remove(word)
+            if not r.isroot:
+                self.Del(root)
+                assert not self.Has(root)
+
+    def Has(self, word: str):
+        return word in self.data.keys()
+
+    def Get(self, word: str):
+        assert self.Has(word)
+        return self[word]
+
+    def All(self, word: str = ""):
+        return {k: str(v) for (k, v) in self.data.items() if word in k}
 
     def __del__(self):
-        try:
-            wf = open(self.words_file, "w+", encoding=self.encoding)
-            rf = open(self.roots_file, "w+", encoding=self.encoding)
+        data = {k: v.dump() for (k, v) in self.data.items()}
 
-            words = {k: list(v) for (k, v) in self.words.items() if len(v) != 0}
-            roots = {k: list(v) for (k, v) in self.roots.items() if len(v) != 0}
-
-            json.dump(words, wf)
-            json.dump(roots, rf)
-        except OSError:
-            print(f"Writing to file {self.words_file} and {self.roots_file} failed")
-            print(f"Words: {self.words}")
-            print(f"Roots: {self.roots}")
-        finally:
-            wf.close()
-            rf.close()
+        with open(self.file, mode="w+", encoding=self.enc) as f:
+            json.dump(data, f)
