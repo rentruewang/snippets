@@ -46,39 +46,44 @@ class DataBase:
             data = {}
         self.data = {k: Word.load(v) for (k, v) in data.items()}
 
+    @staticmethod
+    def concat_iterable(func, words):
+        return set().union(words, *(func(w) for w in words))
+
     def Anc(self, word: str) -> set:
         "Get the ancestors of a word"
         assert self.Has(word)
         parents = self.data[word].parents
-        return set().union(parents, *(self.Anc(p) for p in parents))
+        ans = self.concat_iterable(self.Anc, parents)
+        parents.update(ans)
+        return parents
 
     def Dec(self, word: str) -> set:
         "Get the decendants of a word"
         assert self.Has(word)
         children = self.data[word].children
-        return set().union(children, *(self.Dec(c) for c in children))
-
-    def AncFrom(self, words: set) -> set:
-        "Get all ancestors of a batch of words"
-        return set().union(words, *(self.Anc(p) for p in words))
-
-    def DecFrom(self, words: set) -> set:
-        "Get all decendants of a batch of words"
-        return set().union(words, *(self.Dec(c) for c in words))
+        ans = self.concat_iterable(self.Dec, children)
+        children.update(ans)
+        return children
 
     def Add(self, word: str, info: Word):
         "Add a word to graph"
-        ancestors = self.AncFrom(info.parents)
+
+        self.data[word] = info
+
+        assert self.Check(word)
+
+        ancestors = self.Anc(word)
         for wordroot in ancestors:
             assert self.Has(wordroot)
             self.data[wordroot].children.add(word)
 
-        decendants = self.DecFrom(info.children)
+        decendants = self.Dec(word)
         for longword in decendants:
             assert self.Has(longword)
             self.data[longword].parents.add(word)
 
-        decendants: set = self.Dec(word)
+        print("{}|{}|{}|{}".format(word, info, ancestors, decendants, end="\n\n"))
 
         if word in self.data.keys():
             # python is copy by reference
@@ -117,6 +122,13 @@ class DataBase:
     def Get(self, word: str):
         assert self.Has(word)
         return self[word]
+
+    def Check(self, word: str):
+        return (
+            self.Has(word)
+            and all(self.Check(p) for p in self.data[word].parents)
+            and all(self.Check(d) for d in self.data[word].children)
+        )
 
     def All(self, word: str = ""):
         return {k: str(v) for (k, v) in self.data.items() if word in k}
