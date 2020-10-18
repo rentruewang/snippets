@@ -5,13 +5,13 @@ from os import path as os_path
 
 
 class Word:
-    def __init__(self, meaning, parent, children=()):
+    def __init__(self, meaning, parents=(), children=()):
         self.meaning = meaning
-        self.parent = set(parent)
+        self.parents = set(parents)
         self.children = set(children)
 
     def dump(self):
-        return json.dumps([self.meaning, list(self.parent), list(self.children)])
+        return json.dumps([self.meaning, list(self.parents), list(self.children)])
 
     @classmethod
     def load(cls, string):
@@ -26,10 +26,10 @@ class Word:
 
     def __str__(self):
         meaning = f"Meaning: {self.meaning}"
-        parent = f"Parents: {list(self.parent)}"
+        parents = f"Parents: {list(self.parents)}"
         children = f"Children: {list(self.children)}"
 
-        return f"{meaning}, {parent}, {children}"
+        return f"{meaning}, {parents}, {children}"
 
 
 class DataBase:
@@ -46,20 +46,47 @@ class DataBase:
             data = {}
         self.data = {k: Word.load(v) for (k, v) in data.items()}
 
-    def Add(self, word: str, meaning: str, roots=()):
-        for root in roots:
-            assert self.Has(root)
-            self.data[root].children.add(word)
+    def Anc(self, word: str) -> set:
+        "Get the ancestors of a word"
+        assert self.Has(word)
+        parents = self.data[word].parents
+        return set().union(parents, *(self.Anc(p) for p in parents))
+
+    def Dec(self, word: str) -> set:
+        "Get the decendants of a word"
+        assert self.Has(word)
+        children = self.data[word].children
+        return set().union(children, *(self.Dec(c) for c in children))
+
+    def AncFrom(self, words: set) -> set:
+        "Get all ancestors of a batch of words"
+        return set().union(words, *(self.Anc(p) for p in words))
+
+    def DecFrom(self, words: set) -> set:
+        "Get all decendants of a batch of words"
+        return set().union(words, *(self.Dec(c) for c in words))
+
+    def Add(self, word: str, info: Word):
+        "Add a word to graph"
+        ancestors = self.AncFrom(info.parents)
+        for wordroot in ancestors:
+            assert self.Has(wordroot)
+            self.data[wordroot].children.add(word)
+
+        decendants = self.DecFrom(info.children)
+        for longword in decendants:
+            assert self.Has(longword)
+            self.data[longword].parents.add(word)
+
+        decendants: set = self.Dec(word)
 
         if word in self.data.keys():
             # python is copy by reference
-            w: Word = self.data[word]
-            w.meaning = meaning
-            w.parent.update(roots)
-        else:
-            self.data[word] = Word(meaning, roots)
+            info.parents.update(self.data[word].parents)
 
-    def Del(self, word: str = "", also_root=True):
+        self.data[word] = info
+
+    def Del(self, word: str = "", also_root=False):
         if word == "":
             self.data = {}
 
@@ -68,18 +95,21 @@ class DataBase:
         w: Word = self.data[word]
         del self.data[word]
 
-        # also delete roots
-        if not also_root:
-            return
+        for wordroot in w.parents:
+            assert self.Has(wordroot)
 
-        for root in w.parent:
-            assert self.Has(root)
-
-            r: Word = self.data[root]
+            r: Word = self.data[wordroot]
             r.children.remove(word)
-            if not r.isroot:
-                self.Del(root)
-                assert not self.Has(root)
+            # also delete roots
+            if also_root and not r.isroot:
+                self.Del(wordroot)
+                assert not self.Has(wordroot)
+
+        for longword in w.children:
+            assert self.Has(longword)
+
+            l: Word = self.data[longword]
+            l.parents.remove(word)
 
     def Has(self, word: str):
         return word in self.data.keys()
