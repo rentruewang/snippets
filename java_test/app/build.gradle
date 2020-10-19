@@ -18,10 +18,13 @@ repositories {
 
 dependencies {
     // Use JUnit test framework.
-    testImplementation 'junit:junit:4.13'
+    testImplementation 'junit:junit:latest.release'
 
     // This dependency is used by the application.
-    implementation 'com.google.guava:guava:29.0-jre'
+    implementation 'com.google.guava:guava:latest.release'
+
+    // Cowork with json
+    implementation 'com.google.code.gson:gson:latest.release'
 }
 
 application {
