@@ -3,9 +3,11 @@
  */
 package route;
 
+import java.util.ArrayList;
+
 public class App {
     public static void main(String[] args) {
-        var loader = new Loader();
-        var router = new Router();
+        var nets = new ArrayList<Net>();
+        var router = new Router(nets);
     }
 }
