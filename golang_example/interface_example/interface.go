@@ -21,6 +21,10 @@ func (f *Foo) Add()   { f.Field += 1 }
 
 func willFail(fr *Fooer) {}
 
+func retinterf() interface{} {
+	return 8
+}
+
 func main() {
 	var f1 Foo
 	var f2 *Foo = &Foo{Field: 3}
@@ -48,4 +52,11 @@ func main() {
 func DoFoo(f Fooerer) {
 	f.Add()
 	fmt.Printf("[%T] %+v\n", f, f)
+
+	var i int = retinterf().(int)
+	fmt.Println(i)
+
+	// The following line panics
+	var d float32 = retinterf().(float32)
+	fmt.Println(d)
 }
