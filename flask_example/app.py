@@ -1,12 +1,12 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
 
 @app.route("/")
-def hello():
-    return "<h1> Hello from an Azure Web App running on Linux! </h1>"
+def handler():
+    return f"Hello, {request}"
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run(host="localhost", port=5000)
