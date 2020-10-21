@@ -1,0 +1,13 @@
+<iframe width="600" height="450" frameborder="0" style="border:0" src="{{.SOURCE}}" allowfullscreen>
+</iframe>
+
+<br>
+<button onclick="location.href='/newplace'" id="newplace">Take me somewhere new!</button>
+
+<form action="/gotohere">
+    <label for="loc"> I want to visit: </label><br>
+    <input type="text" id="loc" name="loc" value="Here"><br>
+    <input type="submit" value="The great journey is about to begin.">
+</form>
+
+<button onclick="location.href ='/deletethis'" id="deletethis">I do not want to come back to this sad place.</button>
