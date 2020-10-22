@@ -16,7 +16,7 @@ import (
 const APIKEY = "AIzaSyCMFQ9uzH69tuKn01AlUGlx53qlQ8OauyM"
 const SECRETURL = "https://asia-northeast2-driven-cabinet.cloudfunctions.net/rest"
 
-func makeReq(data string) string {
+func makeReq(data string) map[string]interface{} {
 	req := fasthttp.AcquireRequest()
 	req.Header.SetMethod(fasthttp.MethodPost)
 	req.SetRequestURI(SECRETURL)
@@ -33,7 +33,10 @@ func makeReq(data string) string {
 		log.Fatalln("Error code: " + fmt.Sprint(stat))
 	}
 
-	return string(res.Body())
+	dct := make(map[string]interface{})
+	json.Unmarshal(res.Body(), &dct)
+
+	return dct
 }
 
 func makeQuery(input string) string {
@@ -59,16 +62,20 @@ func main() {
 	newplace := r.Group("/newplace")
 	newplace.GET("/", func(ctx *gin.Context) {
 		ans := makeReq("{}")
-		query = makeQuery(ans)
-		log.Println(ans, query)
-		ctx.Redirect(fasthttp.StatusPermanentRedirect, "/")
-		ctx.Abort()
+		if val, ok := ans["afterget"]; ok {
+			query = makeQuery(val.(string))
+			log.Println(ans, query)
+			ctx.Redirect(fasthttp.StatusTemporaryRedirect, "/")
+			ctx.Abort()
+		} else {
+			log.Fatalln("Not afterget")
+		}
 	})
 
 	// Save place to GCF
 	r.GET("/gotohere", func(ctx *gin.Context) {
 		loc := ctx.Query("loc")
-		loc = strings.Trim(loc, " ")
+		loc = strings.Join(strings.Fields(loc), " ")
 		dct := map[string]string{
 			"add": loc,
 		}
@@ -77,7 +84,7 @@ func main() {
 		query = makeQuery(loc)
 		fmt.Println(query)
 
-		ctx.Redirect(fasthttp.StatusPermanentRedirect, "/")
+		ctx.Redirect(fasthttp.StatusTemporaryRedirect, "/")
 		ctx.Abort()
 	})
 
@@ -85,21 +92,27 @@ func main() {
 	deletethis := r.Group("/deletethis")
 	deletethis.GET("/", func(ctx *gin.Context) {
 		loc := strings.ReplaceAll(query[3:], "+", " ")
-		loc = strings.Trim(loc, " ")
+		loc = strings.Join(strings.Fields(loc), " ")
 		dct := map[string]string{
 			"del": loc,
 		}
 		s, _ := json.Marshal(dct)
 		ans := makeReq(string(s))
-		query = makeQuery(ans)
+		if val, ok := ans["afterdelete"]; ok {
 
-		ctx.Redirect(fasthttp.StatusPermanentRedirect, "/")
-		ctx.Abort()
+			query = makeQuery(val.(string))
+
+			ctx.Redirect(fasthttp.StatusTemporaryRedirect, "/")
+			ctx.Abort()
+		} else {
+			log.Fatalln("Not afterdelete")
+		}
+
 	})
 
 	// For debug use
 	r.GET("/debug", func(ctx *gin.Context) {
-		data := makeReq("")
+		data := ctx.Query("kwargs")
 		ctx.JSON(fasthttp.StatusOK, data)
 	})
 	r.Run(":8080")

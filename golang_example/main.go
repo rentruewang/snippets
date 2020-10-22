@@ -69,6 +69,12 @@ func main() {
 	json.Unmarshal([]byte(`{"a":"b", "c":"d"}`), &smap)
 	fmt.Println(smap, smap["a"], smap["c"])
 
+	i := 0
+	for i = 0; i <= 100; i++ {
+	}
+	fmt.Println(i)
+
 	var s string = get().(string)
 	fmt.Println(s)
+
 }
