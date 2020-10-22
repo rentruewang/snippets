@@ -31,7 +31,10 @@ func process(input string) (output string, err error) {
 	if input == "{}" {
 		if len(contents) == 0 {
 			rd := rand.Intn(len(secrets))
-			output = secrets[rd]
+			o, _ := json.Marshal(map[string]interface{}{
+				"afterget": secrets[rd],
+			})
+			output = string(o)
 		} else {
 			err = errors.New("Wierd that input is {} but get something as return")
 		}
@@ -40,9 +43,11 @@ func process(input string) (output string, err error) {
 
 	if _, ok := contents["list"]; ok {
 		var o []byte
-		o, err = json.Marshal(map[string]interface{}{
-			"data": secrets,
-		})
+		o, err = json.Marshal(
+			map[string]interface{}{
+				"data": secrets,
+			},
+		)
 		output = string(o)
 		return
 	}
@@ -69,20 +74,27 @@ func process(input string) (output string, err error) {
 				break
 			}
 		}
+
+		if i == len(secrets) {
+			output = `{"afterdelete": "here"}`
+			return
+		}
+
 		last := len(secrets) - 1
 		secrets[i], secrets[last] = secrets[last], secrets[i]
 		secrets = secrets[:last]
 
-		if len(secrets) == 0 {
-			output = "here"
-			return
-		}
-
 		rd := rand.Intn(len(secrets))
-		output = secrets[rd]
+		o, _ := json.Marshal(
+			map[string]interface{}{
+				"afterdelete": secrets[rd],
+			},
+		)
+		output = string(o)
 
 		return
 	}
 
+	err = errors.New("Keyword not supported")
 	return
 }
