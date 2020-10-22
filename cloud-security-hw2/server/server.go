@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -15,9 +16,9 @@ import (
 const APIKEY = "AIzaSyCMFQ9uzH69tuKn01AlUGlx53qlQ8OauyM"
 const SECRETURL = "https://asia-northeast2-driven-cabinet.cloudfunctions.net/rest"
 
-func makeReq(method, data string) string {
+func makeReq(data string) string {
 	req := fasthttp.AcquireRequest()
-	req.Header.SetMethod(method)
+	req.Header.SetMethod(fasthttp.MethodPost)
 	req.SetRequestURI(SECRETURL)
 	req.SetBodyString(data)
 	defer fasthttp.ReleaseRequest(req)
@@ -46,17 +47,18 @@ func main() {
 
 	query := "&q=Taipei"
 
-	r.LoadHTMLFiles("./templates/debug.tmpl")
+	r.LoadHTMLFiles("./templates/page.tmpl")
 
 	// gin methods here
 	// GET for the main page
 	r.GET("/", func(ctx *gin.Context) {
-		ctx.HTML(int(http.StatusOK), "debug.tmpl", gin.H{"SOURCE": src + query})
+		ctx.HTML(int(http.StatusOK), "page.tmpl", gin.H{"SOURCE": src + query})
 	})
 
 	// Fetch a new place from GCF
-	r.GET("/newplace", func(ctx *gin.Context) {
-		ans := makeReq("GET", "")
+	newplace := r.Group("/newplace")
+	newplace.GET("/", func(ctx *gin.Context) {
+		ans := makeReq("{}")
 		query = makeQuery(ans)
 		log.Println(ans, query)
 		ctx.Redirect(fasthttp.StatusPermanentRedirect, "/")
@@ -66,17 +68,29 @@ func main() {
 	// Save place to GCF
 	r.GET("/gotohere", func(ctx *gin.Context) {
 		loc := ctx.Query("loc")
-		makeReq("POST", loc)
+		loc = strings.Trim(loc, " ")
+		dct := map[string]string{
+			"add": loc,
+		}
+		s, _ := json.Marshal(dct)
+		makeReq(string(s))
 		query = makeQuery(loc)
+		fmt.Println(query)
 
 		ctx.Redirect(fasthttp.StatusPermanentRedirect, "/")
 		ctx.Abort()
 	})
 
 	// Delete place from GCF
-	r.GET("/deletethis", func(ctx *gin.Context) {
+	deletethis := r.Group("/deletethis")
+	deletethis.GET("/", func(ctx *gin.Context) {
 		loc := strings.ReplaceAll(query[3:], "+", " ")
-		ans := makeReq("DELETE", loc)
+		loc = strings.Trim(loc, " ")
+		dct := map[string]string{
+			"del": loc,
+		}
+		s, _ := json.Marshal(dct)
+		ans := makeReq(string(s))
 		query = makeQuery(ans)
 
 		ctx.Redirect(fasthttp.StatusPermanentRedirect, "/")
@@ -85,7 +99,7 @@ func main() {
 
 	// For debug use
 	r.GET("/debug", func(ctx *gin.Context) {
-		data := makeReq("GET", "")
+		data := makeReq("")
 		ctx.JSON(fasthttp.StatusOK, data)
 	})
 	r.Run(":8080")

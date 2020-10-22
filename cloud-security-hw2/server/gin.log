@@ -1,0 +1,26 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /                         --> main.main.func1 (3 handlers)
+[GIN-debug] GET    /newplace                 --> main.main.func2 (3 handlers)
+[GIN-debug] GET    /gotohere                 --> main.main.func3 (3 handlers)
+[GIN-debug] GET    /deletethis               --> main.main.func4 (3 handlers)
+[GIN-debug] GET    /debug                    --> main.main.func5 (3 handlers)
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN] 2020/10/22 - 02:46:33 | 200 |     255.617µs |       127.0.0.1 | GET      "/"
+[GIN] 2020/10/22 - 02:46:34 | 404 |         495ns |       127.0.0.1 | GET      "/favicon.ico"
+[GIN] 2020/10/22 - 02:46:37 | 308 |  339.380084ms |       127.0.0.1 | GET      "/newplace"
+[GIN] 2020/10/22 - 02:46:37 | 200 |     138.763µs |       127.0.0.1 | GET      "/"
+[GIN] 2020/10/22 - 02:46:40 | 200 |     316.426µs |       127.0.0.1 | GET      "/"
+[GIN] 2020/10/22 - 02:46:42 | 200 |     128.748µs |       127.0.0.1 | GET      "/"
+[GIN] 2020/10/22 - 02:46:47 | 308 |  234.941307ms |       127.0.0.1 | GET      "/deletethis"
+[GIN] 2020/10/22 - 02:46:47 | 200 |      136.79µs |       127.0.0.1 | GET      "/"
+[GIN] 2020/10/22 - 02:46:49 | 308 |  210.418716ms |       127.0.0.1 | GET      "/deletethis"
+[GIN] 2020/10/22 - 02:46:49 | 200 |     382.806µs |       127.0.0.1 | GET      "/"
+[GIN] 2020/10/22 - 02:46:50 | 200 |     181.086µs |       127.0.0.1 | GET      "/"
+[GIN] 2020/10/22 - 02:46:54 | 200 |     391.568µs |       127.0.0.1 | GET      "/"
+[GIN] 2020/10/22 - 02:47:00 | 200 |       297.4µs |       127.0.0.1 | GET      "/"
+[GIN] 2020/10/22 - 02:48:03 | 200 |     300.078µs |       127.0.0.1 | GET      "/"
