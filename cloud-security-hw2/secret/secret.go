@@ -3,60 +3,31 @@ package p
 
 import (
 	"fmt"
+	"io"
 	"io/ioutil"
-	"log"
-	"math/rand"
 	"net/http"
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-	secrets := []string{
-		"London",
-		"Paris",
-		"Berlin",
-		"NewYork",
-		"Beijing",
-		"Cairo",
-		"Buenos Aires",
-		"Moskva",
-		"Taipei",
-	}
 
-	l := len(secrets)
+	var input string
 
-	dat, err := ioutil.ReadAll(r.Body)
-	if err != nil {
-		log.Fatal(err)
-	}
-	data := string(dat)
-
-	var s string
-
-	switch r.Method {
-	case http.MethodGet:
-		rd := rand.Intn(l)
-		s = secrets[rd]
-		log.Println("GET", l)
-	case http.MethodPost:
-		secrets = append(secrets, data)
-		s = data
-		log.Println("POST", l)
-	case http.MethodDelete:
-		j := 0
-		for i := 0; i < len(secrets); i++ {
-			if secrets[i] == data {
-				j = i
-				break
-			}
+	if i, err := ioutil.ReadAll(r.Body); err != nil {
+		switch err {
+		case io.EOF:
+			input = "{}"
+		default:
+			fmt.Println("Premature return because of read error:", err)
+			return
 		}
-		secrets[j], secrets[l-1] = secrets[l-1], secrets[j]
-		secrets = secrets[:l-1]
-
-		rd := rand.Intn(len(secrets))
-		s = secrets[rd]
-		log.Println("DELETE", l)
+	} else {
+		input = string(i)
 	}
-	log.Println("after processing:", secrets)
 
-	fmt.Fprintln(w, s)
+	if output, err := process(input); err == nil {
+		fmt.Fprintln(w, output)
+	} else {
+		fmt.Println("Premature return because of process error:", err)
+		return
+	}
 }

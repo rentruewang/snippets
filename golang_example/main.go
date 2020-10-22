@@ -65,7 +65,10 @@ func main() {
 	fmt.Printf("Zoo Census:\n* Gophers: %d\n* Zebras:  %d\n* Unknown: %d\n",
 		census[Gopher], census[Zebra], census[Unknown])
 
-	var s string = get()
-	fmt.Println(s)
+	smap := make(map[string]string)
+	json.Unmarshal([]byte(`{"a":"b", "c":"d"}`), &smap)
+	fmt.Println(smap, smap["a"], smap["c"])
 
+	var s string = get().(string)
+	fmt.Println(s)
 }
