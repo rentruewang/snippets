@@ -21,6 +21,15 @@ where
 //     f()
 // }
 
+trait Bad {
+    fn generic_method<A>(&self, value: A);
+}
+
+fn func<T: Bad + ?Sized>(x: &T) {
+    x.generic_method("foo"); // A = &str
+    x.generic_method(1_u8); // A = u8
+}
+
 fn main() {
     let t = Type;
 
