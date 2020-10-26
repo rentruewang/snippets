@@ -10,6 +10,8 @@ import java.util.Arrays;
 
 import com.google.gson.Gson;
 
+record Example(StringBuilder sb) {}
+
 public class App {
     public static final class SomeClass<T extends Gson> {
     }
@@ -49,5 +51,9 @@ public class App {
         String[] anotherStr = gson.fromJson("[\"abc\"]", String[].class);
 
         System.out.printf("%d, %d, %d, %b, %s, %s\n", one1, one2, one3, false0, str, anotherStr.toString());
+
+        var ex = new Example(new StringBuilder(""));
+        ex.sb().append("2qpeiobq");
+        System.out.println(ex.sb());
     }
 }
