@@ -19,6 +19,8 @@ func get() interface{} {
 	return 3
 }
 
+type TupleUInt [2]uint
+
 func (a *Animal) UnmarshalJSON(b []byte) error {
 	var s string
 	if err := json.Unmarshal(b, &s); err != nil {
@@ -50,6 +52,13 @@ func (a Animal) MarshalJSON() ([]byte, error) {
 	return json.Marshal(s)
 }
 
+type TupleInt [2]int
+
+func (ti *TupleInt) Inc() {
+	ti[0]++
+	ti[1]++
+}
+
 func main() {
 	blob := `["gopher","armadillo","zebra","unknown","gopher","bee","gopher","zebra"]`
 	var zoo []Animal
@@ -59,7 +68,7 @@ func main() {
 
 	census := make(map[Animal]int)
 	for _, animal := range zoo {
-		census[animal] += 1
+		census[animal]++
 	}
 
 	fmt.Printf("Zoo Census:\n* Gophers: %d\n* Zebras:  %d\n* Unknown: %d\n",
@@ -74,7 +83,35 @@ func main() {
 	}
 	fmt.Println(i)
 
-	var s string = get().(string)
-	fmt.Println(s)
+	tuint := interface{}([2]uint{3, 4})
+	if v, ok := tuint.(TupleUInt); ok {
+		fmt.Println("Implicit cast", v)
+	} else {
+		fmt.Println("No implicit cast", v)
+	}
 
+	var s string
+	var ok bool
+	if s, ok = get().(string); ok {
+		fmt.Println("Ok", s)
+	} else {
+		fmt.Println("Not ok", s)
+	}
+
+	var x interface{} = 999
+	y := x.(int)
+	y++
+
+	fmt.Println(x, y)
+
+	ti := TupleInt{333, 444}
+	ti.Inc()
+
+	fmt.Println(ti)
+	var iti interface{}
+	iti = ti
+	// ptr := &iti.(TupleInt)
+	// ptr.Inc()
+
+	fmt.Println(ti)
 }
