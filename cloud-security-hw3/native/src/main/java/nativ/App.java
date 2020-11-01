@@ -3,6 +3,11 @@ package nativ;
 import java.io.IOException;
 import java.util.StringTokenizer;
 import java.util.regex.*;
+import java.util.stream.*;
+import java.util.*;
+import java.util.function.*;
+
+import com.google.common.collect.Lists;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -13,6 +18,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
+// FIXME
 class Main {
 }
 
@@ -37,17 +43,23 @@ class MyMapper extends Mapper<LongWritable, Text, IntWritable, Text> {
     }
 }
 
-class MyReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
-    // private IntWritable result = new IntWritable();
+class MyReducer extends Reducer<IntWritable, Text, Text, IntWritable> {
+    private static final String date = "Mar/2004:";
 
-    public void reduce(Text key, Iterable<IntWritable> values, Context context)
-    // throws IOException, InterruptedException {
-    // int sum = 0;
-    // for (IntWritable val : values) {
-    // sum += val.get();
-    // }
-    // result.set(sum);
-    // context.write(key, result);
+    private static String reduced(String input) {
+        var index = input.indexOf(date);
+        return input.substring(index + date.length());
+    }
+
+    public void reduce(IntWritable key, Iterable<Text> values, Context context) {
+        var mapped = Lists.newArrayList(values).stream().map(Text::toString).reduce(
+            new HashMap<String, ArrayList<String>>(), (map,value) ->  {
+                var re = MyReducer::reduced(value);
+                map.
+            }
+        );
+
+    }
 }
 
 public class App {
