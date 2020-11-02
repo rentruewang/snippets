@@ -15,7 +15,7 @@ STREAMING_ARGS = -input $(INPUT) -output $(OUTPUT) -mapper "python $(STREAMING_M
 all: clean wget
 
 build_jar: 
-	bash -c  "cd native && gradle build"
+	bash -c  "cd native && ./gradlew build"
 
 jar: all build_jar
 	hadoop jar $(JAR) $(INPUT) $(OUTPUT)
