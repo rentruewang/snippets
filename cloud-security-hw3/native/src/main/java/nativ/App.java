@@ -14,8 +14,13 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-class Main {
-    static final String date = "Mar/2004:";
+final class Common {
+    static final String date = "/Mar/2004:";
+
+    static void handleException(Exception e) {
+        System.out.println("Mapper: " + e.toString());
+        System.exit(1);
+    }
 }
 
 class MyMapper extends Mapper<LongWritable, Text, IntWritable, Text> {
@@ -23,23 +28,22 @@ class MyMapper extends Mapper<LongWritable, Text, IntWritable, Text> {
     @Override
     public void map(LongWritable _lc, Text line, Context context) {
         var lineStr = line.toString().trim();
-        var index = lineStr.indexOf(Main.date) + Main.date.length();
+        var index = lineStr.indexOf(Common.date) + Common.date.length();
 
         try {
             var hour = Integer.parseInt(lineStr.substring(index, index + 2));
             var writable = new IntWritable(hour);
             context.write(writable, line);
         } catch (Exception e) {
-            System.out.println("Mapper: " + e.toString());
-            System.exit(1);
+            Common.handleException(e);
         }
     }
 }
 
 class MyReducer extends Reducer<IntWritable, Text, Text, IntWritable> {
     private static String reduced(String input) {
-        var index = input.indexOf(Main.date);
-        return input.substring(index, index + Main.date.length() + 2) + ":00:00";
+        var index = input.indexOf(Common.date);
+        return input.substring(index - 2, index + Common.date.length() + 2) + ":00:00";
     }
 
     private static void ctxWrite(Entry<String, HashSet<String>> et, Context context) {
@@ -48,8 +52,7 @@ class MyReducer extends Reducer<IntWritable, Text, Text, IntWritable> {
             var cnt = new IntWritable(et.getValue().size());
             context.write(str, cnt);
         } catch (Exception ex) {
-            System.out.println("Reducer: " + ex);
-            System.exit(1);
+            Common.handleException(ex);
         }
     }
 
@@ -71,19 +74,23 @@ class MyReducer extends Reducer<IntWritable, Text, Text, IntWritable> {
 public class App {
 
     // main throws Exception because I'm a lazy person
-    public static void main(String[] args) throws Exception {
-        Configuration conf = new Configuration();
-        Job job = Job.getInstance(conf, "word count");
-        job.setJarByClass(Main.class);
-        job.setMapperClass(MyMapper.class);
-        job.setCombinerClass(Reducer.class);
-        job.setReducerClass(MyReducer.class);
-        job.setMapOutputKeyClass(IntWritable.class);
-        job.setMapOutputValueClass(Text.class);
-        job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(IntWritable.class);
-        FileInputFormat.addInputPath(job, new Path(args[0]));
-        FileOutputFormat.setOutputPath(job, new Path(args[1]));
-        System.exit(job.waitForCompletion(true) ? 0 : 1);
+    public static void main(String[] args) {
+        var conf = new Configuration();
+        try {
+            var job = Job.getInstance(conf, "word count");
+            job.setJarByClass(Common.class);
+            job.setMapperClass(MyMapper.class);
+            job.setCombinerClass(Reducer.class);
+            job.setReducerClass(MyReducer.class);
+            job.setMapOutputKeyClass(IntWritable.class);
+            job.setMapOutputValueClass(Text.class);
+            job.setOutputKeyClass(Text.class);
+            job.setOutputValueClass(IntWritable.class);
+            FileInputFormat.addInputPath(job, new Path(args[0]));
+            FileOutputFormat.setOutputPath(job, new Path(args[1]));
+            System.exit(job.waitForCompletion(true) ? 0 : 1);
+        } catch (Exception e) {
+            Common.handleException(e);
+        }
     }
 }
