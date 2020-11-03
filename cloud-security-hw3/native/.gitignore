@@ -1,6 +1,0 @@
-# Ignore Gradle build output directory
-build
-
-# Ignore all compiled binaries
-*.class
-*.jar
