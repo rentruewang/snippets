@@ -25,10 +25,24 @@ trait Bad {
     fn generic_method<A>(&self, value: A);
 }
 
-fn func<T: Bad + ?Sized>(x: &T) {
+fn _func<T: Bad + ?Sized>(x: &T) {
     x.generic_method("foo"); // A = &str
     x.generic_method(1_u8); // A = u8
 }
+
+trait Any {}
+
+struct A;
+
+impl Any for A {}
+
+struct B;
+
+impl Any for B {}
+
+fn thin<T: Any>(_: T) {}
+fn fat1<T: Any + ?Sized>(_: &T) {}
+fn fat2(_: &dyn Any) {}
 
 fn main() {
     let t = Type;
@@ -40,4 +54,14 @@ fn main() {
 
     // let c = t.call;
     // somef2(c);
+
+    let mut any: &dyn Any;
+    any = &A;
+    let _a = any;
+    any = &B;
+    let _b = any;
+    fat1(any);
+    fat2(any);
+    thin(A);
+    thin(B);
 }
