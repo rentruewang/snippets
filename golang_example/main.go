@@ -111,7 +111,12 @@ func main() {
 	var iti interface{}
 	iti = ti
 	// ptr := &iti.(TupleInt)
-	// ptr.Inc()
+	// the above line is equal to:
+	newti := iti.(TupleInt)
+	ptr := &newti
+	// hence the operation is disallowed as it only adds confusion
+
+	ptr.Inc()
 
 	fmt.Println(ti)
 }
