@@ -1,3 +1,7 @@
+use async_std::task;
+use futures::{executor, Future};
+use std::time::Duration;
+
 #[derive(Copy, Clone)]
 struct Type;
 
@@ -64,4 +68,52 @@ fn main() {
     fat2(any);
     thin(A);
     thin(B);
+
+    noreturn1();
+    noreturn2();
+
+    executor::block_on(async {
+        futures::join!(blocks(), move_block());
+    });
+}
+
+fn noreturn1() {
+    ()
+}
+
+fn noreturn2() {}
+
+async fn blocks() {
+    let my_string = "1".to_string();
+
+    let future_one = async {
+        println!("{} 1", my_string);
+    };
+
+    let future_two = async {
+        task::sleep(Duration::from_secs(2)).await;
+        println!("{} 2", my_string);
+    };
+
+    let future_three = async {
+        task::sleep(Duration::from_secs(3)).await;
+        println!("{} 3", my_string);
+    };
+
+    futures::join!(
+        async {
+            let x = future_one;
+            future_three.await;
+            x.await;
+        },
+        future_two
+    );
+}
+
+fn move_block() -> impl Future<Output = ()> {
+    let my_string = "2".to_string();
+    async move {
+        task::sleep(Duration::from_secs(1)).await;
+        println!("{}", my_string);
+    }
 }
