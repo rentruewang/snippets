@@ -11,44 +11,39 @@ class Home extends StatelessWidget {
       appBar: AppBar(
           title: Text('my first app'),
           centerTitle: true,
-          backgroundColor: Colors.red[600]),
+          backgroundColor: Colors.red),
       body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        // what is baseline?
-        crossAxisAlignment: CrossAxisAlignment.baseline,
-        textBaseline: TextBaseline.ideographic,
         children: <Widget>[
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              FlatButton(
-                onPressed: () {},
-                color: Colors.amber,
-                child: Text('c3'),
-              ),
-              FlatButton(
-                onPressed: () {},
-                color: Colors.purple,
-                child: Text('c2'),
-              )
-            ],
+          Expanded(child: Image.asset('assets/space-2.jpg'), flex: 5),
+          Expanded(
+            flex: 3,
+            child: Container(
+              padding: EdgeInsets.all(30.0),
+              color: Colors.green,
+              child: Text('1'),
+            ),
           ),
-          FlatButton(
-            onPressed: () {},
-            color: Colors.amber,
-            child: Text('click me'),
+          Expanded(
+            flex: 2,
+            child: Container(
+              padding: EdgeInsets.all(30.0),
+              color: Colors.lime,
+              child: Text('2'),
+            ),
           ),
-          Container(
+          Expanded(
+            flex: 1,
+            child: Container(
+              padding: EdgeInsets.all(30.0),
               color: Colors.cyan,
-              padding: EdgeInsets.all(1.0),
-              child: Text('inside')),
+              child: Text('3'),
+            ),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.red[600],
+        backgroundColor: Colors.red,
         child: Text('click'),
-        onPressed: () {},
       ),
     );
   }
