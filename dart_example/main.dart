@@ -47,7 +47,7 @@ void main() async {
   c.val = 8;
   print(c.val);
 
-  var quote = Quote(author: "Me", text: "Hello, world.");
+  var quote = Quote(author: 'Me', text: 'Hello, world.');
 
   print(quote);
 
@@ -55,7 +55,8 @@ void main() async {
   // An async function runs synchronously until the first await keyword. This means that within an async function body, all synchronous code before the first await keyword executes immediately.
   // Which in plain English means,
   //! `async` functions are synchronous without `await`!
-  printasync("c", 5);
-  await printasync("a", 3);
-  printasync("b", 1);
+  printasync('d', 5);
+  await printasync('a', 2);
+  printasync('c', 2);
+  await printasync('b', 1);
 }
