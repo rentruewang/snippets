@@ -75,6 +75,13 @@ fn main() {
     executor::block_on(async {
         futures::join!(blocks(), move_block());
     });
+
+    let v: Vec<_> = vec![1, 2, 3]
+        .into_iter()
+        .flat_map(|x| vec![x, x + 1])
+        .collect();
+
+    println!("{:?}", v);
 }
 
 fn noreturn1() {
