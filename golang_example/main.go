@@ -59,6 +59,35 @@ func (ti *TupleInt) Inc() {
 	ti[1]++
 }
 
+type Cat interface {
+	Meow() string
+}
+
+type Lion struct {
+}
+
+type Tiger struct{ name string }
+
+type Leopard struct {
+	name   string
+	number int
+}
+
+func (t Tiger) Meow() string { return "I'm a tiger" }
+
+func (l Leopard) Meow() string { return "I'm a leopard" }
+
+// func (l Lion) Meow() string {
+// 	return "roar"
+// }
+
+func (l *Lion) Meow() string {
+	return "roar ptr"
+}
+
+// func GetBigCat() Cat    { return Lion{} }
+func GetBigCatPtr() Cat { return &Lion{} }
+
 func main() {
 	blob := `["gopher","armadillo","zebra","unknown","gopher","bee","gopher","zebra"]`
 	var zoo []Animal
@@ -119,4 +148,33 @@ func main() {
 	ptr.Inc()
 
 	fmt.Println(ti)
+
+	var l Cat
+	// l := GetBigCat()
+	l = GetBigCatPtr()
+	// fmt.Println(l.Meow(), lptr.Meow())
+	fmt.Println(l.Meow())
+
+	li := make([]interface{}, 0)
+
+	li = append(li, int32(1))
+	li = append(li, float64(1.5))
+
+	fmt.Println(li)
+
+	catlist := make([]Cat, 0)
+	catlist = append(catlist, Tiger{})
+	catlist = append(catlist, Leopard{})
+
+	fmt.Println(catlist)
+
+	fmt.Println([3][2]int{})
+	arr := [3][2]int{
+		[2]int{1, 2},
+		[2]int{3, 4},
+		// will use default
+		// [2]int{3, 4},
+		[2]int{5},
+	}
+	fmt.Printf("%T, %v, %v, %v\n", arr, arr, arr[2], arr[2][1])
 }
