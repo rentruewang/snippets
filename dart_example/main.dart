@@ -11,13 +11,23 @@ Future<void> printasync(String s, int delay) async {
 }
 
 class Quote {
-  final String text;
   final String author;
+  final String text;
 
   Quote({this.author, this.text});
 
   @override
   String toString() => '$text --- $author';
+}
+
+longRunning() {
+  Future.delayed(Duration(seconds: 1)).then((_) => print('future finished'));
+  print('long running end');
+}
+
+parent() {
+  longRunning();
+  print('parent end');
 }
 
 class Player {
@@ -42,21 +52,23 @@ class Player {
 }
 
 void main() async {
-  C c = C(null);
-  print(c.val);
-  c.val = 8;
-  print(c.val);
+  parent();
 
-  var quote = Quote(author: 'Me', text: 'Hello, world.');
+  // C c = C(null);
+  // print(c.val);
+  // c.val = 8;
+  // print(c.val);
 
-  print(quote);
+  // var quote = Quote(author: 'Me', text: 'Hello, world.');
 
-  // https://dart.dev/codelabs/async-await#execution-flow-with-async-and-await
-  // An async function runs synchronously until the first await keyword. This means that within an async function body, all synchronous code before the first await keyword executes immediately.
-  // Which in plain English means,
-  //! `async` functions are synchronous without `await`!
-  printasync('d', 5);
-  await printasync('a', 2);
-  printasync('c', 2);
-  await printasync('b', 1);
+  // print(quote);
+
+  // // https://dart.dev/codelabs/async-await#execution-flow-with-async-and-await
+  // // An async function runs synchronously until the first await keyword. This means that within an async function body, all synchronous code before the first await keyword executes immediately.
+  // // Which in plain English means,
+  // //! `async` functions are synchronous without `await`!
+  // printasync('d', 5);
+  // await printasync('a', 2);
+  // printasync('c', 2);
+  // await printasync('b', 1);
 }

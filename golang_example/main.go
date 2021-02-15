@@ -85,10 +85,17 @@ func (l *Lion) Meow() string {
 	return "roar ptr"
 }
 
+var Override string = "not overridden"
+
 // func GetBigCat() Cat    { return Lion{} }
 func GetBigCatPtr() Cat { return &Lion{} }
 
 func main() {
+
+	fmt.Println("Overridden", Override)
+	Override = "overridden"
+	fmt.Println("Overridden", Override)
+
 	blob := `["gopher","armadillo","zebra","unknown","gopher","bee","gopher","zebra"]`
 	var zoo []Animal
 	if err := json.Unmarshal([]byte(blob), &zoo); err != nil {
