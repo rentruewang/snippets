@@ -53,7 +53,7 @@ struct AnimalHouse {
     animal: Box<dyn Animal>,
 }
 
-fn main() {
+fn run() {
     let house = AnimalHouse {
         animal: Box::new(Dog::new("Bobby")),
     };
