@@ -176,7 +176,7 @@ Facebook was 6-months in when it finally became a company.
 
 In a world that’s changing so quickly, the biggest risk you take is not taking any risks.
 
-## Elon Musk - How to build the future
+## Elon Musk : How to build the future
 
 You don't need to change the world as long as your work is valuable to people, a small good for a large audience is acceptable.
 
@@ -191,13 +191,9 @@ He did not plan to involve in all those things.
 5 things Elon Musk thought about:
 
 1. Life on different planets
-
 2. Sustainable energy
-
 3. Internet
-
 4. Genetics
-
 5. AI
 
 You can get a doctrine on many things but ultimately they do not have a practical bearing on the real world.
@@ -239,6 +235,38 @@ If we advance knowledge and do things that expand the scale of conciousness we c
 He wants to be able to think about the future and feel good about that.
 
 If the stakes are high and the thing is important one should just do it anyways.
+
+## Drew Houston : How to build the future
+
+Dropbox was born out of frustration because he and his team couldn't really collaborate.
+
+First company was rejected because of a small market size and he worked part time on it.
+
+He got to meet his co-founder 3 hours before the deadline.
+
+Do something different.
+
+When somethings happends, you have to address the issues.
+
+There is a lot of competition, but do you use them? If no, it's our chance.
+
+One of the biggest early problems is that no-one really has done before, so it's easy to have everyone running in different directions and it may just fall apart. Also, things break really fast.
+
+You should aim for perfection, but you have to recognize that things are big and sit back.
+
+You divide and conquer problems.
+
+Nobody is born a CEO. You have to be able to make smart and fast decisions about business models, competition, and so on.
+
+_Several years from now, what would I wish I am doing?_
+
+**High output management**, **The effects of executives**, **Poor Charles Almanack** recommended.
+
+Everytime you expand, you contract because focus means killing things that you may love.
+
+AARRR - acquisition, activation, revenue, retention, referral
+
+They focused on why no-one is signing up and directly solve it (by referrals). 
 
 ## Outliers by Malcolm Gladwell - Animation
 
