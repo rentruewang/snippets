@@ -26,6 +26,10 @@
 
 - you choose what to eat, we design the dishes
 
+- what if, a system to help understand why some today's machine learning models fail and why some work? Like a meta (today's) AI.
+
+- When analytical models meets explainable AI?
+
 # Thoughts
 
 - if people are hailing AI as the next big thing, why aren't there AI hexacorns based on AI applications yet? Kuaishou and ByteDance are mainly social apps, which basically classify as Internet companies rather than AI companies despite their brading effort. Nvidia is a hardware company contrast to common belief.
@@ -36,7 +40,7 @@
 
 - AI needs three things:
   
-  1. The ability to explain themselves to human, and innovate.
+  1. The ability to explain themselves to human, and innovate. The ability to be general purpose.
   
   2. To help people socialize, as a virtual precense or as a training partner.
   
