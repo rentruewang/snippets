@@ -87,7 +87,7 @@
 ## The THING You Should FOCUS on THE MOST! | Peter Thiel | Top 10 Rules
 
 1. you are the entrepreneur of your life
-2. do one thing uniquely well than everyone else
+2. do one thing uniquely well, better than everyone else
 3. make people aligned properly
 4. aim for monopoly
 5. don't start for the sake of starting (fake entrepreneur)

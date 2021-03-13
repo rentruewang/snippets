@@ -5,6 +5,7 @@ public class App {
         var o = new Outer();
 
         o.outerPublic();
+
         // o.outerPrivate();
 
         o.new Inner().innerPublic();
@@ -12,7 +13,6 @@ public class App {
 }
 
 class Outer {
-
     public void outerPublic() {
         System.out.println("public");
     }
@@ -22,7 +22,6 @@ class Outer {
     }
 
     class Inner {
-
         public void innerPublic() {
             outerPrivate();
         }
