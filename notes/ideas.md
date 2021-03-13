@@ -30,6 +30,14 @@
 
 - When analytical models meets explainable AI?
 
+- Can data be stored in space with standing waves?
+
+- General Machine Learning Processor?
+
+- Is an AI platform possible?
+
+- Reverse AWS.
+
 # Thoughts
 
 - if people are hailing AI as the next big thing, why aren't there AI hexacorns based on AI applications yet? Kuaishou and ByteDance are mainly social apps, which basically classify as Internet companies rather than AI companies despite their brading effort. Nvidia is a hardware company contrast to common belief.
@@ -39,13 +47,15 @@
 - AI currently should stand for analytical intelligence instead of artificial intelligence. Is AI good enough currently? Definitely not. Google search and say Facebook taggings are okay, but they don't make a night and day difference.
 
 - AI needs three things:
-  
+
   1. The ability to explain themselves to human, and innovate. The ability to be general purpose.
-  
+
   2. To help people socialize, as a virtual precense or as a training partner.
-  
+
   3. Being more active and do things on their on own instead of only taking orders.
 
 - Is there an AI platform?
 
 - How can real AI work along today's AI?
+
+- 5G or Wifi6 can empowers today's people to do fast wireless tranmission over the internet that gets rivals traditional fiber-based transmission. Hence, it's 'disruptions' only disrupts things that cannot have a physical wire attached to it. In other words, moving things.
