@@ -59,3 +59,21 @@
 - How can real AI work along today's AI?
 
 - 5G or Wifi6 can empowers today's people to do fast wireless tranmission over the internet that gets rivals traditional fiber-based transmission. Hence, it's 'disruptions' only disrupts things that cannot have a physical wire attached to it. In other words, moving things.
+
+- What if there are only certain kinds of progress in the world?
+
+  1. Realization of something not yet possible by
+
+    1. Replacing existing method with a new technology
+
+    2. Invent a new business model
+
+  2. Improvement of something that is possible in
+
+    1. Bigger scale
+
+    2. Faster speed
+
+    3. Lower cost
+
+    4. More reliability
