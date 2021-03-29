@@ -19,6 +19,9 @@
 - General Machine Learning Processor?
 - Is an AI platform possible?
 - Reverse AWS.
+- Imagine if AI is able to help human in the most humanely fasion.
+- What BetterUp does basically is tranform an educational startup into a B2B one. Maybe another genre in a similar fashion?
+- Decision made with context available
 
 # Thoughts
 
@@ -46,3 +49,5 @@
     2.  process innovation
     3.  marketing innovation
     4.  organizational innovation
+- The function of network intelligence is to generate serendipity, which is a major driver of innovation
+- When innovation, adaptation, and execution are critical, success is closely related to how the team interacts with outsiders.
