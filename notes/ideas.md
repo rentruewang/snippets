@@ -21,7 +21,7 @@
 - Reverse AWS.
 - Imagine if AI is able to help human in the most humanely fasion.
 - What BetterUp does basically is tranform an educational startup into a B2B one. Maybe another genre in a similar fashion?
-- Decision made with context available
+- Decision made with context available?
 
 # Thoughts
 
@@ -45,9 +45,23 @@
         3. Lower cost
         4. More reliability
 - According to the Organization for Economic Cooperation and Development (OECD), the term ‘innovation’ can be differentiated into 4 main types:
-    1.  product innovation
-    2.  process innovation
-    3.  marketing innovation
-    4.  organizational innovation
+    1. product innovation
+    2. process innovation
+    3. marketing innovation
+    4. organizational innovation
 - The function of network intelligence is to generate serendipity, which is a major driver of innovation
 - When innovation, adaptation, and execution are critical, success is closely related to how the team interacts with outsiders.
+- According to VisualCapitalist, most innovation can be categorized into:
+    - Configuration
+        - Profit model
+        - Network
+        - Structure
+        - Process
+    - Offering
+        - Product performance
+        - Product system
+    - Experience 
+        - Service
+        - Channel
+        - Brand
+        - Customer engagement
