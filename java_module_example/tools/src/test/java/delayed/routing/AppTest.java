@@ -1,4 +1,4 @@
-package delayed.routing;
+package random.module;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
