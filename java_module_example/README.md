@@ -1,11 +1,3 @@
-# delayed-routing
+# random-module
 
-## A routing method based on a computer graphics algorithm
-
-## Usage
-
-You need `go` to run this project.
-
----
-
-## Todo
+### This is a module test, you need java 15+ in order to run the program
