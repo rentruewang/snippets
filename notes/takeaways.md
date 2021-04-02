@@ -3,69 +3,180 @@
 ## Peter Thiel - Zero to one
 
 1. capturing value
-   Y% of X dollars
+    Y% of X dollars
 2. perfect competition vs monopoly
-   the real world is dynamic so we can be a good monopoly
-   the two ends of the spectrum is more diverged than you think
+    the real world is dynamic so we can be a good monopoly
+    the two ends of the spectrum is more diverged than you think
 3. start small, dominate, then get big
 4. proprietary tech, network effects, economies of scale, branding
-   durability vs growth
-5. innovators often don’t capture money, and several ways for innovators to capture money are
-   1. vertically integrate the whole ecosystem
-   2. software
-6. difficult to give up when you’ve invested in a lot of competition
-   does the tournament make sense as you keep going?
-   the battles are ferocious because the stakes are so small
-7. last mover advantage: being the last mover in an industry and become monopoly afterwards. even though this may sound like there’s already competition by then, in a sense the last mover is a first mover moving into a very special direction that is yet to be discovered
-8. never underestimate how big a problem is
+    durability vs growth
+    study the endgame more than anything else
+6. innovators often don’t capture money, and several ways for innovators to capture money are
+    1. vertically integrate the whole ecosystem
+    2. software
+7. difficult to give up when you’ve invested in a lot of competition
+    does the tournament make sense as you keep going?
+    the battles are ferocious because the stakes are so small
+8. last mover advantage: being the last mover in an industry and become monopoly afterwards. even though this may sound like there’s already competition by then, in a sense the last mover is a first mover moving into a very special direction that is yet to be discovered
+9. never underestimate how big a problem is
 
 ## Peter Thiel: You Are Not a Lottery Ticket
 
 1. the question of luck
-   every event in the history of technology and science has something singular and non-repeatable about it
-   with the sample of 1, variance (inf) is meaningless
-   Orientations: how i got here & where do i go next?
+    every event in the history of technology and science has something singular and non-repeatable about it
+    with the sample of 1, variance (inf) is meaningless
+    Orientations: how i got here & where do i go next?
 2. determinate vs indeterminate futures, conviction vs diversification, more invesment vs less, substance vs process, calculus vs statistics, innovation vs unchanged
-   optimistic vs pessmistic futures, promise vs fear, less saving vs more, economic vs environment
+    optimistic vs pessmistic futures, promise vs fear, less saving vs more, economic vs environment
 3. is indeterminate optimism possible?
-   Darwin
-   but not in business, according to Peter Thiel
-   lean startup
-   anything that takes longer than a year is considered unreal and fake
-   not the greatest businesses
-   in a determined world, one of the most important metrics is the robustness of the secret plan
+    Darwin
+    but not in business, according to Peter Thiel
+    lean startup
+    anything that takes longer than a year is considered unreal and fake
+    not the greatest businesses
+    in a determined world, one of the most important metrics is the robustness of the secret plan
 4. the return of design
-   some startups by design aims at the distant future
-   companies with a plan do not sell
+    some startups by design aims at the distant future
+    companies with a plan do not sell
 
 ## John Doerr: Ideas are easy, execution is everything.
 
+Email: jdoerr@kpcb.com
+Ideas are easy, Execution is everything, It takes a team to win
+There are a lot of people interested in starting a company, especially at Berkeley.
+1. Career/Leadership
+    - Advanced degree
+    - First job
+        - Substance over status
+        - However, it's a great place to network and you have the added benefit of moving faster potentially in later companies
+    - How to keep networks alive?
+        - Communicate, and choose who to communicate with, do have fun, use social network, be crazy
+    - Advices:
+        1. Top priority should be learning and growing, not making a lot of money
+        2. You really need to learn how to sell
+        3. You really need to know how to manage people
+        4. Develop personal and lifelong network, to have the confidence of cold calling anyone
+        5. Find couple of mentors
+        6. Try to get on the ground floor of a company that could be enormous
+        7. Choose a field that you are passionate about
+        8. Swing for fences when the time is right
+        9. Remember to learn from those fast growing companies how they did it
+        10. Talented leader is always in high demand
+        11. Teams make stuff happen
+        12. Missionary vs Mercenary
+            1. passion vs paranoia
+            2. strategic vs opportunistic
+            3. the deal vs the big idea
+            4. short run vs marathon
+            5. customers vs competition
+            6. meritocracy vs aristocracy
+            7. values vs finances
+            8. teams vs loners
+            9. contribution vs entitlement
+            10. a whole life vs deferred life
+            11. making meaning and money vs making just money
+            12. success and significance vs success
+2. Startup/Entrepreneurship 
+    - Brace for impact
+    - How to mentor entreprenuers
+    - Get a coach
+    - Meet the criterion but failed (criterion as in 4.3 Google/Amazon question)
+        - Sometimes too early
+        - Don't execute
+    - Social Entrepreneurship
+3. The next big thing
+    1. Green
+        - He might have invested too fast and too much
+        - The time will eventually come
+        - Captial intensive
+        - Longer time to market
+        - It's not a sector but a spectrum
+        - Better batteries will dramatically change the field
+    2. Digital health
+    3. AR/VR
+    4. Social, local, mobile
+        - Mobile made Apple the most valuable company
+        - Local made Uber a success
+        - Smartphones can do so much
+    5. Security
+        - Internet is insecure but vital
+    6. New media
+    7. Drones
+    8. Sharing economy
+    9. SpaceX
+4. Venture Capital at Kleiner Perkins
+    1. How to evaluate new fields
+        - Hang around innovative people
+        - Collect data like crazy
+        - Ask knowledgable people
+        - Have some taste and rely on the entreprenuers to be thought leaders and innovators
+    2. What are the qualities that matter to entreprenuers
+        - You just know
+        - Try to make new mistakes instead of repeating the same old ones.
+    3. What he saw in Google or Amazon?
+        1. Technical excellence
+            - So you can attract talent
+        2. Outstanding founders and management
+            - Founder led business, it allows speedy execution
+            - Innovation without execution is hallucination
+        3. Strategic focus on a large new or unserved market
+        4. Execution -> speed
+        5. Reasonable finances
+            - You can't raise too much nor too little money
+            - You always want a cusion than you plan
+            - The way to make a venture is not by cutting a tough deal with the investors, but to be ruthlessly honest with what the risk is in the venture, and try to elimate the risks
+    4. US or western VC in China
+        - For some reason he has not addressed this 
+    5.  Failures and Opportunities missed
+5. Politics
+    1. Sharing Economies
+    2. Self driving cars
+6. Personal Questions
+    1. Women in tech and VC
+        - You have to earn it, be a success entreprenuers before you be a successful VC
+    2. How to learn
+    3. Favorite book for problem solving
+7. Education
+    1. Coursera and MOOCs
+        - Not going to replace physical schools
+    2. US system is a failure
+    3. People are so exposed to the Internet so anyone who takes advantage of that can go over the roof
+8.  Health care
+    - Huge industry
+    - Ripe for innovation, especially software
+9.  Diversity
+    - Didn't address
+10. Global
+    - Google and others in China
+        - Don't know, only few examples of it
+
+
 ## Sam Altman - How to Succeed with a Startup
 
-1. a product so good people tell their friends
-2. easy to understand in 1 sentence
-3. exponential growth in market
-4. real vs fake trends
-5. evangelical founder
-6. ambitious vision
-7. hard startups are easier
-8. confident and definite view of the future
-9. huge if it works
-10. you need optimists
-11. idea generators
-12. we'll figure it out
-13. I've got it
-14. action bias
-15. the blessing of inexperience
-16. momentum
-17. competetive advantage
-18. sensible business model
-19. distribution strategy
-20. frugality, focus, obsession, love
-21. one no vs one yes
-22. ideas that sound bad but are good
-23. fast changing market
-24. platform shifts
+2. a product so good people tell their friends
+3. easy to understand in 1 sentence
+4. exponential growth in market
+5. real vs fake trends
+6. evangelical founder
+7. ambitious vision
+8. hard startups are easier
+9. confident and definite view of the future
+10. huge if it works
+11. you need optimists
+12. idea generators
+13. we'll figure it out
+14. I've got it
+15. action bias
+16. the blessing of inexperience
+17. momentum
+18. competetive advantage
+19. sensible business model
+20. distribution strategy
+21. frugality, focus, obsession, love
+22. one no vs one yes
+23. ideas that sound bad but are good
+24. fast changing market
+25. platform shifts
 
 ## Sam Altman's Top 10 Rules For Success (@sama)
 
@@ -76,12 +187,12 @@
 5. get a product people want
 6. live without regrets, make an impact
 7. risks.
-   Don't be afraid of failing but be afraid of regret that you might feel not doing things.
-   Spend more time in doing than talking
+    Don't be afraid of failing but be afraid of regret that you might feel not doing things.
+    Spend more time in doing than talking
 8. hire well, fire well
 9. stay focused
 10. start small
-    a lot of users like, or a small number of users love. Those ideas that a lot of users love are taken already.
+     a lot of users like, or a small number of users love. Those ideas that a lot of users love are taken already.
 11. ask for what you want, be aggressive
 
 ## The THING You Should FOCUS on THE MOST! | Peter Thiel | Top 10 Rules
@@ -95,11 +206,11 @@
 7. don't lose sight of what's truly valuable
 8. all trends are overrated, if your company can be easily described with all those buzzwords, somehow that shows there's a lot of competition
 9. 5 reasons:
-   1. you worked with the wrong people
-   2. the idea is bad
-   3. the timing is wrong
-   4. you weren't a monopoly
-   5. the product didn't work
+    1. you worked with the wrong people
+    2. the idea is bad
+    3. the timing is wrong
+    4. you weren't a monopoly
+    5. the product didn't work
 10. failure is not something you can learn a lot from
 11. don't dwell on the past
 12. find your secret path
@@ -331,7 +442,7 @@ and different in:
 1. Expertise
 2. Orientation
 3. Perspective
-   Cautious in co-founders in:
+    Cautious in co-founders in:
 4. Do not rush and pick carefully
 5. Do not add co-founders for funding
 6. Assume the best, but plan for the worst
