@@ -1,6 +1,6 @@
 #! env fish
 
-set binary main
+set binary main.exe
 
 argparse 'c/clean' -- $argv
 
