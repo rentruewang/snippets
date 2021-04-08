@@ -38,6 +38,12 @@ func (a *Animal) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+func multiReturn() (a, b int) {
+	a = 3
+	b = 4
+	return
+}
+
 func (a Animal) MarshalJSON() ([]byte, error) {
 	var s string
 	switch a {
