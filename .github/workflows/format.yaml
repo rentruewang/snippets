@@ -51,10 +51,6 @@ jobs:
           toolchain: stable
       - name: Setup cargo
         uses: actions-rs/cargo@v1
-        with:
-          command: build
-          args: --release --all-features
-      - name: Run cargo fmt
         working-directory: ./rust
         run: cargo fmt
 
