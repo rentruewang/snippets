@@ -49,8 +49,7 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
-      - name: Setup cargo
-        uses: actions-rs/cargo@v1
+      - name: Run cargo fmt
         working-directory: ./rust
         run: cargo fmt
 
