@@ -26,7 +26,7 @@ function upload
     end
 
     if set -q _flag_commit_only
-        git commit -m $shortmsg -m $longmsg
+        git commit -m $shortmsg\n\n$longmsg
         git push
         return
     end
