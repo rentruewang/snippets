@@ -1,0 +1,69 @@
+name: format-code
+on: [push]
+jobs:
+  format-all:
+    runs-on: ubuntu-latest
+    steps:
+      # Global part
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      # Golang part
+      - name: Setup go runtime
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.13.1
+      - name: Run go fmt
+        run: go fmt
+        working-directory: ./golang
+
+      # Clang-format (C/C++) part
+      - name: Setup clang-format
+        uses: DoozyX/clang-format-lint-action@v0.11
+        with:
+          source: ./cpp
+          extensions: h,cpp,c
+          clangFormatVersion: 11
+          inplace: True
+
+      # Dart part
+      - name: Setup dart runtime
+        uses: dart-lang/setup-dart@v1
+      - name: Run dart format
+        working-directory: ./dart
+        run: dart format .
+
+      # Black (Python) part
+      - name: Setup python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install black
+        run: pip install black
+      - name: Run black
+        working-directory: ./python
+        run: black .
+
+      # Rust part
+      - name: Setup Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - name: Setup cargo
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release --all-features
+      - name: Run cargo fmt
+        working-directory: ./rust
+        run: cargo fmt
+
+      # Add and commit all
+      - name: Add and Commit all
+        uses: EndBug/add-and-commit@v7
+        with:
+          author_name: github-actions
+          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          message: "🤖 R3nTru3W4n9 thinks you forgot to format your code!"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
