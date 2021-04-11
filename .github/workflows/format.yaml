@@ -1,4 +1,4 @@
-name: format-code
+name: Format all code
 on: [push]
 jobs:
   format-all:
@@ -57,8 +57,8 @@ jobs:
       - name: Add and Commit all
         uses: EndBug/add-and-commit@v7
         with:
-          author_name: github-actions
-          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          author_name: "github-actions[bot]"
+          author_email: "github-actions[bot]@users.noreply.github.com"
           message: "🤖 R3nTru3W4n9 thinks you forgot to format your code!"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
