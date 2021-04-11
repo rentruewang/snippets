@@ -4,6 +4,8 @@
 
 ---
 
+[![format-code](https://github.com/r3ntru3w4n9/tmp/actions/workflows/format.yaml/badge.svg)](https://github.com/r3ntru3w4n9/tmp/actions/workflows/format.yaml)
+
 #### What is this repository?
 
 I figured I should keep tab of what I'm doing everyday with a central repository, in which code is automatically commited and saved to GitHub. Also keeps my GitHub daily activity green!
