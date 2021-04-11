@@ -4,4 +4,6 @@ module;
 
 export module world;
 
-export void world() { std::cout << "world"; }
+export void world() {
+    std::cout << "world";
+}
