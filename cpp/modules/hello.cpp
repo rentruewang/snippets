@@ -8,4 +8,6 @@ module;
 // smart way
 export module hello;
 
-export void hello() { std::cout << "hello"; }
+export void hello() {
+    std::cout << "hello";
+}
