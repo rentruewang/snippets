@@ -1,3 +1,5 @@
+#! /usr/bin/env fish
+
 # Functions
 
 function add
@@ -29,7 +31,9 @@ set bot "🤖 R3nTru3W4n9"
 set today (date --iso-8601=date)
 set shortmsg "$bot commits on $today"
 set longmsg "Beep Boop, I'm a bot. I haven't really written all this code by myself. The short commit message is a little bit confusing. @r3ntru3w4n9 is the one who writes the code, and runs me periodically or when he/she/it sees fits.
-If you feel rather strongly for @r3ntru3w4n9 writing a more professional message or clairfy things or you just want to fix things, please reach out to him/her/it or comment on the part where you don't like. He/She/It is going to get a notification everytime you do so. And hopefully he/she/it listens to your suggestions! Beep Boop, message over!"
+If you feel rather strongly for @r3ntru3w4n9 writing a more professional message or clairfy things or you just want to fix things, please reach out to him/her/it or comment on the part where you don't like. He/She/It is going to get a notification everytime you do so. And hopefully he/she/it listens to your suggestions! Beep Boop, message over!
+I am a bot, and this action is performed automatically. The source code can be found [here](https://github.com/r3ntru3w4n9/tmp/git.fish)
+"
 
 # Define the arguments to parse.
 # Allow only the long arguments for clarity
