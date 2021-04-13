@@ -1,24 +1,24 @@
-name: 🔧 Format all code
+name: Format
 on: [push]
 jobs:
   format-all:
     runs-on: ubuntu-latest
     steps:
       # Global part
-      - name: 🔔 Check out the repository
+      - name: 🔔 Check out
         uses: actions/checkout@v2
 
       # Golang part
-      - name: 🏗️ Setup go runtime
+      - name: 🏗️ go runtime
         uses: actions/setup-go@v2
         with:
           go-version: ^1.13.1
-      - name: 🏃 Run go fmt
+      - name: 🏃 go fmt
         run: go fmt
         working-directory: ./golang
 
       # Clang-format (C/C++) part
-      - name: 🏗️ 🏃Setup  and run clang-format
+      - name: 🏗️ 🏃 clang-format
         uses: DoozyX/clang-format-lint-action@v0.11
         with:
           source: ./cpp
@@ -27,34 +27,34 @@ jobs:
           inplace: True
 
       # Dart part
-      - name: 🏗️ Setup dart runtime
+      - name: 🏗️ dart runtime
         uses: dart-lang/setup-dart@v1
-      - name: Run dart format
+      - name: 🏃 dart format
         working-directory: ./dart
         run: dart format .
 
       # Black (Python) part
-      - name: 🏗️ Setup python 3.8
+      - name: 🏗️ python 3.8
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
-      - name: ⬇️ Install black
+      - name: ⬇️ black
         run: pip install black
-      - name: 🏃 Run black
+      - name: 🏃 black
         working-directory: ./python
         run: black .
 
       # Rust part
-      - name: 🏗️ Setup Rust toolchain
+      - name: 🏗️ Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
-      - name: 🏃 Run cargo fmt
+      - name: 🏃 cargo fmt
         working-directory: ./rust
         run: cargo fmt
 
       # Add and commit all
-      - name: ⬆️ Add and Commit all
+      - name: ⬆️ Add and Commit
         uses: EndBug/add-and-commit@v7
         with:
           author_name: "github-actions[bot]"
