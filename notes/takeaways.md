@@ -26,8 +26,8 @@
     every event in the history of technology and science has something singular and non-repeatable about it
     with the sample of 1, variance (inf) is meaningless
     Orientations: how i got here & where do i go next?
-2. determinate vs indeterminate futures, conviction vs diversification, more invesment vs less, substance vs process, calculus vs statistics, innovation vs unchanged
-    optimistic vs pessmistic futures, promise vs fear, less saving vs more, economic vs environment
+2. determinate vs indeterminate futures, conviction vs diversification, more investment vs less, substance vs process, calculus vs statistics, innovation vs unchanged
+    optimistic vs pessimistic futures, promise vs fear, less saving vs more, economic vs environment
 3. is indeterminate optimism possible?
     Darwin
     but not in business, according to Peter Thiel
@@ -78,7 +78,7 @@ There are a lot of people interested in starting a company, especially at Berkel
             12. success and significance vs success
 2. Startup/Entrepreneurship 
     - Brace for impact
-    - How to mentor entreprenuers
+    - How to mentor entrepreneurs
     - Get a coach
     - Meet the criterion but failed (criterion as in 4.3 Google/Amazon question)
         - Sometimes too early
@@ -88,7 +88,7 @@ There are a lot of people interested in starting a company, especially at Berkel
     1. Green
         - He might have invested too fast and too much
         - The time will eventually come
-        - Captial intensive
+        - Capital intensive
         - Longer time to market
         - It's not a sector but a spectrum
         - Better batteries will dramatically change the field
@@ -108,9 +108,9 @@ There are a lot of people interested in starting a company, especially at Berkel
     1. How to evaluate new fields
         - Hang around innovative people
         - Collect data like crazy
-        - Ask knowledgable people
-        - Have some taste and rely on the entreprenuers to be thought leaders and innovators
-    2. What are the qualities that matter to entreprenuers
+        - Ask knowledgeable people
+        - Have some taste and rely on the entrepreneurs to be thought leaders and innovators
+    2. What are the qualities that matter to entrepreneurs
         - You just know
         - Try to make new mistakes instead of repeating the same old ones.
     3. What he saw in Google or Amazon?
@@ -123,8 +123,8 @@ There are a lot of people interested in starting a company, especially at Berkel
         4. Execution -> speed
         5. Reasonable finances
             - You can't raise too much nor too little money
-            - You always want a cusion than you plan
-            - The way to make a venture is not by cutting a tough deal with the investors, but to be ruthlessly honest with what the risk is in the venture, and try to elimate the risks
+            - You always want a cushion than you plan
+            - The way to make a venture is not by cutting a tough deal with the investors, but to be ruthlessly honest with what the risk is in the venture, and try to eliminate the risks
     4. US or western VC in China
         - For some reason he has not addressed this 
     5.  Failures and Opportunities missed
@@ -133,7 +133,7 @@ There are a lot of people interested in starting a company, especially at Berkel
     2. Self driving cars
 6. Personal Questions
     1. Women in tech and VC
-        - You have to earn it, be a success entreprenuers before you be a successful VC
+        - You have to earn it, be a success entrepreneurs before you be a successful VC
     2. How to learn
     3. Favorite book for problem solving
 7. Education
@@ -169,7 +169,7 @@ There are a lot of people interested in starting a company, especially at Berkel
 15. action bias
 16. the blessing of inexperience
 17. momentum
-18. competetive advantage
+18. competitive advantage
 19. sensible business model
 20. distribution strategy
 21. frugality, focus, obsession, love
@@ -219,7 +219,7 @@ There are a lot of people interested in starting a company, especially at Berkel
 
 Back in the days almost everything else was on the internet, however, people factors are lacking. You couldn’t easily interact with people on the internet, and couldn’t easily see what others were up to.
 
-He built a website called coursematch and he was fascinated by how people can be so interested in courses other people take.
+He built a website called course-match and he was fascinated by how people can be so interested in courses other people take.
 
 He built a dozen such things before Facebook finally came along.
 
@@ -327,11 +327,11 @@ AI is not bad, but someone bad can make use of it.
 
 ## Elon Musk's Ultimate Advice for Students & College Grads - HOW TO SUCCEED IN LIFE
 
-Try Tesla or Spacex or start a company.
+Try Tesla or SpaceX or start a company.
 
 It's easy to start a company, you just get a few like-minded people.
 
-_Don't just follow the trend. You boil things down to the most fundamental truths you can imagine and reason up from there. This helps to figure out if something really makes sense or it's just what everyone else's doing. It takes a lot of effort to do so, it's best way to do if you're trying new things._
+_Don't just follow the trend. You boil things down to the most fundamental truths you can imagine and reason up from there. This helps to figure out if something really makes sense or it's just what everyone else is doing. It takes a lot of effort to do so, it's best way to do if you're trying new things._
 
 He started the first company back in 95 because he couldn't get a job at another internet company as there were too few!
 
@@ -341,7 +341,7 @@ _People are not afraid of not being able to live, they are just afraid of failur
 
 People should be less risk-averse when there is not much at risk.
 
-If we advance knowledge and do things that expand the scale of conciousness we can do things better. That's the way forward.
+If we advance knowledge and do things that expand the scale of consciousness we can do things better. That's the way forward.
 
 He wants to be able to think about the future and feel good about that.
 
@@ -357,7 +357,7 @@ He got to meet his co-founder 3 hours before the deadline.
 
 Do something different.
 
-When somethings happends, you have to address the issues.
+When somethings happens, you have to address the issues.
 
 There is a lot of competition, but do you use them? If no, it's our chance.
 
@@ -373,7 +373,7 @@ _Several years from now, what would I wish I am doing?_
 
 **High output management**, **The effects of executives**, **Poor Charles Almanack** recommended.
 
-Everytime you expand, you contract because focus means killing things that you may love.
+Every time you expand, you contract because focus means killing things that you may love.
 
 AARRR - acquisition, activation, revenue, retention, referral
 
@@ -409,89 +409,3 @@ Seven traits great investors have
 5. Great investors have confidence in their own convictions and stick with them, even when facing criticism
 6. It's important to have both sides of your brain working
 7. The ability to live through volatility without changing to your investment thought process
-
-## The art of the start 2 - Guy Kawasaki
-
-Entrepreneurship is about doing, not learning to do.
-
-Answer simple questions:
-
-1. Therefore, what?
-2. Isn't this interesting?
-3. Is there a better way?
-4. Why doesn't our company do this?
-5. It's possible, so why don't we make it?
-6. Where is the market leader weak?
-
-The sweet spot:
-
-1. Expertise
-2. Opportunities
-3. Passion
-
-Find soul mates.
-
-Co-founders should be similar in:
-
-1. Vision
-2. Size
-3. Commitment
-
-and different in:
-
-1. Expertise
-2. Orientation
-3. Perspective
-    Cautious in co-founders in:
-4. Do not rush and pick carefully
-5. Do not add co-founders for funding
-6. Assume the best, but plan for the worst
-
-Does your startup make meaning?
-
-Then, make mantra with the following characteristic:
-
-1. Brevity
-2. Positivity
-3. Outward focus
-
-Pick a business model.
-
-Some models:
-
-- Inidivualized solution
-- Multi-component
-- Market leader
-- Valuable component
-- Switchboard
-- Printer and toner (after-sale)
-- Freemium
-- Eyeballs (advertisements)
-- Virtual goods
-- Craftsman
-
-Tweak your business model
-
-1. Target a specific niche
-2. Keep it simple
-3. Copy others
-4. Expansive
-
-Matt:
-
-1. Milestones
-2. Assumptions
-3. Tests
-4. Tasks
-
-Keep things clean and simple
-
-1. Corporate structure (Delaware C Corporation)
-2. Intellectual property (IP should belong to startup not founders)
-3. Capital structure
-4. Employee background
-5. Regulatory compliance
-
-Do something cringeworthy
-
-[](TODO)
