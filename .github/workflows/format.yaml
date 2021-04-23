@@ -21,7 +21,7 @@ jobs:
       - name: 🏗️ 🏃 clang-format
         uses: DoozyX/clang-format-lint-action@v0.11
         with:
-          source: ./cpp
+          source: ./c
           extensions: h,cpp,c
           clangFormatVersion: 11
           inplace: True
