@@ -19,6 +19,10 @@
         2. Faster speed
         3. Lower cost
         4. More reliability
+- If we use a different way to categorize, then there are two kinds of improvements
+    1. Lowering the cost
+    2. Offering something new
+- The target is to never lower the cost. In offering something new, the profit is always driven by client's behavioral chanage. Always.
 - According to the Organization for Economic Cooperation and Development (OECD), the term ‘innovation’ can be differentiated into 4 main types:
     1. product innovation
     2. process innovation
