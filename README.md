@@ -4,7 +4,7 @@
 
 ---
 
-[![format-code](https://github.com/r3ntru3w4n9/tmp/actions/workflows/format.yaml/badge.svg)](https://github.com/r3ntru3w4n9/tmp/actions/workflows/format.yaml)
+[![format-code](https://github.com/rentruewang/tmp/actions/workflows/format.yaml/badge.svg)](https://github.com/rentruewang/tmp/actions/workflows/format.yaml)
 
 #### What is this repository?
 

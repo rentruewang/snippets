@@ -1,4 +1,4 @@
-module github.com/r3ntru3w4n9/tmp
+module github.com/rentruewang/tmp
 
 go 1.16
 

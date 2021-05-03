@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/r3ntru3w4n9/tmp/scope/subdir"
+	"github.com/rentruewang/tmp/scope/subdir"
 )
 
 func main() {

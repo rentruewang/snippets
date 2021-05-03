@@ -38,7 +38,7 @@ if __name__ == "__main__":
 
     flags = parser.parse_args()
 
-    bot = "🤖 R3nTru3W4n9"
+    bot = "🤖 RenTrueWang"
     today = datetime.now()
     shortmsg = f"{bot} commits on {today}"
     longmsg = \
