@@ -1,28 +1,3 @@
-# Ideas
-
-- software packaged for remote work (or surveillance software helping people to focus)
-- something related to the crowds such as price decider
-- clubhouse alternative
-- voiced version of LinkedIn?
-- machine that allow to reason
-- better personalized content
-- search engine vs social media
-- similar ideas to warby parkers
-- a CDN sort-of network that deals with processing
-- a customer service tool
-- fake social bot
-- remote work will be the future, online presence rather than physical presence
-- you choose what to eat, we design the dishes
-- what if, a system to help understand why some today's machine learning models fail and why some work? Like a meta (today's) AI.
-- When analytical models meets explainable AI?
-- Can data be stored in space with standing waves?
-- General Machine Learning Processor?
-- Is an AI platform possible?
-- Reverse AWS.
-- Imagine if AI is able to help human in the most humanely fashion.
-- What BetterUp does basically is transform an educational startup into a B2B one. Maybe another genre in a similar fashion?
-- Decision made with context available?
-
 # Thoughts
 
 - if people are hailing AI as the next big thing, why aren't there AI hexa-corns based on AI applications yet? Kuaishou and ByteDance are mainly social apps, which basically classify as Internet companies rather than AI companies despite their brading effort. Nvidia is a hardware company contrast to common belief.
@@ -44,6 +19,10 @@
         2. Faster speed
         3. Lower cost
         4. More reliability
+- If we use a different way to categorize, then there are two kinds of improvements
+    1. Lowering the cost
+    2. Offering something new
+- The target is to never lower the cost. In offering something new, the profit is always driven by client's behavioral chanage. Always.
 - According to the Organization for Economic Cooperation and Development (OECD), the term ‘innovation’ can be differentiated into 4 main types:
     1. product innovation
     2. process innovation
