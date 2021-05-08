@@ -7,12 +7,12 @@ Future<void> slow() => Future.delayed(Duration(seconds: 1), () {
       print('hi');
     });
 
-sslow() async {
+void sslow() async {
   print('stream');
   Stream.fromFuture(slow()).drain();
 }
 
-main(List<String> args) {
+void main(List<String> args) {
   var arr = List.generate(2000 * 1000 * 3, (index) => 0);
 
   var img = Image.fromBytes(2000, 1000, arr, format: Format.rgb);

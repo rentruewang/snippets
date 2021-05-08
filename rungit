@@ -41,8 +41,7 @@ if __name__ == "__main__":
     bot = "🤖 RenTrueWang"
     today = datetime.now()
     shortmsg = f"{bot} commits on {today}"
-    longmsg = \
-f"""
+    longmsg = f"""
     {shortmsg}
 
     Beep Boop, I'm a bot. I haven't really written all this code by myself. The short commit message is a little bit confusing. @rentruewang is the one who writes the code, and runs this program periodically or when he/she/it sees fits.

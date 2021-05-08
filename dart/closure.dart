@@ -1,4 +1,4 @@
-main(List<String> args) {
+void main(List<String> args) {
   var data = '';
 
   var closure = (String s) => data = s;

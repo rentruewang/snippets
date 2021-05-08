@@ -10,6 +10,10 @@ Future<void> printasync(String s, int delay) async {
   await Future.delayed(Duration(seconds: delay), () => print(s));
 }
 
+function() {
+  return 3;
+}
+
 class Quote {
   final String author;
   final String text;
@@ -20,12 +24,12 @@ class Quote {
   String toString() => '$text --- $author';
 }
 
-longRunning() {
+void longRunning() {
   Future.delayed(Duration(seconds: 1)).then((_) => print('future finished'));
   print('long running end');
 }
 
-parent() {
+void parent() {
   longRunning();
   print('parent end');
 }
@@ -53,6 +57,7 @@ class Player {
 
 void main() async {
   parent();
+  print(function());
 
   // C c = C(null);
   // print(c.val);
