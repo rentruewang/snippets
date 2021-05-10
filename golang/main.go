@@ -168,6 +168,7 @@ func main() {
 	// fmt.Println(l.Meow(), lptr.Meow())
 	fmt.Println(l.Meow())
 
+	// A list of fat pointers.
 	li := make([]interface{}, 0)
 
 	li = append(li, int32(1))
