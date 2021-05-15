@@ -1,6 +1,6 @@
 # Thoughts
 
-- if people are hailing AI as the next big thing, why aren't there AI hexa-corns based on AI applications yet? Kuaishou and ByteDance are mainly social apps, which basically classify as Internet companies rather than AI companies despite their brading effort. Nvidia is a hardware company contrast to common belief.
+- if people are hailing AI as the next big thing, why aren't there AI hexa-corns based on AI applications yet? Kuaishou and ByteDance are mainly social apps, which basically classify as Internet companies rather than AI companies despite their branding effort. Nvidia is a hardware company contrast to common belief.
 - The argument I'm trying to make here is, the Internet was incepted in 1991, and deep learning started in 2010. Right now in 2021 we are not seeing an "AI bubble" ever with AI companies hitting 100+B valuations. (2000 Yahoo!, Cisco etc). And it's not coming anytime soon. Does that mean no substantial improvement was made? I think so.
 - AI currently should stand for analytical intelligence instead of artificial intelligence. Is AI good enough currently? Definitely not. Google search and say Facebook tags are okay, but they don't make a night and day difference.
 - AI needs three things:
@@ -22,7 +22,8 @@
 - If we use a different way to categorize, then there are two kinds of improvements
     1. Lowering the cost
     2. Offering something new
-- The target is to never lower the cost. In offering something new, the profit is always driven by client's behavioral chanage. Always.
+- The target is to never lower the cost. In offering something new, the profit is always driven by client's behavioral change. Always.
+- Will people be addicted to the next big thing? Looking at the Internet, Yes. Looking at before the Internet, yes, but not too much. So it's difficult to answer.
 - According to the Organization for Economic Cooperation and Development (OECD), the term ‘innovation’ can be differentiated into 4 main types:
     1. product innovation
     2. process innovation
