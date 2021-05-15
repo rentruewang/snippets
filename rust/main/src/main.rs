@@ -84,9 +84,7 @@ fn main() {
     println!("{:?}", v);
 }
 
-fn noreturn1() {
-    ()
-}
+fn noreturn1() {}
 
 fn noreturn2() {}
 
