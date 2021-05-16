@@ -4,7 +4,7 @@ import "fmt"
 
 func modifySlice0(slice []int) {
 	if len(slice) == 0 {
-		panic("The function failes")
+		panic("The function fails")
 	}
 	slice[0] = -1
 }
