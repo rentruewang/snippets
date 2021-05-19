@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 
 import argparse
-import subprocess as sp
 from datetime import datetime
 
 from git import Repo
@@ -38,11 +37,8 @@ if __name__ == "__main__":
 
     flags = parser.parse_args()
 
-    bot = "🤖 RenTrueWang"
-    today = datetime.now()
-    shortmsg = f"{bot} commits on {today}"
-    longmsg = f"""
-    {shortmsg}
+    message = f"""
+    🤖 RenTrueWang commits on {datetime.now()}
 
     Beep Boop, I'm a bot. I haven't really written all this code by myself. The short commit message is a little bit confusing. @rentruewang is the one who writes the code, and runs this program periodically or when he/she/it sees fits.
     If you feel rather strongly for @rentruewang to write a more professional message or clairfy things or you just want to fix things, please reach out to him/her/it or comment on the part where you don't like. He/She/It is going to get a notification everytime you do so. And hopefully he/she/it listens to your suggestions! Beep Boop, message over!
@@ -61,7 +57,7 @@ if __name__ == "__main__":
         git_add(repo)
 
     if flags.commit:
-        git_commit(repo, longmsg)
+        git_commit(repo, message)
 
     if flags.push:
         git_push(repo)
