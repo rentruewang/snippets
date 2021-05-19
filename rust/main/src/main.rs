@@ -18,12 +18,12 @@ where
     f(t)
 }
 
-// fn somef2<F>(f: F)
-// where
-//     F: Fn(),
-// {
-//     f()
-// }
+fn somef2<F>(f: F)
+where
+    F: Fn(),
+{
+    f()
+}
 
 trait Bad {
     fn generic_method<A>(&self, value: A);
@@ -56,8 +56,8 @@ fn main() {
 
     somef1(Type::call, &t);
 
-    // let c = t.call;
-    // somef2(c);
+    let c = t.call;
+    somef2(c);
 
     let mut any: &dyn Any;
     any = &A;
@@ -84,7 +84,7 @@ fn main() {
     println!("{:?}", v);
 }
 
-fn noreturn1() {}
+fn noreturn1() {()}
 
 fn noreturn2() {}
 
