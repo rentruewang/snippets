@@ -10,6 +10,7 @@ Future<void> printasync(String s, int delay) async {
   await Future.delayed(Duration(seconds: delay), () => print(s));
 }
 
+// This function simply has a type of dynamic
 function() {
   return 3;
 }
