@@ -65,15 +65,15 @@ fn main() {
         elem.do_something();
     }
 
-    let mut vec: Vec<Box<TraitSized>> = vec![];
-    vec.push(Box::new(A {}));
-    vec.push(Box::new(A {}));
-    vec.push(Box::new(A {}));
-    vec.push(Box::new(B { something: 3 }));
-    vec.push(Box::new(B { something: 3 }));
-    vec.push(Box::new(B { something: 2 }));
+    // let mut vec: Vec<Box<TraitSized>> = vec![];
+    // vec.push(Box::new(A {}));
+    // vec.push(Box::new(A {}));
+    // vec.push(Box::new(A {}));
+    // vec.push(Box::new(B { something: 3 }));
+    // vec.push(Box::new(B { something: 3 }));
+    // vec.push(Box::new(B { something: 2 }));
 
-    for elem in vec.iter() {
-        elem.do_something();
-    }
+    // for elem in vec.iter() {
+    //     elem.do_something();
+    // }
 }

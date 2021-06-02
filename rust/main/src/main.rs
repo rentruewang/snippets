@@ -56,8 +56,8 @@ fn main() {
 
     somef1(Type::call, &t);
 
-    let c = t.call;
-    somef2(c);
+    // let c = t.call;
+    // somef2(c);
 
     let mut any: &dyn Any;
     any = &A;
