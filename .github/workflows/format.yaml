@@ -26,12 +26,17 @@ jobs:
           clangFormatVersion: 11
           inplace: True
 
-      # Dart part
-      - name: 🏗️ dart runtime
-        uses: dart-lang/setup-dart@v1
-      - name: 🏃 dart format
-        working-directory: ./dart
-        run: dart format .
+      # JavaScript part
+      - name: 🏗️ node
+        uses: actions/setup-node@v2
+        with:
+          node-verion: 14
+      - name: ⬇️ prettier
+        working-directory: ./javascript
+        run: npm install prettier
+      - name: 🏃 prettier
+        working-directory: ./javascript
+        run: ./node_modules/prettier/bin-prettier.js --write .
 
       # Black (Python) part
       - name: 🏗️ python 3.8
