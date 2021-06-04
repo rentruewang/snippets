@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 type S struct {
 	val int
@@ -25,4 +28,11 @@ func main() {
 		c[i].Modify()
 	}
 	fmt.Println(a)
+
+	s := []int{4, 2, 1, 3}
+	v := s[:]
+	sort.Slice(v, func(i, j int) bool {
+		return v[i] < v[j]
+	})
+	fmt.Println(s, v)
 }
