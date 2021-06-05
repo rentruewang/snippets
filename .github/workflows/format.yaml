@@ -36,7 +36,7 @@ jobs:
         run: npm install prettier --save-dev
       - name: 🏃 prettier
         working-directory: ./javascript
-        run: ./node_modules/prettier/bin-prettier.js --write --no-semi .
+        run: ./node_modules/prettier/bin-prettier.js --write .
       - name: ⬇️ standard
         working-directory: ./javascript
         run: npm install standard --save-dev
