@@ -2,6 +2,9 @@
 
 "use strict";
 
+// How to write good comments:
+// https://javascript.info/comments
+
 console.log("hello world");
 
 const jsCamelCase = true;
