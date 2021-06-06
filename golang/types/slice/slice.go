@@ -16,4 +16,7 @@ func main() {
 	modifySlice0(slice)
 	fmt.Println(slice)
 
+	other:= slice[:]
+	other[2] = 8
+	fmt.Println(slice)
 }

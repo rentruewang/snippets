@@ -301,6 +301,34 @@ c.getName();
 // const g3 = c3.getName;
 // console.log(g3());
 
+class MyC4 {
+  name = "MyC4";
+  getName(this: MyC4) {
+    console.log(this);
+    // return this.name;
+  }
+}
+const c4 = new MyC4();
+// OK
+c.getName();
+
+// Error, can crash if using this.method
+// const g4 = c4.getName;
+// console.log(g4());
+
+class MyC5 {
+  name = "MyC5";
+  getName() {
+    console.log("myc5", this);
+  }
+}
+const c5 = new MyC5();
+// OK
+c.getName();
+
+const g5 = c5.getName;
+console.log(g5());
+
 class ThisBox {
   contents: string = "";
   setTo(value: string) {

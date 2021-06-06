@@ -80,3 +80,15 @@ setCoordinate([1, 4]);
 function create<Type>(c: { new (): Type }): Type {
   return new c();
 }
+
+const array = [1, 2, 3, 4];
+const slice = array.slice(0, 2);
+const copy = array;
+console.log(array, slice, copy);
+slice[0] = -8;
+slice[1] += 3;
+++copy[3];
+++copy[3];
+++copy[3];
+++copy[3];
+console.log(array, slice, copy);
