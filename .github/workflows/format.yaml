@@ -26,7 +26,7 @@ jobs:
           clangFormatVersion: 11
           inplace: True
 
-      # JavaScript part
+      # JavaScript/TypeScript part
       - name: 🏗️ node
         uses: actions/setup-node@v2
         with:
@@ -37,12 +37,13 @@ jobs:
       - name: 🏃 prettier
         working-directory: ./javascript
         run: ./node_modules/prettier/bin-prettier.js --write .
-      - name: ⬇️ standard
-        working-directory: ./javascript
-        run: npm install standard --save-dev
+
+      - name: ⬇️ prettier
+        working-directory: ./typescript
+        run: npm install prettier --save-dev
       - name: 🏃 prettier
-        working-directory: ./javascript
-        run: ./node_modules/standard/bin/cmd.js --fix .
+        working-directory: ./typescript
+        run: ./node_modules/prettier/bin-prettier.js --write .
 
       # Black (Python) part
       - name: 🏗️ python 3.8

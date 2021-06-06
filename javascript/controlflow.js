@@ -5,9 +5,9 @@ if (1) {
   console.log(0);
 }
 
-let a = null;
+const a = null;
 console.log(a ?? 1, a || 2);
-let b = 0;
+const b = 0;
 console.log(b ?? 1, b || 2);
 
 let i = 0;

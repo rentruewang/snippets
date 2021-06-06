@@ -1,16 +1,16 @@
 "use strict";
 
-let k = 5;
+const k = 5;
 
-let someObj = {
+const someObj = {
   // computed properties
   4: 3,
   [k]: 11,
   name: "John",
   "age is": 30,
   k,
-  [6]: k,
-  [5]: k + 1,
+  6: k,
+  5: k + 1,
 };
 
 console.log(someObj);
@@ -24,19 +24,19 @@ console.log(someObj, "likes birds" in someObj);
 
 // Can't do this in strict mode
 // for (field in someObj) {
-for (let field in someObj) {
+for (const field in someObj) {
   console.log(field, someObj[field]);
 }
 // console.log("field=", field);
 
-let vars = [{ key: "key", value: "value" }];
+const vars = [{ key: "key", value: "value" }];
 vars[0].key = "newkey";
 vars[0].value = "newvalue";
 vars[1] = { key: "kk", value: "vv" };
 
 console.log(vars, vars[1]);
 
-let codes = {
+const codes = {
   49: "Germany",
   41: "Switzerland",
   44: "Great Britain",
@@ -44,26 +44,26 @@ let codes = {
   1: "USA",
 };
 
-for (let code in codes) {
+for (const code in codes) {
   console.log(typeof code, Number(code), code); // 1, 41, 44, 49
 }
 
-let array = [302942, 198352, 123141, 235292];
-for (let i in array) {
+const array = [302942, 198352, 123141, 235292];
+for (const i in array) {
   console.log(typeof i, Number(i), i, typeof array[i]);
 }
 
-let a = {};
-let b = {};
+const a = {};
+const b = {};
 console.log(a == b, a === b);
 
-let c = Object.assign({}, a);
+const c = Object.assign({}, a);
 console.log(c == a, c === a);
 
-let perm = { name: "John" };
+const perm = { name: "John" };
 
-let permissions1 = { canView: true };
-let permissions2 = { canEdit: true };
+const permissions1 = { canView: true };
+const permissions2 = { canEdit: true };
 
 Object.assign(perm, permissions1, permissions2);
 
@@ -80,7 +80,7 @@ let user = {
   },
 };
 
-let clone = Object.assign({}, user);
+const clone = Object.assign({}, user);
 
 console.log(user.sizes === clone.sizes);
 
@@ -88,9 +88,9 @@ console.log(user.sizes === clone.sizes);
 console.log(clone.sizes.width);
 user.sayHi();
 
-let method = user.sayHi;
+const method = user.sayHi;
 
-let hijack = {
+const hijack = {
   name: 382934,
   method,
   // arrowed function's this does not work the same way
@@ -130,7 +130,7 @@ user.sayHi();
 console.log(user.nonExistent);
 
 console.log(user == new User("Jack"), user === new User("Jack"));
-let human = {
+const human = {
   name: "John",
   surname: "Smith",
 
@@ -147,7 +147,7 @@ let human = {
   },
 };
 
-for (let field of Object.entries(human)) {
+for (const field of Object.entries(human)) {
   console.log(field);
 }
 
@@ -159,12 +159,12 @@ let user1 = {
   callThis,
 };
 
-let user2 = {
+const user2 = {
   name: "user2",
   callThis,
 };
 
-let callbackAnon = () => user1.callThis();
+const callbackAnon = () => user1.callThis();
 
 callbackAnon();
 user1 = user2;

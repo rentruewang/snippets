@@ -1,7 +1,7 @@
 "use strict";
 
 // Defined to allow copy paste from sources using alert
-var alert = console.log;
+const alert = console.log;
 
 function thisIsAFunc(param) {
   alert(param);
@@ -15,7 +15,7 @@ function showMessage(from, text) {
   alert(from + ": " + text);
 }
 
-let from = "Ann";
+const from = "Ann";
 
 showMessage(from, "Hello");
 alert(from);
@@ -42,17 +42,17 @@ function sayHi() {
 // Cannot access before initialization.
 // sayHello();
 
-let sayHello = function () {
+const sayHello = function () {
   alert("Hello");
 };
 
 // alert(sayHi);
 
-let saySth = () => alert("Something");
+const saySth = () => alert("Something");
 saySth();
 
-let getSth = () => {
-  let thing = "something";
+const getSth = () => {
+  const thing = "something";
   return thing;
 };
 
@@ -67,8 +67,8 @@ function say() {
   alert(this.name);
 }
 
-let user = { name: "John", say };
-let admin = { name: "Admin", say };
+const user = { name: "John", say };
+const admin = { name: "Admin", say };
 
 // func.call(obj, arg1, arg2) is equal to obj.func(arg1, arg2) is equal to func.apply(obj, [arg1, arg2])
 admin.say.call(user);
@@ -76,13 +76,13 @@ user.say();
 user.say.apply(admin, []);
 admin.say();
 
-let group = {
+const group = {
   title: "Our Group",
   students: ["John", "Pete", "Alice"],
 
   showList() {
     // this.students.forEach(function (student) {
-    //   // Error. In this case, this is the global context.
+    //   Error. In this case, this is the global context.
     //   console.log(this.title + ": " + student);
     // });
     this.students.forEach((student) => console.log(student));

@@ -15,12 +15,12 @@ console.log("Hello");
 // This is a comment
 
 // console.log(x);
-let isStrict = (function () {
+const isStrict = (function () {
   return !this;
 })();
 console.log(isStrict);
 
-let user = "John",
-  age = 25,
-  message = "Hello";
+const user = "John";
+const age = 25;
+const message = "Hello";
 console.log(user, age, message);
