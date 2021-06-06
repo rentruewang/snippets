@@ -1,22 +1,13 @@
-type GreetFunction = (a: string) => void;
-function geter(fn: GreetFunction) {}
-
-interface CallOrConstruct {
-  new (s: string): Date;
-  (n?: number): number;
+function map<Input, Output>(
+  arr: Input[],
+  func: (arg: Input) => Output
+): Output[] {
+  return arr.map(func);
 }
 
-function fn(ctor: CallOrConstruct) {
-  return new ctor("hello");
-}
+const parsed = map(["1", "2", "3"], (n) => parseInt(n));
 
-function firstElement<Type>(arr: Type[]): Type | undefined {
-  return arr[0];
-}
-
-type hasLength = {
-  length: number;
-};
+console.log(parsed);
 
 function longest<Type extends { length: number }>(a: Type, b: Type) {
   if (a.length >= b.length) {
@@ -26,15 +17,14 @@ function longest<Type extends { length: number }>(a: Type, b: Type) {
   }
 }
 
-function shorter<Type extends hasLength>(a: Type, b: Type): Type {
-  return a.length <= b.length ? a : b;
+const longerArray = longest([1, 2], [1, , 3]);
+console.log(longerArray);
+
+function f(x?: number) {
+  console.log(x);
 }
-
-const longerArray = longest([1, 2], [1, 2, 3]);
-
-function takeOptional(opt: number, x: number = 0) {}
-
-takeOptional(1);
+f();
+f(10);
 
 function makeDate(timestamp: number): Date;
 function makeDate(m: number, d: number, y: number): Date;
@@ -45,24 +35,72 @@ function makeDate(mOrTimestamp: number, d?: number, y?: number): Date {
     return new Date(mOrTimestamp);
   }
 }
+const d1 = makeDate(12345678);
+const d2 = makeDate(5, 5, 5);
+// const d3 = makeDate(1, 3);
 
-function fnbs(x: boolean): void;
-function fnbs(x: string): void;
-function fnbs(x: boolean | string): void {
-  console.log(x);
+interface User {
+  name: string;
+  admin: boolean;
+  becomeAdmin: () => void;
 }
 
-const userr = {
-  id: 123,
-
-  admin: false,
-  becomeAdmin: function () {
-    this.admin = true;
-  },
-};
-
-function identity<Type>(arg: Type): Type {
-  return arg;
+interface DB {
+  filterUsers(filter: (this: User) => boolean): User[];
 }
 
-let myIdentity: { <Type>(arg: Type): Type } = identity;
+// function getDB(): {
+//   users: User[];
+//   filterUsers: (filter: (this: User) => boolean) => User[];
+// } {
+//   return {
+//     users: [],
+//     filterUsers(filter: (this: User) => boolean) {
+//       return this.users.filter((user: User) => filter.call(user));
+//     },
+//   };
+// }
+
+function getDB() {
+  let obj: {
+    users: User[];
+    filterUsers: (filter: (this: User) => boolean) => User[];
+  } = {
+    users: [],
+    filterUsers(filter: (this: User) => boolean) {
+      return this.users.filter((user: User) => filter.call(user));
+    },
+  };
+  return obj;
+}
+
+const db: DB = getDB();
+const admins = db.filterUsers(function (this: User) {
+  return this.admin;
+});
+
+const args = [8, 5] as const;
+// const args = [8, 5];
+const angle = Math.atan2(...args);
+
+interface GenericIdentityFn {
+  <Type>(arg: Type): Type;
+}
+
+function identity<Type>(value: Type): Type {
+  return value;
+}
+let myIdentity: <Type>(arg: Type) => Type = identity;
+let myObjIdentity: { <Type>(arg: Type): Type } = identity;
+
+let genI: GenericIdentityFn = identity;
+
+// These are the same types.
+myIdentity = myObjIdentity;
+myObjIdentity = genI;
+
+function somef() {
+  return { x: 10, y: 3 };
+}
+type P = ReturnType<typeof somef>;
+console.log(typeof somef);

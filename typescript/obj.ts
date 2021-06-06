@@ -1,35 +1,82 @@
-interface User {
-  id: number;
-  admin: boolean;
+// Anonymous object types
+function greet1(person: { name: string; age: number }) {
+  return "Hello " + person.name;
 }
 
-interface DB {
-  filterUsers(filter: (this: User) => boolean): User[];
+// Named
+interface Person1 {
+  name: string;
+  age: number;
 }
 
-const DBObj: {
-  allUsers: User[];
-  filterUsers(filter: (this: User) => boolean): User[];
-} = {
-  allUsers: [
-    { id: 0, admin: false },
-    { id: 1, admin: true },
-  ],
-  filterUsers(filter: (this: User) => boolean): User[] {
-    return this.allUsers.filter(filter);
-  },
+function greet2(person: Person1) {
+  return "Hello " + person.name;
+}
+
+type Person2 = {
+  name: string;
+  age: number;
 };
 
-const getDB: () => DB = function () {
-  return DBObj;
-};
+function greet3(person: Person2) {
+  return "Hello " + person.name;
+}
 
-const newdb = getDB();
-const newAdmins = newdb.filterUsers(function (this: User) {
-  console.log(this);
-  return this.admin;
-});
+interface PaintOptions {
+  shape: Shape;
+  xPos?: number;
+  yPos?: number;
+}
 
-console.log(newAdmins);
+function getShape(): Shape {
+  return {
+    kind: "circle",
+    radius: 10,
+    area() {
+      return Math.PI * Math.pow(this.radius, 2);
+    },
+  };
+}
 
-type GConstructor<T = {}> = new (...args: any[]) => T;
+function paintShape(opts: PaintOptions) {
+  console.log(opts.shape, opts.shape.area(), opts.xPos, opts.yPos);
+}
+
+const shape = getShape();
+paintShape({ shape });
+paintShape({ shape, xPos: 100 });
+paintShape({ shape, yPos: 100 });
+paintShape({ shape, xPos: 100, yPos: 100 });
+
+const roArray: ReadonlyArray<string> = ["red", "green", "blue"];
+console.log(roArray);
+// roArray[0] = "purple";
+
+function doSomething(pair: [string, number]) {
+  let [a, b] = pair;
+  a = "4";
+  pair[1] = 8;
+  console.log(a, b, pair);
+}
+const pair = ["hello", 83] as [string, number];
+doSomething(pair);
+console.log(pair);
+// doSomething(["hello", 83, 2]);
+
+type Either2dOr3d = [number, number, number?];
+
+function setCoordinate(coo: Either2dOr3d) {
+  const [x, y, z] = coo;
+  if (z != undefined) {
+    console.log(`Provided coordinates had ${coo.length} dimensions`, x, y, z);
+  } else {
+    console.log("it's 2d");
+  }
+}
+
+setCoordinate([1, 2, 3]);
+setCoordinate([1, 4]);
+
+function create<Type>(c: { new (): Type }): Type {
+  return new c();
+}
