@@ -76,6 +76,8 @@ function setCoordinate(coo: Either2dOr3d) {
 
 setCoordinate([1, 2, 3]);
 setCoordinate([1, 4]);
+// setCoordinate([1]);
+// setCoordinate([1, 8, 2, 2]);
 
 function create<Type>(c: { new (): Type }): Type {
   return new c();
