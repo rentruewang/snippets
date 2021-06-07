@@ -22,6 +22,17 @@ function greet3(person: Person2) {
   return "Hello " + person.name;
 }
 
+declare class Person3 {
+  name: string;
+  age: number;
+}
+
+function greet4(person: Person3) {
+  return `Hello ${person.name}`;
+}
+
+greet4({ name: "human", age: 3 });
+
 interface PaintOptions {
   shape: Shape;
   xPos?: number;

@@ -117,5 +117,5 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# This is a pure TypeScript directory
+# Ignore automatically generated JavaScript files.
 *.js

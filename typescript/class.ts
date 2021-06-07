@@ -295,7 +295,7 @@ class MyC3 {
 }
 const c3 = new MyC3();
 // OK
-c.getName();
+c3.getName();
 
 // Error, would crash
 // const g3 = c3.getName;
@@ -310,7 +310,7 @@ class MyC4 {
 }
 const c4 = new MyC4();
 // OK
-c.getName();
+c4.getName();
 
 // Error, can crash if using this.method
 // const g4 = c4.getName;
@@ -324,10 +324,27 @@ class MyC5 {
 }
 const c5 = new MyC5();
 // OK
-c.getName();
+c5.getName();
 
 const g5 = c5.getName;
 console.log(g5());
+
+class MyCThis {
+  name = "MyCThis";
+  getName(this: this) {
+    console.log("This type!", this);
+    return this.name;
+  }
+}
+const cthis = new MyCThis();
+// OK
+cthis.getName();
+c5.getName = cthis.getName;
+c5.getName();
+
+// Error, would crash
+// const gthis = cthis.getName;
+// console.log(gthis());
 
 class ThisBox {
   contents: string = "";
