@@ -118,4 +118,4 @@ dist
 .pnp.*
 
 # Ignore automatically generated JavaScript files.
-*.js
+/build/
