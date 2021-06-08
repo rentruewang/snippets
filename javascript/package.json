@@ -4,5 +4,8 @@
     "threads": "^1.6.5",
     "tiny-worker": "^2.3.0"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "prettier": "^2.3.1"
+  }
 }
