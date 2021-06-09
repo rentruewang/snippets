@@ -13,6 +13,12 @@ const someObj = {
   5: k + 1,
 };
 
+let aa = "foo",
+  bb = 42,
+  cc = {};
+let o = { aa, bb, cc };
+console.log(o);
+
 console.log(someObj);
 someObj["likes birds"] = true;
 someObj.isAdmin = true;
