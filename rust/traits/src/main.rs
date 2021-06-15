@@ -1,3 +1,5 @@
+use std::mem;
+
 pub trait Trait {
     fn do_something(&self);
 }
@@ -36,7 +38,7 @@ impl TraitSized for B {
     }
 }
 
-pub trait Methods {
+pub trait Methods: Sized {
     fn static_method() {
         println!("static method in trait is ok")
     }
@@ -60,9 +62,9 @@ pub trait DynamicDispatch {
 
     fn dispatch<F>(&self, obj: F)
     where
-        F: Methods,
+        F: Methods + Sized,
     {
-        println!("dispatch method");
+        println!("dispatch method (sized)");
         obj.bound_method();
     }
 }
@@ -121,4 +123,10 @@ fn main() {
     A {}.bound_take_trait_obj(B { something: 3 });
     A {}.dispatch(B { something: 4 });
     A {}.dispatch(B { something: 4 });
+
+    println!("as dd");
+    // because associated function `static_take_trait_obj` has no `self` parameter
+    // because method `bound_take_trait_obj` has generic type parameters
+    // because method `dispatch` has generic type parameters
+    (A {} as DynamicDispatch).dispatch(A {});
 }
