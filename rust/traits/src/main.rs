@@ -36,6 +36,40 @@ impl TraitSized for B {
     }
 }
 
+pub trait Methods {
+    fn static_method() {
+        println!("static method in trait is ok")
+    }
+
+    fn bound_method(&self) {
+        println!("bound method in trait is always ok")
+    }
+}
+
+impl Methods for A {}
+impl Methods for B {}
+
+pub trait DynamicDispatch {
+    fn static_take_trait_obj(obj: impl Methods) {
+        obj.bound_method();
+    }
+
+    fn bound_take_trait_obj(&self, obj: impl Methods) {
+        obj.bound_method();
+    }
+
+    fn dispatch<F>(&self, obj: F)
+    where
+        F: Methods,
+    {
+        println!("dispatch method");
+        obj.bound_method();
+    }
+}
+
+impl DynamicDispatch for A {}
+impl DynamicDispatch for B {}
+
 fn main() {
     // This part does not work because the size of A and B can be unequal,
     // so rust forbids adding raw trait objects
@@ -76,4 +110,15 @@ fn main() {
     // for elem in vec.iter() {
     //     elem.do_something();
     // }
+
+    B::static_method();
+    A {}.bound_method();
+    // A {}.static_method();
+    Methods::bound_method(&A {});
+    // Calling method on trait is not ok
+    // Methods::static_method();
+    A::static_take_trait_obj(A {});
+    A {}.bound_take_trait_obj(B { something: 3 });
+    A {}.dispatch(B { something: 4 });
+    A {}.dispatch(B { something: 4 });
 }
