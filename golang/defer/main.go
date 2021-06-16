@@ -18,6 +18,7 @@ func Function() int {
 
 // For the behavioral difference between named and unnamed return,
 // see this link: https://stackoverflow.com/a/37249043
+// also this: https://stackoverflow.com/a/48680584
 
 func unnamedFunc() string {
 	// This is not javascript!
@@ -53,6 +54,28 @@ func namedFunc() (str string) {
 	}()
 }
 
+func unnamedFunc1() string {
+	// This is not javascript!
+	str := "undefined"
+	fmt.Println(str)
+	defer func(str *string) {
+		*str = "modified"
+		fmt.Println(*str)
+	}(&str)
+	return str
+}
+
+func namedFunc1() (str string) {
+	// This is not javascript!
+	str = "undefined"
+	fmt.Println(str)
+	defer func(str *string) {
+		*str = "modified"
+		fmt.Println(*str)
+	}(&str)
+	return
+}
+
 func main() {
 	Function()
 	fmt.Println()
@@ -60,4 +83,10 @@ func main() {
 
 	fmt.Println()
 	fmt.Println(namedFunc())
+
+	fmt.Println()
+	fmt.Println(unnamedFunc1())
+
+	fmt.Println()
+	fmt.Println(namedFunc1())
 }
