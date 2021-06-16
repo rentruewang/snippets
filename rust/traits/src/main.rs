@@ -124,9 +124,9 @@ fn main() {
     A {}.dispatch(B { something: 4 });
     A {}.dispatch(B { something: 4 });
 
-    // println!("as dd");
+    println!("as dd");
     // because associated function `static_take_trait_obj` has no `self` parameter
     // because method `bound_take_trait_obj` has generic type parameters
     // because method `dispatch` has generic type parameters
-    // (A {} as DynamicDispatch).dispatch(A {});
+    (A {} as DynamicDispatch).dispatch(A {});
 }
