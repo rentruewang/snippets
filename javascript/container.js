@@ -33,14 +33,29 @@ const { p, o, s, meat } = prices;
 console.log(p, o, s, meat);
 
 function showMenu({ title = "Menu", width = 100, height = 200 } = {}) {
+  console.log("show menu 1");
   console.log(`${title} ${width} ${height}`);
 }
 showMenu({});
 
 function showMenu2({ title, width }) {
+  console.log("show menu 2");
   console.log(`${title} ${width}`);
 }
 showMenu2({ title: "title", width: 8 });
+showMenu2({ width: 8 });
+
+function showMenu3({ title, width = 1 }) {
+  console.log("show menu 3");
+  console.log(`${title} ${width}`);
+}
+showMenu3({ title: "title" });
+
+function showMenu4({ title = "some title", width }) {
+  console.log("show menu 4");
+  console.log(`${title} ${width}`);
+}
+showMenu4({ width: 9 });
 
 const student = {
   name: "John",

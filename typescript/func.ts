@@ -104,3 +104,24 @@ function somef() {
 }
 type P = ReturnType<typeof somef>;
 console.log(typeof somef);
+
+// parameter destructuring in JavaScript
+// function showMenu({ title = "Menu", width = 100, height = 200 } = {}) {
+//   console.log(`${title} ${width} ${height}`);
+// }
+function showMenu(
+  {
+    title,
+    width,
+    height = 33,
+  }: {
+    title: string;
+    width?: number;
+    height?: number;
+  },
+  nullable?: boolean,
+  deftrue: boolean = true
+) {
+  console.log(`${title}, ${width} ${height}, ${nullable}, ${deftrue}`);
+}
+showMenu({ title: "a title" });
