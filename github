@@ -44,7 +44,7 @@ if __name__ == "__main__":
 
     If you feel rather strongly for @rentruewang to write a more professional message or clarify things or you just want to fix things, please reach out to him/her/it or comment on the part where you don't like. He is going to get a notification everytime you do so. And hopefully he listens to your suggestions! Beep Boop, message over!
 
-    I am a bot, and this action is performed automatically. The source code can be found at https://github.com/rentruewang/tmp/rungit
+    I am a bot, and this action is performed automatically. The source code can be found at https://github.com/rentruewang/tmp/github
 """
 
     repo = Repo(".")
