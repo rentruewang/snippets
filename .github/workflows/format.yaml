@@ -46,10 +46,15 @@ jobs:
         run: ./node_modules/prettier/bin-prettier.js --write .
 
       # Black (Python) part
-      - name: 🏗️ python 3.8
+      - name: 🏗️ python 3.9
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.9
+      - name: ⬇️ isort
+        run: pip install isort
+      - name: 🏃 isort
+        working-directory: ./python
+        run: isort --profile=black .
       - name: ⬇️ black
         run: pip install black
       - name: 🏃 black

@@ -5,27 +5,6 @@ from datetime import datetime
 
 from git import Repo
 
-
-def git_add(repo: Repo):
-    repo.git.add(".")
-
-
-def git_clean(repo: Repo):
-    repo.git.clean("-fdX")
-
-
-def git_commit(repo: Repo, msg):
-    repo.index.commit(msg)
-
-
-def git_pull(repo: Repo):
-    repo.remotes.origin.pull()
-
-
-def git_push(repo: Repo):
-    repo.remotes.origin.push()
-
-
 if __name__ == "__main__":
     parser = ArgumentParser()
 
@@ -50,16 +29,16 @@ if __name__ == "__main__":
     repo = Repo(".")
 
     if flags.clean:
-        git_clean(repo)
+        repo.git.clean("-fdX")
 
     if flags.pull:
-        git_pull(repo)
+        repo.remotes.origin.pull()
 
     if flags.add:
-        git_add(repo)
+        repo.git.add(".")
 
     if flags.commit:
-        git_commit(repo, message)
+        repo.index.commit(message)
 
     if flags.push:
-        git_push(repo)
+        repo.remotes.origin.push()
