@@ -35,4 +35,7 @@ func main() {
 	fmt.Println(styleA.Render("a"), styleB.Render("b"))
 	fmt.Println(styleA.Render("a"))
 	fmt.Println(styleB.Render("b"))
+
+	text:= lipgloss.JoinHorizontal(lipgloss.Top, style.Render("Hello, 1"), style.Render("Hello, 2"))
+	fmt.Println(lipgloss.PlaceHorizontal(80, lipgloss.Center, text))
 }
