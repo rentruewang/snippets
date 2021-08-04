@@ -5,6 +5,8 @@ import "fmt"
 type Fooer interface {
 	Add()
 	Dummy()
+	// syntax error: unexpected {, expecting semicolon or newline or }.
+	// Partial() { Add(); Dummy() }
 }
 
 type Fooerer interface {
