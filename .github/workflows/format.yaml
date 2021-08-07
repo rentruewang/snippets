@@ -31,16 +31,16 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-verion: 14
-      - name: ⬇️ prettier
+      - name: ⬇️ all packages
         working-directory: ./javascript
-        run: npm install prettier --save-dev
+        run: npm install
       - name: 🏃 prettier
         working-directory: ./javascript
         run: ./node_modules/prettier/bin-prettier.js --write .
 
-      - name: ⬇️ prettier
+      - name: ⬇️ all packages
         working-directory: ./typescript
-        run: npm install prettier --save-dev
+        run: npm install
       - name: 🏃 prettier
         working-directory: ./typescript
         run: ./node_modules/prettier/bin-prettier.js --write .
