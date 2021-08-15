@@ -119,3 +119,6 @@ dist
 
 # Ignore automatically generated JavaScript files.
 /build/
+
+# This is a TypeScript directory.
+*.js
