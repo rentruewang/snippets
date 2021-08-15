@@ -1,7 +1,7 @@
 async function mylog(str: string, sec: number): Promise<void> {
-  return new Promise((resolve) =>
-    setTimeout(() => resolve(str), sec)
-  ).then((val) => console.log(val));
+  return new Promise((resolve) => setTimeout(() => resolve(str), sec)).then(
+    (val) => console.log(val)
+  );
 }
 
 async function first(): Promise<void> {
