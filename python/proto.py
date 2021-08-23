@@ -1,3 +1,4 @@
+from abc import abstractmethod
 from typing import Protocol
 
 
@@ -5,6 +6,7 @@ class Proto(Protocol):
     member: int
 
     @property
+    @abstractmethod
     def prop(self) -> int:
         ...
 
