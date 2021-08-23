@@ -27,9 +27,18 @@ class B(Proto):
     prop = 32
 
 
+# C is an abstract class!!
+# Python cannot find the definition of prop in class's definition!
+class C(Proto):
+    def __init__(self, mem: int, prop: int) -> None:
+        self.member = mem
+        self.prop = prop
+
+
 def pt(p: Proto) -> None:
     print(p.member, p.prop)
 
 
 pt(A())
 pt(B())
+pt(C())
