@@ -35,4 +35,9 @@ func main() {
 		return v[i] < v[j]
 	})
 	fmt.Println(s, v)
+
+	elem := &s[1]
+	fmt.Println(s)
+	*elem = 46
+	fmt.Println(s)
 }
