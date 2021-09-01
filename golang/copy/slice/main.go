@@ -40,4 +40,15 @@ func main() {
 	fmt.Println(s)
 	*elem = 46
 	fmt.Println(s)
+
+	sl := make([]int, 100)
+	fmt.Println(len(sl))
+
+	sl = append(sl, 10)
+	fmt.Println(len(sl))
+
+	for i := 0; i < 100; i++ {
+		sl[i] = i
+	}
+	fmt.Println(len(sl))
 }

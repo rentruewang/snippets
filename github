@@ -16,8 +16,10 @@ if __name__ == "__main__":
 
     flags = parser.parse_args()
 
+    now = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+
     message = f"""
-    🤖 RenTrueWang commits on {datetime.now()}
+    🤖 RenTrueWang commits on {now}
 
     Beep Boop, I'm a bot. I haven't really written all this code by myself. @rentruewang is the one who writes the code, and runs this program periodically or when he sees fits.
 
