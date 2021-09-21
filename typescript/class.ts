@@ -314,7 +314,11 @@ c4.getName();
 
 // Error, can crash if using this.method
 // const g4 = c4.getName;
-// console.log(g4());
+// console.log("g4");
+// g4();
+const g4 = c4.getName.bind(c4);
+console.log("g4");
+g4();
 
 class MyC5 {
   name = "MyC5";
