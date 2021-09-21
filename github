@@ -19,13 +19,14 @@ if __name__ == "__main__":
     now = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
 
     message = f"""
-    🤖 RenTrueWang commits on {now}
+    🤖 RenTrueWang commits at {now}
 
-    Beep Boop, I'm a bot. I haven't really written all this code by myself. @rentruewang is the one who writes the code, and runs this program periodically or when he sees fits.
+    Beep Boop, I'm a bot. I'm not the real author of this repo. @rentruewang is the one who wrote the code and commits when he sees fits.
 
-    If you feel rather strongly for @rentruewang to write a more professional message or clarify things or you just want to fix things, please reach out to him or comment on the part where you don't like. He is going to get a notification everytime you do so. And hopefully he listens to your suggestions! Beep Boop, message over!
+    If you feel rather strongly for @rentruewang to write a more professional message, clarify things, or just want to fix things, please reach out to him or comment on the part where you dislike. He will be getting a notification everytime you do so. Hopefully he listens to your suggestions! Beep Boop, message over!
 
-    I am a bot, and this action is performed automatically. The source code can be found at https://github.com/rentruewang/tmp/github"""
+    I am a bot, and this action is performed automatically. The source code can be found at https://github.com/rentruewang/tmp/github
+    """.strip()
 
     repo = Repo(".")
 
