@@ -44,7 +44,12 @@ struct B;
 
 impl Any for B {}
 
+// Monomorphization.
 fn thin<T: Any>(_: T) {}
+
+
+
+// Forced to be dynamic.
 fn fat1<T: Any + ?Sized>(_: &T) {}
 fn fat2(_: &dyn Any) {}
 
