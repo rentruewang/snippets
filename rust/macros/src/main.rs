@@ -179,6 +179,5 @@ fn main() {
         eval (2 * 3) + 1
     }
 
-
     say_all!("Hello, world!", "Good to hear from you too!");
 }
