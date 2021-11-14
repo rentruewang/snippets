@@ -66,9 +66,9 @@ macro_rules! find_min {
     // Base case:
     ($x:expr) => ($x);
     // `$x` followed by at least one `$y,`
-    ($x:expr, $($y:expr),+) => (
+    ($x:expr, $($y:expr), +) => (
         // Call `find_min!` on the tail `$y`
-        std::cmp::min($x, find_min!($($y),+))
+        std::cmp::min($x, find_min!($($y), +))
     )
 }
 
@@ -139,9 +139,9 @@ macro_rules! calculate {
     }};
 
     // Decompose multiple `eval`s recursively
-    (eval $e:expr, $(eval $es:expr),+) => {{
+    (eval $e:expr, $(eval $es:expr), +) => {{
         calculate! { eval $e }
-        calculate! { $(eval $es),+ }
+        calculate! { $(eval $es), + }
     }};
 }
 
