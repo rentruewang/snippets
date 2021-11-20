@@ -5,17 +5,17 @@ from typing import Any
 
 @dataclass
 class C1:
-    def method(self, *args: Any, **kwds: Any) -> Any:
-        print("c1 method", self, args, kwds)
+    def method(self, *args: Any, **kwargs: Any) -> Any:
+        print("c1 method", self, args, kwargs)
 
-    def __call__(self, *args: Any, **kwds: Any) -> Any:
-        print("c1 call", self, args, kwds)
+    def __call__(self, *args: Any, **kwargs: Any) -> Any:
+        print("c1 call", self, args, kwargs)
 
 
 @dataclass
 class C2:
-    method = lambda self, *args, **kwds: print("c2 method", self, args, kwds)
-    __call__ = lambda self, *args, **kwds: print("c2 call", self, args, kwds)
+    method = lambda self, *args, **kwargs: print("c2 method", self, args, kwargs)
+    __call__ = lambda self, *args, **kwargs: print("c2 call", self, args, kwargs)
 
 
 @dataclass
@@ -23,8 +23,10 @@ class C3:
     pass
 
 
-C3.method = lambda self, *args, **kwds: print("c3 method", self, args, kwds)
-C3.__call__ = lambda self, *args, **kwds: print("c3 call", self, args, kwds)
+method = C3.method = lambda self, *args, **kwargs: print(
+    "c3 method", self, args, kwargs
+)
+C3.__call__ = lambda self, *args, **kwargs: print("c3 call", self, args, kwargs)
 
 
 @dataclass
@@ -40,10 +42,10 @@ if __name__ == "__main__":
 
     # This will not work because magic methods are called on the classes.
     c4.__call__ = MethodType(
-        lambda self, *args, **kwds: print("c4 call", self, args, kwds), c4
+        lambda self, *args, **kwargs: print("c4 call", self, args, kwargs), c4
     )
     c4.method = MethodType(
-        lambda self, *args, **kwds: print("c4 method", self, args, kwds), c4
+        lambda self, *args, **kwargs: print("c4 method", self, args, kwargs), c4
     )
 
     c1.method("a", "b", c="c")
