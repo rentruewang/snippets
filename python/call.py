@@ -23,9 +23,7 @@ class C3:
     pass
 
 
-method = C3.method = lambda self, *args, **kwargs: print(
-    "c3 method", self, args, kwargs
-)
+C3.method = lambda self, *args, **kwargs: print("c3 method", self, args, kwargs)
 C3.__call__ = lambda self, *args, **kwargs: print("c3 call", self, args, kwargs)
 
 
