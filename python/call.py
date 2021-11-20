@@ -1,7 +1,6 @@
-from typing import Any
 from dataclasses import dataclass
-
 from types import MethodType
+from typing import Any
 
 
 @dataclass
