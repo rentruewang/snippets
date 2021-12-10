@@ -3,6 +3,10 @@ from dataclasses import dataclass
 from types import MethodType
 from typing import Any
 
+# Basically, what happens for bound methods is that their descriptors are called.
+# See python `typeobject.c` `lookup_maybe_method`.
+# So if I want to imitate a bound method, I'll have to provide a descriptor.
+
 
 @dataclass
 class SomeCallable:
