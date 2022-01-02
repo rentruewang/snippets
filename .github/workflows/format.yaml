@@ -15,7 +15,7 @@ jobs:
           go-version: ^1.13.1
       - name: 🏃 go fmt
         run: go fmt
-        working-directory: ./golang
+        working-directory: ./go
 
       # Clang-format (C/C++) part
       - name: 🏗️ 🏃 clang-format

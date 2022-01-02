@@ -47,6 +47,34 @@ func takeInterface(something interface{}) {
 type fa = func(i interface{})
 type fb = func(o Anything)
 
+type DoTwoThings interface {
+	DoFirst()
+	DoSecond()
+}
+
+// invalid receiver DoTwoThings (pointer or interface type) (compile)
+// func (dtt DoTwoThings) DoThird() {
+// 	dtt.DoFirst()
+// 	dtt.DoSecond()
+// }
+
+func DoThird(dtt DoTwoThings) {
+	dtt.DoFirst()
+	dtt.DoSecond()
+}
+
+type Whatever struct {
+	A, B int
+}
+
+func (sdtt Whatever) DoFirst() {
+	fmt.Println(sdtt.A)
+}
+
+func (sdtt Whatever) DoSecond() {
+	fmt.Println(sdtt.B)
+}
+
 func main() {
 	var f1 Foo
 	var f2 *Foo = &Foo{Field: 3}
@@ -86,4 +114,6 @@ func main() {
 	if ok {
 		fmt.Println("ok")
 	}
+
+	DoThird(Whatever{A: 3, B: 4})
 }
