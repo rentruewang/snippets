@@ -1,7 +1,8 @@
 from abc import abstractmethod
-from typing import Protocol
+from typing import Protocol, runtime_checkable
 
 
+@runtime_checkable
 class Proto(Protocol):
     member: int
 
@@ -39,6 +40,9 @@ def pt(p: Proto) -> None:
     print(p.member, p.prop)
 
 
+print(isinstance(A(), A))
 pt(A())
+print(isinstance(B(), B))
 pt(B())
+print(isinstance(C(), C))
 pt(C())
