@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from functools import wraps
 
 
 class Base:

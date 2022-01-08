@@ -59,7 +59,7 @@ jobs:
         run: poetry install
       - name: 🏃 autoflake
         working-directory: ./python
-        run: poetry run autoflake -ir $(fd -e py | rg -vsF __init__.py) --remove-all-unused-imports
+        run: poetry run autoflake -ir . --remove-all-unused-imports
       - name: 🏃 isort
         working-directory: ./python
         run: poetry run isort --profile=black .
