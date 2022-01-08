@@ -1,5 +1,6 @@
 mod file;
 
+#[allow(unused_imports)]
 use file::Struct;
 
 fn main() {

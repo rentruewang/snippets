@@ -1,14 +1,2 @@
-[package]
-name = "rust"
-version = "0.1.0"
-edition = "2018"
-
-[workspaces]
-
-members = [
-	"main",
-	"pubtest",
-	"traits",
-]
-
-[dependencies]
+[workspace]
+members = ["func", "macros", "main", "member", "pubtest", "traits"]

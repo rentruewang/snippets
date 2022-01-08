@@ -1,5 +1,3 @@
-use std::mem;
-
 pub trait Trait {
     fn do_something(&self);
 }
@@ -9,6 +7,13 @@ pub trait TraitSized: Sized {
 }
 
 pub struct A {}
+
+impl A {
+    fn dispatch(self, other: impl Methods) {
+        println!("Member method!");
+        other.bound_method();
+    }
+}
 
 impl Trait for A {
     fn do_something(&self) {
@@ -51,7 +56,7 @@ pub trait Methods: Sized {
 impl Methods for A {}
 impl Methods for B {}
 
-pub trait DynamicDispatch {
+pub trait DynamicDispatch: Sized {
     fn static_take_trait_obj(obj: impl Methods) {
         obj.bound_method();
     }
@@ -87,27 +92,27 @@ fn main() {
     //     elem.do_something();
     // }
 
-    let mut vec: Vec<Box<dyn Trait>> = vec![];
-
-    vec.push(Box::new(A {}));
-    vec.push(Box::new(A {}));
-    vec.push(Box::new(A {}));
-
-    vec.push(Box::new(B { something: 3 }));
-    vec.push(Box::new(B { something: 4 }));
-    vec.push(Box::new(B { something: 5 }));
+    let vec: Vec<Box<dyn Trait>> = vec![
+        Box::new(A {}),
+        Box::new(A {}),
+        Box::new(B { something: 3 }),
+        Box::new(A {}),
+        Box::new(B { something: 5 }),
+        Box::new(B { something: 4 }),
+    ];
 
     for elem in vec.iter() {
         elem.do_something();
     }
 
-    // let mut vec: Vec<Box<TraitSized>> = vec![];
-    // vec.push(Box::new(A {}));
-    // vec.push(Box::new(A {}));
-    // vec.push(Box::new(A {}));
-    // vec.push(Box::new(B { something: 3 }));
-    // vec.push(Box::new(B { something: 3 }));
-    // vec.push(Box::new(B { something: 2 }));
+    // let vec: Vec<Box<dyn TraitSized>> = vec![
+    //     Box::new(A {}),
+    //     Box::new(A {}),
+    //     Box::new(B { something: 3 }),
+    //     Box::new(A {}),
+    //     Box::new(B { something: 5 }),
+    //     Box::new(B { something: 4 }),
+    // ];
 
     // for elem in vec.iter() {
     //     elem.do_something();
@@ -125,8 +130,6 @@ fn main() {
     A {}.dispatch(B { something: 4 });
 
     println!("as dd");
-    // because associated function `static_take_trait_obj` has no `self` parameter
-    // because method `bound_take_trait_obj` has generic type parameters
-    // because method `dispatch` has generic type parameters
-    (A {} as DynamicDispatch).dispatch(A {});
+    A {}.dispatch(A {});
+    <A as DynamicDispatch>::dispatch(&A {}, A {});
 }

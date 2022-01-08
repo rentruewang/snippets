@@ -18,6 +18,7 @@ where
     f(t)
 }
 
+#[allow(dead_code)]
 fn somef2<F>(f: F)
 where
     F: Fn(),
@@ -87,6 +88,7 @@ fn main() {
     println!("{:?}", v);
 }
 
+#[allow(clippy::unused_unit)]
 fn noreturn1() {
     ()
 }

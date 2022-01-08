@@ -40,7 +40,7 @@ macro_rules! print_result {
     };
 }
 
-macro_rules! test {
+macro_rules! multiple_tests {
     // Arguments don't need to be separated by a comma.
     // Any template can be used!
     ($left:expr; and $right:expr) => {
@@ -105,6 +105,7 @@ mod test {
         ($func:ident, $x:expr, $y:expr, $z:expr) => {
             #[test]
             fn $func() {
+                use std::iter;
                 for size in 0usize..10 {
                     let mut x: Vec<_> = iter::repeat($x).take(size).collect();
                     let y: Vec<_> = iter::repeat($y).take(size).collect();
@@ -145,6 +146,8 @@ macro_rules! calculate {
     }};
 }
 
+#[allow(clippy::identity_op)]
+#[allow(clippy::eq_op)]
 fn main() {
     foo();
     bar();
@@ -158,8 +161,8 @@ fn main() {
         x * x + 2 * x - 1
     });
 
-    test!(1i32 + 1 == 2i32; and 2i32 * 2 == 4i32);
-    test!(true; or false);
+    multiple_tests!(1i32 + 1 == 2i32; and 2i32 * 2 == 4i32);
+    multiple_tests!(true; or false);
 
     println!("{}", find_min!(1u32));
     println!("{}", find_min!(1u32 + 2, 2u32));
