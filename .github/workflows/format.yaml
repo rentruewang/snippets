@@ -8,15 +8,6 @@ jobs:
       - name: 🔔 Check out
         uses: actions/checkout@v2
 
-      # Golang part
-      - name: 🏗️ go runtime
-        uses: actions/setup-go@v2
-        with:
-          go-version: ^1.13.1
-      - name: 🏃 go fmt
-        run: go fmt
-        working-directory: ./go
-
       # Clang-format (C/C++) part
       - name: 🏗️ 🏃 clang-format
         uses: DoozyX/clang-format-lint-action@v0.11
@@ -25,6 +16,22 @@ jobs:
           extensions: h,cpp,c
           clangFormatVersion: 11
           inplace: True
+
+      # Dart part
+      - name: 🏗️ dart runtime
+        uses: dart-lang/setup-dart@v1
+      - name: 🏃 dart format
+        working-directory: ./dart
+        run: dart format .
+
+      # Golang part
+      - name: 🏗️ go runtime
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.13.1
+      - name: 🏃 go fmt
+        run: go fmt
+        working-directory: ./go
 
       # JavaScript/TypeScript part
       - name: 🏗️ node
@@ -57,15 +64,12 @@ jobs:
       - name: ⬇️ Python Dependencies
         working-directory: ./python
         run: poetry install
-      - name: 🏃 autoflake
+      - name: 🏃 autoflake, isort, black
         working-directory: ./python
-        run: poetry run autoflake -ir . --remove-all-unused-imports
-      - name: 🏃 isort
-        working-directory: ./python
-        run: poetry run isort --profile=black .
-      - name: 🏃 black
-        working-directory: ./python
-        run: poetry run black .
+        run: |
+          poetry run autoflake -ir . --remove-all-unused-imports
+          poetry run isort --profile black .
+          poetry run black .
 
       # Rust part
       - name: 🏗️ Rust toolchain
