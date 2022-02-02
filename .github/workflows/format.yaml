@@ -13,7 +13,14 @@ jobs:
         uses: DoozyX/clang-format-lint-action@v0.11
         with:
           source: ./c
-          extensions: h,cpp,c
+          extensions: h,c
+          clangFormatVersion: 11
+          inplace: True
+      - name: 🏗️ 🏃 clang-format
+        uses: DoozyX/clang-format-lint-action@v0.11
+        with:
+          source: ./c++
+          extensions: h++,c++
           clangFormatVersion: 11
           inplace: True
 
