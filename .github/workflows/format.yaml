@@ -43,14 +43,14 @@ jobs:
         run: npm install
       - name: 🏃 prettier
         working-directory: ./javascript
-        run: ./node_modules/prettier/bin-prettier.js --write .
+        run: npx prettier --write .
 
       - name: ⬇️ all packages
         working-directory: ./typescript
         run: npm install
       - name: 🏃 prettier
         working-directory: ./typescript
-        run: ./node_modules/prettier/bin-prettier.js --write .
+        run: npx prettier --write .
 
       # Black (Python) part
       - name: 🏗️ python 3.9
