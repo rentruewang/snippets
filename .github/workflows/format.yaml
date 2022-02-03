@@ -24,13 +24,6 @@ jobs:
           clangFormatVersion: 11
           inplace: True
 
-      # Dart part
-      - name: 🏗️ dart runtime
-        uses: dart-lang/setup-dart@v1
-      - name: 🏃 dart format
-        working-directory: ./dart
-        run: dart format .
-
       # Golang part
       - name: 🏗️ go runtime
         uses: actions/setup-go@v2
