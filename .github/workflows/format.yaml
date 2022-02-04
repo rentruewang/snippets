@@ -71,15 +71,6 @@ jobs:
           poetry run isort --profile black .
           poetry run black .
 
-      # Rust part
-      - name: 🏗️ Rust toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-      - name: 🏃 cargo fmt
-        working-directory: ./rust
-        run: cargo fmt
-
       # Add and commit all
       - name: ⬆️ Add and Commit
         uses: EndBug/add-and-commit@v7
