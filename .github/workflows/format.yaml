@@ -28,7 +28,7 @@ jobs:
       - name: 🏗️ go runtime
         uses: actions/setup-go@v2
         with:
-          go-version: ^1.13.1
+          go-version: ^1.17
       - name: 🏃 go fmt
         run: go fmt
         working-directory: ./go
