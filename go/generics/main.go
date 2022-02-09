@@ -6,6 +6,20 @@ type Number interface {
 	int64 | float64
 }
 
+type Custom interface {
+	Method() 
+}
+
+type SomeType struct {
+	Field string
+}
+
+func (st SomeType) Method() {
+	fmt.Println(st.Field)
+}
+
+
+
 func main() {
 	// Initialize a map for the integer values
 	ints := map[string]int64{
@@ -34,6 +48,11 @@ func main() {
 	fmt.Printf("Generic Sums with Constraint: %v and %v\n",
 		SumNumbers(ints),
 		SumNumbers(floats))
+	
+	fmt.Println()
+	st:=SomeType{"this is a string"}
+	CheckCustomGenerics(st)
+	CheckCustomInterface(st)
 }
 
 // SumInts adds together the values of m.
@@ -72,4 +91,15 @@ func SumNumbers[K comparable, V Number](m map[K]V) V {
 		s += v
 	}
 	return s
+}
+
+// Just checking if custom interface can be used in generics
+func CheckCustomGenerics[T Custom](t T) {
+	fmt.Println("Using generics")
+	t.Method()
+}
+
+func CheckCustomInterface(t Custom) {
+	fmt.Println("Using interface")
+	t.Method()
 }
