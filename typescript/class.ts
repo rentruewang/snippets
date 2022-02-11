@@ -155,6 +155,7 @@ class Sonar implements Pingable {
   }
 }
 
+// This should fail.
 // class Ball implements Pingable {
 //   pong() {
 //     console.log("pong!");
@@ -175,38 +176,37 @@ type T2 = { field: boolean };
 // T3 is never
 type T3 = T1 & T2;
 
-// This part is ok. However, prettier doesn't yet support `override` keyword so I'm commenting out this part.
-// class Base {
-//   greet() {
-//     console.log("Hello, world!");
-//   }
-// }
+class Base1 {
+  greet(): void {
+    console.log("Hello, world!");
+  }
+}
 
-// class Derived extends Base {
-//   override greet(name?: string) {
-//     if (name === undefined) {
-//       super.greet();
-//     } else {
-//       console.log(`Hello, ${name.toUpperCase()}`);
-//     }
-//   }
-// }
+class Derived1 extends Base1 {
+  override greet(name?: string): void {
+    if (name === undefined) {
+      super.greet();
+    } else {
+      console.log(`Hello, ${name.toUpperCase()}`);
+    }
+  }
+}
 
-// const d = new Derived();
-// d.greet();
-// d.greet("reader");
+const derived1 = new Derived1();
+derived1.greet();
+derived1.greet("reader");
 
-// class Base {
-//   name = "base";
-//   constructor() {
-//     console.log("My name is " + this.name);
-//   }
-// }
+class Base2 {
+  name = "base";
+  constructor() {
+    console.log("My name is " + this.name);
+  }
+}
 
-// class Derived extends Base {
-//   override name = "derived";
-// }
-// const d = new Derived();
+class Derived2 extends Base2 {
+  override name = "derived";
+}
+const derived2 = new Derived2();
 
 class MsgError extends Error {
   constructor(m: string) {
