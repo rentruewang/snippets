@@ -2,7 +2,7 @@
 using namespace std;
 
 template <typename T>
-T GetMax(T a, T b) {
+T larger(T a, T b) {
     T result;
     result = (a > b) ? a : b;
     return (result);
@@ -11,8 +11,8 @@ T GetMax(T a, T b) {
 int main() {
     int i = 5, j = 6, k;
     long l = 10, m = 5, n;
-    k = GetMax<int>(i, j);
-    n = GetMax<long>(l, m);
+    k = larger<int>(i, j);
+    n = larger<long>(l, m);
     cout << k << endl;
     cout << n << endl;
     return 0;
