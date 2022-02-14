@@ -1,4 +1,4 @@
-module github.com/rentruewang/tmp
+module github.com/rentruewang/quirks
 
 go 1.18
 
