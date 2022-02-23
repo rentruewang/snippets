@@ -125,3 +125,13 @@ function showMenu(
   console.log(`${title}, ${width} ${height}, ${nullable}, ${deftrue}`);
 }
 showMenu({ title: "a title" });
+
+function func1() {}
+
+function func2(_a: number, _b: number): void {}
+
+console.log(func1.length);
+// expected output: 0
+
+console.log(func2.length);
+// expected output: 2
