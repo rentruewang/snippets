@@ -40,9 +40,10 @@ def pt(p: Proto) -> None:
     print(p.member, p.prop)
 
 
-print(isinstance(A(), A))
-pt(A())
-print(isinstance(B(), B))
-pt(B())
-print(isinstance(C(), C))
-pt(C())
+if __name__ == "__main__":
+    print(isinstance(A(), A))
+    pt(A())
+    print(isinstance(B(), B))
+    pt(B())
+    print(isinstance(C(), C))
+    pt(C())
