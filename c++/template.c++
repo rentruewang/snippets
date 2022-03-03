@@ -8,6 +8,26 @@ T larger(T a, T b) {
     return (result);
 }
 
+template <typename T>
+bool operator<<(T a, T b) {
+    return a < b;
+}
+
+template <typename T>
+class Container {
+   public:
+    Container(T i) noexcept { this->i = i; }
+
+    T operator()() const { return i; }
+    bool operator<(const Container& other) const {
+        cout << "   --- Container cmp called. ---   ";
+        return this->i < other.i;
+    }
+
+   private:
+    T i;
+};
+
 int main() {
     int i = 5, j = 6, k;
     long l = 10, m = 5, n;
@@ -15,5 +35,8 @@ int main() {
     n = larger<long>(l, m);
     cout << k << endl;
     cout << n << endl;
+
+    cout << "1 << 2: " << (Container<int>(1) << Container<int>(2)) << endl;
+    cout << "1 << 0: " << (Container<int>(1) << Container<int>(0)) << endl;
     return 0;
 }
