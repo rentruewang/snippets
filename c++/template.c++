@@ -3,9 +3,8 @@ using namespace std;
 
 template <typename T>
 T larger(T a, T b) {
-    T result;
-    result = (a > b) ? a : b;
-    return (result);
+    T result = (a > b) ? a : b;
+    return result;
 }
 
 template <typename T>
@@ -16,16 +15,16 @@ bool operator<<(T a, T b) {
 template <typename T>
 class Container {
    public:
-    Container(T i) noexcept { this->i = i; }
+    Container(T value) noexcept { this->value = value; }
 
-    T operator()() const { return i; }
+    T operator()() const { return value; }
     bool operator<(const Container& other) const {
         cout << "   --- Container cmp called. ---   ";
-        return this->i < other.i;
+        return this->value < other.value;
     }
 
    private:
-    T i;
+    T value;
 };
 
 int main() {
