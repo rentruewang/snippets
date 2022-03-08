@@ -19,7 +19,6 @@ func (st SomeType) Method() {
 }
 
 
-
 func main() {
 	// Initialize a map for the integer values
 	ints := map[string]int64{
@@ -53,6 +52,9 @@ func main() {
 	st:=SomeType{"this is a string"}
 	CheckCustomGenerics(st)
 	CheckCustomInterface(st)
+
+	fmt.Println()
+	fmt.Println(Invoke(int64(3), AsFloat))
 }
 
 // SumInts adds together the values of m.
@@ -102,4 +104,13 @@ func CheckCustomGenerics[T Custom](t T) {
 func CheckCustomInterface(t Custom) {
 	fmt.Println("Using interface")
 	t.Method()
+}
+
+func Invoke[E Number, T Number](t T, f func(t T) E) E {
+	fmt.Println("Invoke is called.")
+	return f(t)
+}
+
+func AsFloat(i int64) float64 {
+	return float64(i)
 }
