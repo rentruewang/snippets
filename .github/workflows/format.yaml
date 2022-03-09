@@ -10,18 +10,18 @@ jobs:
 
       # Clang-format (C/C++) part
       - name: 🏗️ 🏃 clang-format
-        uses: DoozyX/clang-format-lint-action@v0.11
+        uses: DoozyX/clang-format-lint-action@v0.13
         with:
           source: ./c
           extensions: h,c
-          clangFormatVersion: 11
+          clangFormatVersion: 13
           inplace: True
       - name: 🏗️ 🏃 clang-format
-        uses: DoozyX/clang-format-lint-action@v0.11
+        uses: DoozyX/clang-format-lint-action@v0.13
         with:
           source: ./c++
           extensions: h++,c++
-          clangFormatVersion: 11
+          clangFormatVersion: 13
           inplace: True
 
       # Golang part
