@@ -1,1 +1,16 @@
+# This script is written in python
 github linguist-language=Python
+*.py linguist-language=Python
+
+# Both JS and TS are valid TypeScript files
+*.js linguist-language=TypeScript
+*.ts linguist-language=TypeScript
+
+# Go files.
+*.go linguist-language=Go
+
+# These extentions are all valid C++ files.
+*.c linguist-language=C++
+*.h linguist-language=C++
+*.c++ linguist-language=C++
+*.h++ linguist-language=C++
