@@ -55,6 +55,13 @@ func main() {
 
 	fmt.Println()
 	fmt.Println(Invoke(int64(3), AsFloat))
+
+	// cannot use generic type ContainsSomething[T comparable] without instantiation
+	// fmt.Println(ContainsSomething{Something: "hello"})
+	
+	fmt.Println()
+	fmt.Println(ContainsSomething[string]{Something: "hello"})
+	fmt.Println(ContainsSomething[int64]{Something: 789})
 }
 
 // SumInts adds together the values of m.
@@ -113,4 +120,8 @@ func Invoke[E Number, T Number](t T, f func(t T) E) E {
 
 func AsFloat(i int64) float64 {
 	return float64(i)
+}
+
+type ContainsSomething[T comparable] struct {
+	Something T
 }
