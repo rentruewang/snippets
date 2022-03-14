@@ -29,12 +29,11 @@ func main() {
 	}
 	bar()
 
-	var rif ReturnsInterface = func(b int) interface {} {
+	var rif ReturnsInterface = func(b int) interface{} {
 		return b
 	}
 	fmt.Println(rif(3))
 	fmt.Printf("%T\n\n", rif)
-
 
 	var ri ReturnsInt = func(b int) int {
 		return b

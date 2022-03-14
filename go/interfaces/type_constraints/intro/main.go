@@ -7,7 +7,7 @@ type Number interface {
 }
 
 type Custom interface {
-	Method() 
+	Method()
 }
 
 type SomeType struct {
@@ -17,7 +17,6 @@ type SomeType struct {
 func (st SomeType) Method() {
 	fmt.Println(st.Field)
 }
-
 
 func main() {
 	// Initialize a map for the integer values
@@ -47,9 +46,9 @@ func main() {
 	fmt.Printf("Generic Sums with Constraint: %v and %v\n",
 		SumNumbers(ints),
 		SumNumbers(floats))
-	
+
 	fmt.Println()
-	st:=SomeType{"this is a string"}
+	st := SomeType{"this is a string"}
 	CheckCustomGenerics(st)
 	CheckCustomInterface(st)
 
@@ -58,7 +57,7 @@ func main() {
 
 	// cannot use generic type ContainsSomething[T comparable] without instantiation
 	// fmt.Println(ContainsSomething{Something: "hello"})
-	
+
 	fmt.Println()
 	fmt.Println(ContainsSomething[string]{Something: "hello"})
 	fmt.Println(ContainsSomething[int64]{Something: 789})
