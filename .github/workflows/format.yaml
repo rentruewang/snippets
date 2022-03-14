@@ -30,7 +30,7 @@ jobs:
         with:
           go-version: ^1.17
       - name: 🏃 go fmt
-        run: go fmt
+        run: go fmt ./...
         working-directory: ./go
 
       # JavaScript/TypeScript part
