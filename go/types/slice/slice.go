@@ -19,4 +19,11 @@ func main() {
 	other := slice[:]
 	other[2] = 8
 	fmt.Println(slice)
+
+	empty := slice[4:]
+	fmt.Println(empty)
+
+	// panic: runtime error: slice bounds out of range [5:4]
+	// willPanic := slice[5:]
+	// fmt.Println(willPanic)
 }
