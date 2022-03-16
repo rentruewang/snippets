@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func deferFunc() {
 	fmt.Println("defer function called")
