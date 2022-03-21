@@ -2,6 +2,9 @@ package main
 
 import "fmt"
 
+// https://stackoverflow.com/questions/33936081/golang-method-with-pointer-receiver
+// https://stackoverflow.com/questions/45652560/interfaces-and-pointer-receivers
+
 type myType int
 
 type forVal interface {
