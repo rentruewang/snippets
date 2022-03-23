@@ -37,7 +37,7 @@ jobs:
       - name: 🏗️ node
         uses: actions/setup-node@v2
         with:
-          node-verion: 16
+          node-version: 16
       - name: ⬇️ all packages
         working-directory: ./javascript
         run: npm install

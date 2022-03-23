@@ -1,5 +1,4 @@
-# This script is written in python
-github linguist-language=Python
+# Python files.
 *.py linguist-language=Python
 
 # Both JS and TS are valid TypeScript files
