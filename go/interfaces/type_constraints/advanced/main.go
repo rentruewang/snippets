@@ -149,15 +149,27 @@ func (f F) X(x int) {
 }
 
 // interface contains type constraints
-// func AcceptC(c C) {
+// func AcceptC(c C1) {
 // 	fmt.Println("Calling AcceptC")
 // 	c.X(123)
 // 	fmt.Println()
 // }
 
+// eq.S undefined (type T has no field or method S
+// func AcceptEqString[T ~struct{ S string }](eq T) {
+// 	fmt.Println("EqString.S", eq.S)
+// }
+
+func AcceptEqString[T ~struct{ S string }](eq T) {
+	// Needs conversion.
+	fmt.Println("EqString.S", struct{ S string }(eq).S)
+}
+
 func AcceptC1[T C1](c T) {
 	fmt.Println("Calling AcceptC")
-	fmt.Println("C.S", c.S)
+	// Not for interfaces.
+	// cannot use interface C1 in conversion (contains specific type constraints or is comparable)
+	// fmt.Println("C.S", C1(c).S)
 	c.X(123)
 
 	AcceptC2(c)
@@ -165,14 +177,15 @@ func AcceptC1[T C1](c T) {
 
 func AcceptC2[T C2](c T) {
 	fmt.Println("Calling AcceptCC")
-	fmt.Println("CC.S", c.S)
+	// Needs to really find the root of the type that has a method S
+	fmt.Println("CC.S", EqString(c).S)
 	c.X(123)
 	fmt.Println()
 }
 
 func AcceptCC1[T CC1](c T) {
 	fmt.Println("Calling AcceptCC1")
-	fmt.Println("C.S", c.S)
+	fmt.Println("C.S", EqString(c).S)
 	c.X(123)
 
 	AcceptC2(c)
@@ -191,6 +204,8 @@ func main() {
 	AcceptC1(d)
 	AcceptC1(e)
 	AcceptC1(f)
+
+	AcceptEqString(d)
 
 	// struct{S string} does not implement CC1 (missing C method)
 	// AcceptCC1(DD{S: "dd"})

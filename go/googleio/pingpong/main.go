@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"runtime/debug"
 	"time"
 )
 
@@ -24,6 +25,13 @@ func main() {
 	// the main routine and one of the players are fighting for the ball,
 	// One day, the main routine will win and take the ball.
 	<-table
+
+	// Show the full stack.
+	debug.PrintStack()
+	fmt.Println()
+
+	// Doesn't seem to show all goroutines, contrary to the video.
+	panic("Show me the stacks")
 }
 
 func player(name string, table chan *Ball) {
