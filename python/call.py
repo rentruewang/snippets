@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import functools
 from dataclasses import dataclass
 from types import MethodType
@@ -19,7 +21,7 @@ class SomeCallableWithDescriptor:
     def __call__(self, *args, **kwargs) -> None:
         print("some callable with descriptor", self, args, kwargs)
 
-    def __get__(self, obj: object, objtype: type = None):
+    def __get__(self, obj: object, objtype: type | None = None):
         print("sc descriptor called", obj, objtype)
         return functools.partial(self, obj)
 
