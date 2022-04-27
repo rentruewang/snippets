@@ -1,3 +1,5 @@
-# Google I/O 2013 - Advanced Go Concurrency Patterns
+# Google I/O talks
 
-## See this [YouTube Video](https://www.youtube.com/watch?v=QDDwwePbDtw)
+## [Go Concurrency Patterns](https://www.youtube.com/watch?v=f6kdp27TYZs)
+
+## [Advanced Go Concurrency Patterns](https://www.youtube.com/watch?v=QDDwwePbDtw)

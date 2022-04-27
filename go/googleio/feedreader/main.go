@@ -54,9 +54,26 @@ func main() {
 type sub struct {
 	fetcher Fetcher
 	updates chan Item
+
+	// closing is like a server. When a channel is received (Cancel called),
+	// it closes down the subscription, and then send the error that is encountered
+	// back by the channel that closing just received (or nil).
+	closing chan chan error
 }
 
-func (s sub) loop() {}
+func (s sub) loop() {
+	var err error
+	for {
+		select {
+		case errc := <-s.closing:
+			// send updates
+			errc <- err
+			// done
+			close(s.updates)
+			return
+		}
+	}
+}
 
 func (s sub) Updates() <-chan Item {
 	return s.updates
@@ -64,8 +81,9 @@ func (s sub) Updates() <-chan Item {
 
 func (s sub) Cancel() error {
 	// TODO: loop exit and find error.
-	close(s.updates)
-	return nil
+	errc := make(chan error)
+	s.closing <- errc
+	return <-errc
 }
 
 type badSub struct {
@@ -94,10 +112,14 @@ func (bs *badSub) loop() {
 		}
 
 		for _, item := range items {
+			// FIXME: If client is closed and doesn't receive from the channel,
+			// this line will cause the loop to hang forever.
 			bs.updates <- item
 		}
 
 		if now := time.Now(); next.After(now) {
+			// FIXME: time.Sleep keeps this goroutine alive.
+			// This is (sort of) a memory leak.
 			time.Sleep(next.Sub(now))
 		}
 	}
