@@ -1,5 +1,6 @@
 project('c', 'c',
   version : '0.1',
-  default_options : ['warning_level=3'])
+  default_options : ['warning_level=3', 'optimization=3'])
 
-executable('demo', 'main.c')
+main = executable('main', 'main.c')
+test('basic', main)
