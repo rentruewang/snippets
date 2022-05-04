@@ -15,16 +15,17 @@ bool operator<<(T a, T b) {
 template <typename T>
 class Container {
    public:
-    Container(T value) noexcept { this->value = value; }
+    Container(T value) noexcept { value_ = value; }
 
-    T operator()() const { return value; }
+    T operator()() const { return value_; }
+
     bool operator<(const Container& other) const {
         cout << "   --- Container cmp called. ---   ";
-        return this->value < other.value;
+        return value_ < other.value_;
     }
 
    private:
-    T value;
+    T value_;
 };
 
 int main() {

@@ -4,23 +4,42 @@
 
 using namespace std;
 
+template <typename T>
+void print(T anything) {
+    cout << anything << "\n";
+}
+
+template <typename T>
 class SomeClass {
    public:
-    SomeClass(string name) { _name = name; }
-    ~SomeClass() {
-        cout << "Destructor for SomeClass(" << _name << ") called.\n";
-    }
+    SomeClass(T name) { name_ = name; }
+    ~SomeClass() { print(name_); }
+
+    T& name() { return name_; }
+    const T& name() const { return name_; }
 
    private:
-    string _name;
+    T name_;
 };
 
 int main() {
-    auto ptr = make_unique<SomeClass>("first");
+    print("First experiment: 12345");
+    {
+        print(1);
+        auto ptr = make_unique<SomeClass<int>>(3);
+        print(2);
+        ptr = make_unique<SomeClass<int>>(5);
+        print(4);
+    }
 
-    cout << "Assign to another.\n";
-
-    ptr = make_unique<SomeClass>("second");
-
-    cout << "Finally done.\n";
+    print("Second experiment: 12342");
+    {
+        print(1);
+        // 0 wouldn't appear in the output.
+        auto sc = SomeClass<int>(0);
+        print(2);
+        // Destructor called once here.
+        sc = SomeClass<int>(3);
+        print(4);
+    }
 }
