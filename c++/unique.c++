@@ -32,7 +32,7 @@ int main() {
         print(4);
     }
 
-    print("Second experiment: 12342");
+    print("Second experiment: 12343");
     {
         print(1);
         // 0 wouldn't appear in the output.
