@@ -6,12 +6,19 @@ Quirks is a repository that stores snippets from languages I want to work on.
 
 ## What languages are you interested in working on?
 
-I'm interested in Go, Python, C, C++, JavaScript, and TypeScript. 
+I'm only interested in Go, Python, C, C++, JavaScript, and TypeScript. 
 
-## Why am I only interested in Go, Python, C, C++, JavaScript, and TypeScript?
+## Do you know other languages?
 
-Because almost all software technologies (frameworks) have a counterpart library (framework) written in these languages. And as a mortal, I have to deploy my time and resources efficently, hence the decision to only focus on those languages.
+Yes. See my [LinkedIn][linkedin] page for a full list of languages I know.
+
+## But why are those other languages not included?
+
+Because almost all software technologies (frameworks) have a counterpart library (framework) written in these languages.
+For me, a mortal, other languages are not worth deploying time and resources into.
 
 ## What does this repository contain?
 
 It contains concepts and features in languages with which I sometimes get confused.
+
+[linkedin]: https://linkedin.com/in/rentruewang/
