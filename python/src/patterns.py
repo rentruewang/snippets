@@ -63,6 +63,8 @@ class Something:
                 print(f"This is other, {self}")
             case Something(name=sth, count=8):
                 print(f"Counted {sth} eight times.")
+            case Something(name=_, count=-1 | -2):
+                print("Can't count negative times.", self)
             case _:
                 print(self)
 
@@ -93,3 +95,5 @@ if __name__ == "__main__":
     Something("other", 666).do_match()
     Something("hello", 8).do_match()
     Something("default", 448).do_match()
+    Something("wont work", -1).do_match()
+    Something("wont work", -2).do_match()
