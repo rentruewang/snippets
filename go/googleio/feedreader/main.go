@@ -97,7 +97,7 @@ func (s sub) loop() {
 		// So we are bounding pending items (by diabling doFetch if pending is too big).
 		case <-doFetch:
 			var fetched []Item
-			// FIXME: Fetch is an IO operation. It could take really.
+			// FIXME: Fetch is an IO operation, could take a really long time.
 			// Because it's blocking (sequential), during which the loop would be unresponsive.
 			fetched, next, err = s.fetcher.Fetch()
 			if err != nil {
