@@ -15,7 +15,6 @@ int main() {
     std::vector<std::string> vec = {"a", "b", "c"};
     print_vector(vec);
 
-    std::for_each(vec.begin(), vec.end(),
-                  [](auto& item) { item += "_mod"; });
+    std::for_each(vec.begin(), vec.end(), [](auto& item) { item += "_mod"; });
     print_vector(vec);
 }
