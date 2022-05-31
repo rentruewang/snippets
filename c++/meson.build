@@ -1,6 +1,6 @@
 project('c++', 'cpp',
   version : '0.1',
-  default_options : ['warning_level=3', 'optimization=3', 'c_std=c11', 'cpp_std=c++11'])
+  default_options : ['warning_level=3', 'optimization=3', 'c_std=c11', 'cpp_std=c++17'])
 
 tmpl = executable('template', 'template.c++', install : true)
 test('basic', tmpl)
@@ -13,3 +13,6 @@ test('basic', so)
 
 init = executable('init-stmt', 'init-stmt.c++')
 test('basic', init)
+
+par = executable('parallel', 'parallel.c++')
+test('basic', par)
