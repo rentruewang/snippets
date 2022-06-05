@@ -1,4 +1,4 @@
-from typing import TypeVar
+from typing import Callable, ParamSpec, TypeVar
 
 Real = TypeVar("Real", int, float)
 
@@ -18,6 +18,21 @@ def fstr(a: AnyStr, b: AnyStr) -> None:
     print(a, b, a + b)
 
 
+P = ParamSpec("P")
+R = TypeVar("R")
+
+
+def print_before_and_after(function: Callable[P, R]) -> Callable[P, R]:
+    def _function(*args: P.args, **kwargs: P.kwargs) -> R:
+        print("function:", function)
+        print(args, kwargs)
+        out = function(*args, **kwargs)
+        print(out)
+        return out
+
+    return _function
+
+
 if __name__ == "__main__":
     f(int(3))
 
@@ -29,4 +44,7 @@ if __name__ == "__main__":
     fstr("hello", "world")
     fstr(b"hello", b"world")
     # bytes cannot be casted to string. Will fail.
-    fstr(b"hello", "world")
+    # fstr(b"hello", "world")
+
+    fstr_print = print_before_and_after(fstr)
+    fstr_print("hello", "world")
