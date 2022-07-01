@@ -16,3 +16,6 @@ test('basic', init)
 
 par = executable('parallel', 'parallel.c++')
 test('basic', par)
+
+vir = executable('virtual', 'virtual.c++')
+test('basic', vir)
