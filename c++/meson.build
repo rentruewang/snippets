@@ -19,3 +19,5 @@ test('basic', par)
 
 vir = executable('virtual', 'virtual.c++')
 test('basic', vir)
+
+subdir('namespace')
