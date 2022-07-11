@@ -52,7 +52,6 @@ int main() {
 
     A::ClassInA().method();
     A::B::ClassInB().method();
-    
 
     using namespace A::B;
     functionInB();
