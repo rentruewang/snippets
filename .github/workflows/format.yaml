@@ -19,8 +19,8 @@ jobs:
       - name: 🏗️ 🏃 clang-format
         uses: DoozyX/clang-format-lint-action@v0.13
         with:
-          source: ./c++
-          extensions: h++,c++
+          source: ./cxx
+          extensions: hxx,cxx
           clangFormatVersion: 13
           inplace: True
 
@@ -56,7 +56,7 @@ jobs:
       - name: 🏗️ python 3.10
         uses: actions/setup-python@v2
         with:
-          python-version: '3.10'
+          python-version: "3.10"
       - name: ⬇️ Python Poetry
         uses: abatilo/actions-poetry@v2.0.0
         with:
