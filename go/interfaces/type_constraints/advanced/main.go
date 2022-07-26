@@ -118,12 +118,12 @@ func (d DerivedEqString) InterfaceMethod(c int) {
 	fmt.Println("D.InterfaceMethod", d, c)
 }
 
-// This will not work with CCC1 because you cannot add methods to another struct
+// This will not work with NonDerivableString because you cannot add methods to another struct
 type EqEqString = EqString
 
 // invalid receiver type struct{S string}
-// func (ee EqString) X(x int) {
-// 	fmt.Println("EqString.X", ee, x)
+// func (es EqString) Method3(x int) {
+// 	fmt.Println("EqString.Method3", es, x)
 // }
 
 // invalid receiver type struct{S string}
@@ -169,7 +169,7 @@ func (f DerivedStruct) Method3(x int) {
 // }
 
 func AcceptInterfaceMethod[T DerivableStruct](c T) {
-	fmt.Println("Calling AcceptC")
+	fmt.Println("Calling AcceptInterfaceMethod")
 	c.Method3(123)
 	fmt.Println()
 }
@@ -185,33 +185,33 @@ func AcceptEqString[T ~struct{ S string }](eq T) {
 }
 
 func AcceptDerivableStruct[T DerivableStruct](c T) {
-	fmt.Println("Calling AcceptC")
+	fmt.Println("Calling AcceptInterfaceMethod")
 	// Not for interfaces.
-	// cannot use interface C1 in conversion (contains specific type constraints or is comparable)
-	// fmt.Println("C.S", C1(c).S)
+	// cannot use interface DerivableStruct in conversion (contains specific type constraints or is comparable)
+	// fmt.Println("DerivableStruct.S", DerivableStruct(c).S)
 	c.Method3(123)
 
 	AcceptDerivableString(c)
 }
 
 func AcceptDerivableString[T DerivableString](c T) {
-	fmt.Println("Calling AcceptCC")
+	fmt.Println("Calling AcceptDerivableString")
 	// Needs to really find the root of the type that has a method S
-	fmt.Println("CC.S", EqString(c).S)
+	fmt.Println("AcceptDerivableString.S", EqString(c).S)
 	c.Method3(123)
 	fmt.Println()
 }
 
 func AcceptNonDerivableStruct[T NonDerivableStruct](c T) {
-	fmt.Println("Calling AcceptCC1")
-	fmt.Println("C.S", EqString(c).S)
+	fmt.Println("Calling AcceptNonDerivableStruct")
+	fmt.Println("AcceptNonDerivableStruct.S", EqString(c).S)
 	c.Method3(123)
 
 	AcceptDerivableString(c)
 }
 
 func AcceptNonDerivableString[T NonDerivableString](c T) {
-	fmt.Println("Calling AcceptCC2")
+	fmt.Println("Calling AcceptNonDerivableString")
 	AcceptNonDerivableStruct(c)
 }
 
