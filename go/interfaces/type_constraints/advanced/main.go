@@ -5,39 +5,40 @@ import "fmt"
 // See this
 // https://tip.golang.org/ref/spec#Interface_types
 
-type A interface {
-	A(a int)
+type Class1 interface {
+	Method1(a int)
 }
 
-type B interface {
-	B(b int)
+type Class2 interface {
+	Method2(b int)
 }
 
-type X interface {
-	X(x int)
+type Class3 interface {
+	Method3(x int)
 }
 
-type C1 interface {
-	// cannot use main.A in union (main.A contains methods)
-	// cannot use main.B in union (main.B contains methods)
-	// A | B
+type DerivableStruct interface {
+	// cannot use main.Class1 in union (main.Class1 contains methods)
+	// cannot use main.Class2 in union (main.Class2 contains methods)
+	// Class1 | Class2
 
+	// ~ Allows for derivations. e.g. type X struct { S string }
 	~struct{ S string }
 	// ~EqString
 
 	// In a term of the form ~T, the underlying type of T must be itself, and T cannot be an interface.
 	// ~SString
 
-	X
+	Class3
 
-	C(c int)
+	InterfaceMethod(c int)
 }
 
-// C2 is a copy of C, except using an alias
-type C2 interface {
-	// cannot use main.A in union (main.A contains methods)
-	// cannot use main.B in union (main.B contains methods)
-	// A | B
+// DerivableString is a copy of C, except using an alias
+type DerivableString interface {
+	// cannot use main.Class1 in union (main.Class1 contains methods)
+	// cannot use main.Class2 in union (main.Class2 contains methods)
+	// Class1 | Class2
 
 	// ~struct{S string}
 	~EqString
@@ -45,16 +46,16 @@ type C2 interface {
 	// In a term of the form ~T, the underlying type of T must be itself, and T cannot be an interface.
 	// ~SString
 
-	X
+	Class3
 
-	C(c int)
+	InterfaceMethod(c int)
 }
 
-// CC1 is a copy of C, except no derived types are allowed
-type CC1 interface {
-	// cannot use main.A in union (main.A contains methods)
-	// cannot use main.B in union (main.B contains methods)
-	// A | B
+// NonDerivableStruct is a copy of C, except no derived types are allowed
+type NonDerivableStruct interface {
+	// cannot use main.Class1 in union (main.Class1 contains methods)
+	// cannot use main.Class2 in union (main.Class2 contains methods)
+	// Class1 | Class2
 
 	struct{ S string }
 	// EqString
@@ -62,16 +63,16 @@ type CC1 interface {
 	// In a term of the form ~T, the underlying type of T must be itself, and T cannot be an interface.
 	// ~SString
 
-	X
+	Class3
 
-	C(c int)
+	InterfaceMethod(c int)
 }
 
-// CC2 is a copy of C, except no derived types are allowed
-type CC2 interface {
-	// cannot use main.A in union (main.A contains methods)
-	// cannot use main.B in union (main.B contains methods)
-	// A | B
+// NonDerivableString is a copy of C, except no derived types are allowed
+type NonDerivableString interface {
+	// cannot use main.Class1 in union (main.Class1 contains methods)
+	// cannot use main.Class2 in union (main.Class2 contains methods)
+	// Class1 | Class2
 
 	// struct{S string}
 	EqString
@@ -79,12 +80,12 @@ type CC2 interface {
 	// In a term of the form ~T, the underlying type of T must be itself, and T cannot be an interface.
 	// ~SString
 
-	X
+	Class3
 
-	C(c int)
+	InterfaceMethod(c int)
 }
 
-type SString struct {
+type DerivedString struct {
 	S string
 }
 
@@ -92,68 +93,86 @@ type EqString = struct {
 	S string
 }
 
-type D EqString
+type DerivedEqString EqString
 
-func (d D) A(a int) {
-	fmt.Println("D.A", d, a)
+var _ Class1 = DerivedEqString{}
+var _ Class2 = DerivedEqString{}
+var _ Class3 = DerivedEqString{}
+
+// interface contains type constraints
+// var _ DerivableStruct = DerivedEqString{}
+
+func (d DerivedEqString) Method1(a int) {
+	fmt.Println("D.Method1", d, a)
 }
 
-func (d D) B(b int) {
-	fmt.Println("D.B", d, b)
+func (d DerivedEqString) Method2(b int) {
+	fmt.Println("D.Method2", d, b)
 }
 
-func (d D) C(c int) {
-	fmt.Println("D.C", d, c)
+func (d DerivedEqString) Method3(c int) {
+	fmt.Println("D.Method3", d, c)
 }
 
-func (d D) X(x int) {
-	fmt.Println("D.X", d, x)
+func (d DerivedEqString) InterfaceMethod(c int) {
+	fmt.Println("D.InterfaceMethod", d, c)
 }
 
 // This will not work with CCC1 because you cannot add methods to another struct
-type DD = EqString
+type EqEqString = EqString
 
 // invalid receiver type struct{S string}
-// func (dd DD) X(x int) {
-// 	fmt.Println("DD.X", dd, x)
+// func (ee EqString) X(x int) {
+// 	fmt.Println("EqString.X", ee, x)
 // }
 
-// func (dd DD) C(c int) {
-// 	fmt.Println("DD.C", dd, c)
+// invalid receiver type struct{S string}
+// func (ees EqEqString) X(x int) {
+// 	fmt.Println("EqEqString.X", ees, x)
 // }
 
-type E SString
+// func (ees EqEqString) InterfaceMethod(c int) {
+// 	fmt.Println("EqEqString.C", ees, c)
+// }
 
-func (e E) B(b int) {
-	fmt.Println("E.B", e, b)
+type DerivedDerivedString DerivedString
+
+func (e DerivedDerivedString) Method2(b int) {
+	fmt.Println("E.Method2", e, b)
 }
 
-func (e E) C(c int) {
-	fmt.Println("E.C", e, c)
+func (e DerivedDerivedString) InterfaceMethod(c int) {
+	fmt.Println("E.InterfaceMethod", e, c)
 }
 
-func (e E) X(x int) {
-	fmt.Println("E.X", e, x)
+func (e DerivedDerivedString) Method3(x int) {
+	fmt.Println("E.Method3", e, x)
 }
 
-type F struct {
+type DerivedStruct struct {
 	S string
 }
 
-func (f F) C(c int) {
-	fmt.Println("F.C", f, c)
+func (f DerivedStruct) InterfaceMethod(c int) {
+	fmt.Println("F.InterfaceMethod", f, c)
 }
 
-func (f F) X(x int) {
-	fmt.Println("F.X", f, x)
+func (f DerivedStruct) Method3(x int) {
+	fmt.Println("F.Method3", f, x)
 }
 
 // interface contains type constraints
-// func AcceptC(c C1) {
+// func AcceptInterfaceMethod(c DerivableStruct) {
 // 	fmt.Println("Calling AcceptC")
-// 	c.X(123)
+// 	c.Method3(123)
 // 	fmt.Println()
 // }
+
+func AcceptInterfaceMethod[T DerivableStruct](c T) {
+	fmt.Println("Calling AcceptC")
+	c.Method3(123)
+	fmt.Println()
+}
 
 // eq.S undefined (type T has no field or method S
 // func AcceptEqString[T ~struct{ S string }](eq T) {
@@ -165,48 +184,51 @@ func AcceptEqString[T ~struct{ S string }](eq T) {
 	fmt.Println("EqString.S", struct{ S string }(eq).S)
 }
 
-func AcceptC1[T C1](c T) {
+func AcceptDerivableStruct[T DerivableStruct](c T) {
 	fmt.Println("Calling AcceptC")
 	// Not for interfaces.
 	// cannot use interface C1 in conversion (contains specific type constraints or is comparable)
 	// fmt.Println("C.S", C1(c).S)
-	c.X(123)
+	c.Method3(123)
 
-	AcceptC2(c)
+	AcceptDerivableString(c)
 }
 
-func AcceptC2[T C2](c T) {
+func AcceptDerivableString[T DerivableString](c T) {
 	fmt.Println("Calling AcceptCC")
 	// Needs to really find the root of the type that has a method S
 	fmt.Println("CC.S", EqString(c).S)
-	c.X(123)
+	c.Method3(123)
 	fmt.Println()
 }
 
-func AcceptCC1[T CC1](c T) {
+func AcceptNonDerivableStruct[T NonDerivableStruct](c T) {
 	fmt.Println("Calling AcceptCC1")
 	fmt.Println("C.S", EqString(c).S)
-	c.X(123)
+	c.Method3(123)
 
-	AcceptC2(c)
+	AcceptDerivableString(c)
 }
 
-func AcceptCC2[T CC2](c T) {
+func AcceptNonDerivableString[T NonDerivableString](c T) {
 	fmt.Println("Calling AcceptCC2")
-	AcceptCC1(c)
+	AcceptNonDerivableStruct(c)
 }
 
 func main() {
-	d := D{S: "d"}
-	e := E{S: "e"}
-	f := F{S: "f"}
+	d := DerivedEqString{S: "d"}
+	e := DerivedDerivedString{S: "e"}
+	f := DerivedStruct{S: "f"}
 
-	AcceptC1(d)
-	AcceptC1(e)
-	AcceptC1(f)
+	AcceptDerivableStruct(d)
+	AcceptDerivableStruct(e)
+	AcceptDerivableStruct(f)
 
 	AcceptEqString(d)
 
-	// struct{S string} does not implement CC1 (missing C method)
-	// AcceptCC1(DD{S: "dd"})
+	// struct{S string} does not implement NonDerivableStruct (missing method InterfaceMethod)
+	// AcceptNonDerivableStruct(EqEqString{S: "dd"})
+
+	// struct{S string} does not implement DerivableStruct (missing method InterfaceMethod)
+	// AcceptDerivableStruct(EqEqString{S: "dd"})
 }
