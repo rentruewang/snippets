@@ -2,6 +2,10 @@ package main
 
 import "fmt"
 
+// https://go.dev/doc/effective_go#conversions
+// https://go.dev/doc/effective_go#interface_conversions
+// https://go.dev/doc/effective_go#blank_implements
+
 type EmptyInterface interface{}
 
 type SomethingInterface interface {
@@ -24,14 +28,20 @@ func main() {
 	var a = A{1}
 
 	sa := SomethingInterface(a)
-	fmt.Printf("%v, %T, %v, %T\n", a, a, sa, sa)
+	// cannot convert sa (variable of type SomethingInterface) to A (need type assertion)
+	// na := A(sa)
+	na := sa.(A)
+	fmt.Printf("%v, %T, %v, %T, %v, %T\n", a, a, sa, sa, na, na)
 
 	var b = B{}
 
 	// cannot convert b (variable of type B) to type SomethingInterface:
 	// B does not implement SomethingInterface (missing Something method)
 	// sb := SomethingInterface(b)
-
 	sb := EmptyInterface(b)
-	fmt.Printf("%v, %T, %v, %T\n", b, b, sb, sb)
+	// cannot convert sb (variable of type EmptyInterface) to B (need type assertion)
+	// nb := B(sb)
+	nb := sb.(B)
+
+	fmt.Printf("%v, %T, %v, %T, %v, %T\n", b, b, sb, sb, nb, nb)
 }
