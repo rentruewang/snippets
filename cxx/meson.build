@@ -23,4 +23,7 @@ test('basic', vir)
 cls = executable('classes', 'classes.cxx')
 test('basic', cls)
 
+ctor = executable('ctor', 'ctor.cxx')
+test('basic', ctor)
+
 subdir('namespace')
