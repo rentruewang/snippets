@@ -68,6 +68,13 @@ class UseMove {
 };
 
 template <typename T>
+class UseBoth {
+   public:
+    void call_copy(const T& obj) { T copied(obj); }
+    void call_move(T&& obj) { T moved(move(obj)); }
+};
+
+template <typename T>
 class MoveIsCopy {
    public:
     void call_copy(NOT_USED const T& obj) {}
@@ -174,6 +181,26 @@ int main() {
     // cim_used_move.call_copy(has_move);
 
     cim_used_both.call_copy(move(has_both));
+
+    UseBoth<OnlyCopy> ub_copy;
+    UseBoth<OnlyMove> ub_move;
+    UseBoth<CopyAndMove> ub_both;
+
+    ub_copy.call_copy(has_copy);
+
+    // error: call to deleted constructor of 'OnlyCopy'
+    // ub_copy.call_move(has_move);
+
+    // error: no viable conversion from 'typename std::remove_reference<OnlyMove
+    // &>::type' (aka 'OnlyMove') to 'OnlyCopy'
+    // ub_copy.call_move(move(has_move));
+
+    // error: call to deleted constructor of 'OnlyMove'
+    // ub_move.call_copy(has_move);
+    ub_move.call_move(move(has_move));
+
+    ub_both.call_copy(has_both);
+    ub_both.call_move(move(has_both));
 
     return 0;
 }
