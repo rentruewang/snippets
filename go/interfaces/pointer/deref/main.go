@@ -14,6 +14,11 @@ func (i *Integer) Print() {
 	fmt.Println(i)
 }
 
+func ByValue(i Integer) {
+	i.Inc()
+	i.Print()
+}
+
 func main() {
 	// Dereference does not copy, but assignment does.
 	// https://stackoverflow.com/questions/38443348/does-dereferencing-a-struct-return-a-new-copy-of-struct
@@ -57,5 +62,10 @@ func main() {
 	var integerPointerCopied Integer = *integerPointer
 	integerPointerCopied.Inc()
 	integerPointerCopied.Print()
+	integerPointer.Print()
+	fmt.Println()
+
+	fmt.Println("copy dereferenced value")
+	ByValue(*integerPointer)
 	integerPointer.Print()
 }
