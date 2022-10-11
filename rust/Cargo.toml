@@ -1,2 +1,2 @@
 [workspace]
-members = ["func", "macros", "main", "member", "pubtest", "traits"]
+members = ["func", "macros", "main", "member", "merge_sort", "pubtest", "traits"]
