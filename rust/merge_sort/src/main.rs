@@ -11,10 +11,10 @@ fn merge_sort<T: Num + Copy + Ord + Debug>(seq: &[T]) -> Vec<T> {
 
     let half = length / 2;
 
-    let first_half = &merge_sort(&seq[..half]);
-    let second_half = &merge_sort(&seq[half..]);
+    let first_half = merge_sort(&seq[..half]);
+    let second_half = merge_sort(&seq[half..]);
 
-    merge(first_half, second_half)
+    merge(&first_half, &second_half)
 }
 
 fn merge<T: Num + Copy + Ord + Debug>(mut a: &[T], mut b: &[T]) -> Vec<T> {
