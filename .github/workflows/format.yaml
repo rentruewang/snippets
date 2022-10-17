@@ -24,14 +24,24 @@ jobs:
           clangFormatVersion: 13
           inplace: True
 
+      # Dart part
+      - name: 🏗️ dart runtime
+        uses: dart-lang/setup-dart@v1.3
+      - name: ⬇️ all dependencies
+        working-directory: ./dart
+        run: dart pub get
+      - name: 🏃 dart format
+        working-directory: ./dart
+        run: dart format
+
       # Golang part
       - name: 🏗️ go runtime
         uses: actions/setup-go@v2
         with:
           go-version: ^1.18
       - name: 🏃 go fmt
-        run: go fmt ./...
         working-directory: ./go
+        run: go fmt ./...
 
       # JavaScript/TypeScript part
       - name: 🏗️ node
