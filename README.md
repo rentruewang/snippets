@@ -6,7 +6,7 @@ Quirks is a repository that stores snippets from languages I want to work on.
 
 ## What languages are you interested in working on?
 
-I'm only interested in Go, Python, C/C++, JavaScript/TypeScript, and Dart.
+I'm only interested in Go, Python, C/C++, JavaScript/TypeScript, Java, and Dart (because of Flutter).
 
 ## Do you know other languages?
 

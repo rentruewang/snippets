@@ -8,7 +8,7 @@ jobs:
       - name: 🔔 Check out
         uses: actions/checkout@v2
 
-      # Clang-format (C/C++) part
+      # C part
       - name: 🏗️ 🏃 clang-format
         uses: DoozyX/clang-format-lint-action@v0.13
         with:
@@ -16,11 +16,22 @@ jobs:
           extensions: h,c
           clangFormatVersion: 13
           inplace: True
+
+      # C++ part
       - name: 🏗️ 🏃 clang-format
         uses: DoozyX/clang-format-lint-action@v0.13
         with:
           source: ./cxx
           extensions: hxx,cxx
+          clangFormatVersion: 13
+          inplace: True
+
+      # Java part
+      - name: 🏗️ 🏃 clang-format
+        uses: DoozyX/clang-format-lint-action@v0.13
+        with:
+          source: ./java
+          extensions: java
           clangFormatVersion: 13
           inplace: True
 
