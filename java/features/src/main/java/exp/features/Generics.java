@@ -7,8 +7,6 @@ public class Generics<T, L extends T> {
     }
 }
 
-class A {
-};
+class A {};
 
-class B extends A {
-}
+class B extends A {}
