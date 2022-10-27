@@ -4,3 +4,6 @@ project('c', 'c',
 
 main = executable('main', 'main.c')
 test('basic', main)
+
+copy = executable('copy', 'copy.c')
+test('basic', copy)
