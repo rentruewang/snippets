@@ -5,11 +5,13 @@
 *.js linguist-language=TypeScript
 *.ts linguist-language=TypeScript
 
-# Go files.
-*.go linguist-language=Go
+# Java files.
+*.java linguist-language=Java
+*.xml linguist-language=Java
 
 # These extentions are all valid C++ files.
 *.c linguist-language=C++
 *.h linguist-language=C++
 *.c++ linguist-language=C++
 *.h++ linguist-language=C++
+meson.build linguist-language=C++
