@@ -15,7 +15,6 @@ public class Lambdas {
     public static <T, E> void accept2(FunctionalInterface2<T, E> fi2, E arg) {
         System.out.println(fi2.do_something(arg) + "_2");
     }
-
 }
 
 interface FunctionalInterface1<T, E> {

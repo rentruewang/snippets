@@ -19,5 +19,4 @@ public class Lists {
         // This will not work.
         // list.forEach(System.out.println);
     }
-
 }
