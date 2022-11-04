@@ -7,3 +7,6 @@ test('basic', main)
 
 copy = executable('copy', 'copy.c')
 test('basic', copy)
+
+radixsort = executable('radix-sort', 'radix-sort.c')
+test('basic', radixsort)

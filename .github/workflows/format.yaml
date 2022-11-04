@@ -35,7 +35,7 @@ jobs:
           clangFormatVersion: 13
           inplace: True
 
-      # JavaScript/TypeScript part
+      # JavaScript part
       - name: 🏗️ node
         uses: actions/setup-node@v2
         with:
@@ -47,6 +47,7 @@ jobs:
         working-directory: ./javascript
         run: npx prettier --write .
 
+      # TypeScript part
       - name: ⬇️ all packages
         working-directory: ./typescript
         run: npm install
