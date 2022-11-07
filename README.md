@@ -16,7 +16,7 @@ Basically all software has been implemented with one of those technologies, so t
 
 Languages outside Python, C/C++, Java, JS/TS will never make this list.
 
-Here's a question I ask myself when considering this list: When I start a company, do I want to see this language used? If so, put it here. Or else no matter how much I love it, it's not going in.
+Here's a question I ask myself when considering this list: When I start a company, do I want to see this language used? If so, put it here. Or else no matter how much I love it, it's a waste of my time.
 
 ## Do you know other languages?
 

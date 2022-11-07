@@ -9,6 +9,7 @@
 #define MAX(A, B) (A) > (B) ? (A) : (B)
 
 void counting_sort(int* array) {
+    // Since array's domain is {1...}, 0 is used as a default value.
     int max = 0;
     for (int i = 0; i < ARRAY_SIZE; ++i) {
         max = MAX(max, array[i]);
@@ -20,6 +21,7 @@ void counting_sort(int* array) {
         ++(counts[array[i] - 1]);
     }
 
+    // Unpack the counts back to array.
     for (int i = 0, idx = 0; i < max; ++i) {
         for (int j = 0; j < counts[i]; ++j) {
             array[idx++] = i + 1;
@@ -29,25 +31,30 @@ void counting_sort(int* array) {
     free(counts);
 }
 
+// It's the exact same operation as num & (1 << radix)
 int radix_of(int num, int radix) {
     return (num >> radix) & 1;
 }
 
 // Sort by binary representation.
 void radix_sort(int* array, int radix) {
-    int count0 = 0, count1 = 0;
+    int cnt0 = 0, cnt1 = 0;
 
+    // The array used to store temporary order.
     int* tmp = calloc(ARRAY_SIZE, sizeof(int));
 
+    // Counting the total number of 0s and 1s at the given radix.
     for (int i = 0; i < ARRAY_SIZE; ++i) {
         if (radix_of(array[i], radix)) {
-            ++count1;
+            ++cnt1;
         } else {
-            ++count0;
+            ++cnt0;
         }
     }
 
-    int idx0 = 0, idx1 = count0;
+    // Assign the temporary array according to the radix.
+    // This is equivalent with sorting stably along that radix.
+    int idx0 = 0, idx1 = cnt0;
     for (int i = 0; i < ARRAY_SIZE; ++i) {
         if (radix_of(array[i], radix)) {
             tmp[idx1++] = array[i];
@@ -55,11 +62,12 @@ void radix_sort(int* array, int radix) {
             tmp[idx0++] = array[i];
         }
     }
-    assert(idx0 == count0);
+
+    assert(idx0 == cnt0);
     assert(idx1 == ARRAY_SIZE);
 
+    // Free the temporary array.
     memcpy(array, tmp, sizeof(int) * ARRAY_SIZE);
-
     free(tmp);
 }
 
