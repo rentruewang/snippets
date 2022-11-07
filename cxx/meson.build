@@ -26,4 +26,7 @@ test('basic', cls)
 ctor = executable('ctor', 'ctor.cxx')
 test('basic', ctor)
 
+modern = executable('modern', 'modern.cxx')
+test('basic', modern)
+
 subdir('namespace')
