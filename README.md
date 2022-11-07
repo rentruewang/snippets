@@ -10,28 +10,19 @@ It contains concepts and features, in programming languages (that I use), with w
 
 ## What languages are you interested in working on?
 
-I'm only interested in Python, C/C++, Java, JavaScript/TypeScript.
+I'm only interested in Python, C/C++/CUDA, Java, JavaScript/TypeScript.
 
-Basically all software has been implemented with one of those technologies, so there is not a lot of need to reach anywhere else.
+Basically all software has been implemented with one of those technologies, so there is not a lot of need to acutally learn anything else.
 
-Languages outside Python, C/C++, Java, JS/TS will never make this list.
+Languages outside Python, C/C++/CUDA, Java, JS/TS will never make this list.
 
 Here's a question I ask myself when considering this list: When I start a company, do I want to see this language used? If so, put it here. Or else no matter how much I love it, it's a waste of my time.
 
-## Do you know other languages?
-
-Yes. See my [LinkedIn](https://linkedin.com/in/rentruewang/) page for a full list of languages I know.
-
-I just feel like other languages are not really worth investing in time and mental resources in actually mastering.
-
-Instead, I should work on making better technology (architecture, algorithm etc).
-
-## You sure you don't want to add language X?
-
-Because almost all software technologies (frameworks) have a counterpart library (framework) written in these languages.
-For a language to be listed here, it has to have a massive and vibrant ecosystem, and killer application.
 After all, why would I want to spend time on a language that'll probably die anyways?
-If a language isn't the best solution to something, then for me, a mortal, it's not worth deploying time and resources into.
+
+## But do you know other languages?
+
+Yes. See the notable languages that don't make the list. However, instead of languages, I (at least try to) focus on making better technology (architecture, algorithm etc).
 
 ## Details of Languages that made the list:
 
