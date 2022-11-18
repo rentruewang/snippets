@@ -6,7 +6,7 @@ jobs:
     steps:
       # Global part
       - name: 🔔 Check out
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # C part
       - name: 🏗️ 🏃 clang-format
