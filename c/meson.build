@@ -10,3 +10,6 @@ test('basic', copy)
 
 radixsort = executable('radix-sort', 'radix-sort.c')
 test('basic', radixsort)
+
+sorter = executable('sorter', 'sorter.c')
+test('basic', sorter)
