@@ -35,3 +35,13 @@ function printId(id: number | string) {
 printId(101);
 printId("202");
 // printId({ myID: 22342 });
+
+type NullableMember = {
+  member?: string;
+};
+
+let nm: NullableMember = { member: undefined };
+console.log(nm.member?.indexOf("3"));
+
+nm = { member: "4233" };
+console.log(nm.member?.indexOf("3"));

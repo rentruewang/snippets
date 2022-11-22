@@ -3,6 +3,11 @@ type SomePerson = {
   hello: (thing: number) => void;
 };
 
+type SomePerson1 = {
+  name: string;
+  hello(thing: number): void;
+};
+
 class SomePersonClass {
   name: string;
 

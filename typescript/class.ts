@@ -141,7 +141,9 @@ class MyClass {
   // num: number;
 
   check(s: string) {
-    return this[s] as boolean;
+    // return this[s] as boolean;
+    // https://stackoverflow.com/questions/38831342/what-does-enclosing-a-class-in-angle-brackets-mean-in-typescript
+    return <boolean>this[s];
   }
 }
 

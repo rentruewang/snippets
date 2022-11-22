@@ -1,3 +1,6 @@
+// https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces
+// An interface can be extended, while a type cannot.
+
 // interface Shape {
 //   kind: "circle" | "square";
 //   radius?: number;
@@ -10,6 +13,14 @@ interface Circle {
 
   area: () => number;
 }
+
+interface Circle1 {
+  kind: "circle";
+  radius: number;
+
+  area(): number;
+}
+
 interface Square {
   kind: "square";
   length: number;
