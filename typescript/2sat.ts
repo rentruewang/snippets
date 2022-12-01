@@ -59,15 +59,23 @@ class Condition {
   }
 }
 
-function twoSatSolver(conditions: Condition[]): number {
+class TwoSat {
+  clauses: Condition[];
+
+  constructor(...clauses: Condition[]) {
+    this.clauses = clauses;
+  }
+}
+
+function twoSatSolver(twosat: TwoSat): number {
   // Check if there are negations to the left.
   // This solver assumes that it never happens for simplicity.
-  for (let { left, right: _ } of conditions) {
+  for (let { left, right: _ } of twosat.clauses) {
     console.assert(!left.neg);
   }
 
   // Create an adjacency list.
-  let adjList = createAdjList(conditions);
+  let adjList = createAdjList(twosat);
 
   console.log(adjList);
 
@@ -77,13 +85,13 @@ function twoSatSolver(conditions: Condition[]): number {
 /**
  * Create the adjacency list from an edge list.
  *
- * @param edgeList The edge list, which represents the conditions in the original 2-SAT.
+ * @param twosat The edge list, which represents the conditions in the original 2-SAT.
  * @returns A map from variable name (defined by Variable.key() to a list of variables).
  */
-function createAdjList(edgeList: Condition[]): Map<string, Set<Variable>> {
+function createAdjList(twosat: TwoSat): Map<string, Set<Variable>> {
   let adjList: Map<string, Set<Variable>> = new Map();
 
-  for (let cond of edgeList) {
+  for (let cond of twosat.clauses) {
     let { left, right } = cond;
     let leftKey = left.token;
 
@@ -100,11 +108,11 @@ function createAdjList(edgeList: Condition[]): Map<string, Set<Variable>> {
 
 // Main part
 // (A -> B) & (B -> A) & (C -> -B) & (C -> -A)
-let conditions: Condition[] = [
+let twosat = new TwoSat(
   new Condition(new Variable("A", false), new Variable("B", false)),
   new Condition(new Variable("B", false), new Variable("A", false)),
   new Condition(new Variable("C", false), new Variable("B", true)),
-  new Condition(new Variable("C", false), new Variable("A", true)),
-];
+  new Condition(new Variable("C", false), new Variable("A", true))
+);
 
-twoSatSolver(conditions);
+twoSatSolver(twosat);
