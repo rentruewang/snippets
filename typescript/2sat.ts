@@ -34,6 +34,16 @@ class Variable {
       return this.token;
     }
   }
+
+  static fromString(repr: string): Variable {
+    let neg = false;
+    if (repr.startsWith("-")) {
+      neg = true;
+      repr = repr.substring(1);
+    }
+
+    return new Variable(repr, neg);
+  }
 }
 
 /**
@@ -67,6 +77,11 @@ class TwoSat {
   }
 }
 
+/**
+ *
+ * @param twosat The 2 SAT instance to solve.
+ * @returns The number of possible correct assignments. 0 for impossible.
+ */
 function twoSatSolver(twosat: TwoSat): number {
   // Check if there are negations to the left.
   // This solver assumes that it never happens for simplicity.
@@ -82,25 +97,51 @@ function twoSatSolver(twosat: TwoSat): number {
   return 0;
 }
 
+function twoSatAdjSolver(
+  adjList: Map<string, string[]>,
+  forceOnes: Set<string>
+): number {
+  // Recursively solve 2 SAT problem.
+
+  // TODO: Check if this solution is valid.
+
+  let possibleCount = 0;
+  // Since any order would do, use the given order.
+  for (let { left, right } of twosat.clauses) {
+    const adj = adjList.get(left.toString())!;
+    const exists = adjList.delete(left.toString());
+    console.assert(exists);
+
+    // Try assigning to 0
+    // Assigninging to 0 has no effect because the left hand side clauses are never negated.
+    possibleCount += twoSatAdjSolver(adjList, new Set());
+
+    // Try assigning to 1
+    possibleCount += twoSatAdjSolver(adjList, adj);
+  }
+
+  return 0;
+}
+
 /**
  * Create the adjacency list from an edge list.
  *
  * @param twosat The edge list, which represents the conditions in the original 2-SAT.
- * @returns A map from variable name (defined by Variable.key() to a list of variables).
+ * @returns A map from variable name (defined by Variable.token to a list of variables).
  */
-function createAdjList(twosat: TwoSat): Map<string, Set<Variable>> {
-  let adjList: Map<string, Set<Variable>> = new Map();
+function createAdjList(twosat: TwoSat): Map<string, string[]> {
+  let adjList: Map<string, string[]> = new Map();
 
   for (let cond of twosat.clauses) {
     let { left, right } = cond;
-    let leftKey = left.token;
+    let leftKey = left.toString();
 
     if (!adjList.has(leftKey)) {
-      adjList.set(leftKey, new Set());
+      adjList.set(leftKey, []);
     }
 
-    let list = adjList.get(leftKey) as Set<Variable>;
-    list.add(right);
+    let list = adjList.get(leftKey)!;
+    list.push(right.toString());
   }
 
   return adjList;
