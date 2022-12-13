@@ -30,3 +30,4 @@ modern = executable('modern', 'modern.cxx')
 test('basic', modern)
 
 subdir('namespace')
+subdir('calculator')
