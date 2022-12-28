@@ -33,7 +33,7 @@ jobs:
           go-version: ^1.19
       - name: 🏃 go fmt
         working-directory: ./go
-        run: go fmt
+        run: go fmt ./...
 
       # JavaScript part
       - name: 🏗️ node
