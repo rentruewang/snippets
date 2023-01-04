@@ -10,25 +10,25 @@ jobs:
 
       # C part
       - name: 🏗️ 🏃 clang-format
-        uses: DoozyX/clang-format-lint-action@v0.13
+        uses: DoozyX/clang-format-lint-action@v0.14
         with:
           source: ./c
           extensions: h,c
-          clangFormatVersion: 13
+          clangFormatVersion: 14
           inplace: True
 
       # C++ part
       - name: 🏗️ 🏃 clang-format
-        uses: DoozyX/clang-format-lint-action@v0.13
+        uses: DoozyX/clang-format-lint-action@v0.14
         with:
           source: ./cxx
           extensions: hxx,cxx
-          clangFormatVersion: 13
+          clangFormatVersion: 14
           inplace: True
 
       # Go part
       - name: 🏗️ go runtime
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
           go-version: ^1.19
       - name: 🏃 go fmt
@@ -37,7 +37,7 @@ jobs:
 
       # JavaScript part
       - name: 🏗️ node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16
       - name: ⬇️ all packages
@@ -57,11 +57,11 @@ jobs:
 
       # Python part
       - name: 🏗️ python 3.10
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: "3.10"
       - name: ⬇️ Python Poetry
-        uses: abatilo/actions-poetry@v2.0.0
+        uses: abatilo/actions-poetry@v2
         with:
           poetry-version: 1.2
       - name: ⬇️ Python Dependencies
@@ -76,7 +76,7 @@ jobs:
 
       # Add and commit all
       - name: ⬆️ Add and Commit
-        uses: EndBug/add-and-commit@v8
+        uses: EndBug/add-and-commit@v9
         with:
           author_name: "github-actions[bot]"
           author_email: "github-actions[bot]@users.noreply.github.com"
