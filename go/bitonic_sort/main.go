@@ -21,6 +21,7 @@ func Concat[T any](first, second []T) []T {
 	return result
 }
 
+// BitonicSort is the bitonic sort algorithm. Runs in O(n log^2 n) time.
 func BitonicSort[T constraints.Ordered](array []T) []T {
 	switch len(array) {
 	case 2:
@@ -45,6 +46,8 @@ func BitonicSort[T constraints.Ordered](array []T) []T {
 	return BitonicToSorted(bitonicSeq)
 }
 
+// BitonicToSorted converts a bitonic sequence into a sorted sequence.
+// Runs in O(n log n) time.
 func BitonicToSorted[T constraints.Ordered](seq []T) []T {
 	if len(seq) <= 1 {
 		return seq
@@ -74,7 +77,7 @@ func BitonicSplit[T constraints.Ordered](seq []T) (smaller, larger []T) {
 		seq = append(seq, last)
 	}
 
-	smaller, larger = BitonicSplitEven(seq)
+	smaller, larger = bitonicSplitEven(seq)
 
 	// Remove the added element, here seqLen must be the index of last element because of the append.
 	if seqLen%2 != 0 {
@@ -88,7 +91,9 @@ func BitonicSplit[T constraints.Ordered](seq []T) (smaller, larger []T) {
 	return
 }
 
-func BitonicSplitEven[T constraints.Ordered](seq []T) (smaller, larger []T) {
+// bitonicSplitEven uses bitonic split to split a sequence.
+// This algorithm only handles sequences with even number of elements.
+func bitonicSplitEven[T constraints.Ordered](seq []T) (smaller, larger []T) {
 	if len(seq)%2 != 0 {
 		panic("unreachable")
 	}
