@@ -1,15 +1,68 @@
 package main
 
-import "golang.org/x/exp/constraints"
+import (
+	"fmt"
 
-func BitonicSort[T constraints.Ordered](array []T) []T {
-	return make([]T, 0)
+	"golang.org/x/exp/constraints"
+)
+
+func Reverse[T any](array []T) []T {
+	result := make([]T, len(array))
+	for i := 0; i < len(array); i++ {
+		result[len(array)-1-i] = array[i]
+	}
+	return result
 }
 
+func Concat[T any](first, second []T) []T {
+	result := make([]T, len(first)+len(second))
+	copy(result[:len(first)], first)
+	copy(result[len(first):], second)
+	return result
+}
+
+func BitonicSort[T constraints.Ordered](array []T) []T {
+	switch len(array) {
+	case 2:
+		if array[0] > array[1] {
+			return []T{array[1], array[0]}
+		}
+		fallthrough
+	case 0:
+		fallthrough
+	case 1:
+		return array
+	}
+
+	half := len(array) / 2
+
+	// Not bitonic yet. Make the sequence bitonic.
+	first := BitonicSort(array[:half])
+	second := Reverse(BitonicSort(array[half:]))
+
+	bitonicSeq := Concat(first, second)
+
+	return BitonicToSorted(bitonicSeq)
+}
+
+func BitonicToSorted[T constraints.Ordered](seq []T) []T {
+	if len(seq) <= 1 {
+		return seq
+	}
+
+	smaller, larger := BitonicSplit(seq)
+
+	smaller = BitonicToSorted(smaller)
+	larger = BitonicToSorted(larger)
+
+	return Concat(smaller, larger)
+}
+
+// BitonicSplit splits one bitonic sequence into 2 bitonic sequences,
+// with any of the elements of the first one smaller than the second one.
 func BitonicSplit[T constraints.Ordered](seq []T) (smaller, larger []T) {
 	if len(seq) <= 1 {
 		panic("unreachable")
-
 	}
 
 	seqLen := len(seq)
@@ -23,12 +76,12 @@ func BitonicSplit[T constraints.Ordered](seq []T) (smaller, larger []T) {
 
 	smaller, larger = BitonicSplitEven(seq)
 
-	// Remove the added element.
+	// Remove the added element, here seqLen must be the index of last element because of the append.
 	if seqLen%2 != 0 {
 		if smaller[len(smaller)-1] == last {
-			smaller = smaller[:len(smaller)]
+			smaller = smaller[:len(smaller)-1]
 		} else {
-			larger = larger[:len(larger)]
+			larger = larger[:len(larger)-1]
 		}
 	}
 
@@ -58,4 +111,8 @@ func BitonicSplitEven[T constraints.Ordered](seq []T) (smaller, larger []T) {
 	return
 }
 
-func main() {}
+func main() {
+	array := []int{5, 3, 4, 7, 10, 14, 13, 8, 2}
+	array = BitonicSort(array)
+	fmt.Println(array)
+}
