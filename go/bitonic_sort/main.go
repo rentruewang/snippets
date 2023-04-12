@@ -6,12 +6,12 @@ import (
 	"golang.org/x/exp/constraints"
 )
 
-func Reverse[T any](array []T) []T {
-	result := make([]T, len(array))
-	for i := 0; i < len(array); i++ {
-		result[len(array)-1-i] = array[i]
+func ReverseInPlace[T any](array []T) {
+	for idx := 0; idx < len(array)/2; idx++ {
+		back := len(array) - idx - 1
+		array[idx], array[back] = array[back], array[idx]
+
 	}
-	return result
 }
 
 func Concat[T any](first, second []T) []T {
@@ -39,7 +39,8 @@ func BitonicSort[T constraints.Ordered](array []T) []T {
 
 	// Not bitonic yet. Make the sequence bitonic.
 	first := BitonicSort(array[:half])
-	second := Reverse(BitonicSort(array[half:]))
+	second := BitonicSort(array[half:])
+	ReverseInPlace(second)
 
 	bitonicSeq := Concat(first, second)
 
