@@ -7,10 +7,13 @@ import (
 )
 
 func ReverseInPlace[T any](array []T) {
-	for idx := 0; idx < len(array)/2; idx++ {
-		back := len(array) - idx - 1
-		array[idx], array[back] = array[back], array[idx]
-
+	// rIdx stands for "reverse index"
+	//
+	// The pattern i++, j-- cannot be used in go's for loop,
+	// i, j = i+1, j-1 achieves the same effect.
+	// https://stackoverflow.com/questions/38081807/for-loop-of-two-variables-in-go
+	for idx, rIdx := 0, len(array)-1; idx < rIdx; idx, rIdx = idx+1, rIdx-1 {
+		array[idx], array[rIdx] = array[rIdx], array[idx]
 	}
 }
 
