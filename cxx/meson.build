@@ -29,5 +29,8 @@ test('basic', ctor)
 modern = executable('modern', 'modern.cxx')
 test('basic', modern)
 
+const = executable('const', 'const.cxx')
+test('basic', const)
+
 subdir('namespace')
 subdir('calculator')
