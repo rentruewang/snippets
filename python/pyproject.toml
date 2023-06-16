@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "python"
+name = "source"
 version = "0.1.0"
 description = "Python scripts"
 authors = ["RenChu Wang <patrick1031wang@gmail.com>"]
