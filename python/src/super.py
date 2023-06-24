@@ -56,6 +56,15 @@ class Third(First, Second):
         print("s third")
 
 
+class Base:
+    def __init__(self) -> None:
+        print("base")
+
+
+class Fourth(Base):
+    pass
+
+
 if __name__ == "__main__":
     cfb = CoopFooBar()
     cfb.f()
@@ -65,3 +74,8 @@ if __name__ == "__main__":
 
     th = Third()
     th.some()
+
+    print()
+    print()
+
+    Fourth()
