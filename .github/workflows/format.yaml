@@ -26,14 +26,14 @@ jobs:
           clangFormatVersion: 14
           inplace: True
 
-      # Java part
-      - name: 🏗️ 🏃 clang-format
-        uses: DoozyX/clang-format-lint-action@v0.14
+      # Go part
+      - name: 🏗️ go runtime
+        uses: actions/setup-go@v3
         with:
-          source: ./java
-          extensions: java
-          clangFormatVersion: 14
-          inplace: True
+          go-version: ^1.20
+      - name: 🏃 go fmt
+        working-directory: ./go
+        run: go fmt ./...
 
       # JavaScript part
       - name: 🏗️ node
