@@ -1,3 +1,4 @@
+from abc import abstractmethod
 from typing import Protocol
 
 
@@ -55,3 +56,25 @@ MultiInheritNoParent()
 print()
 print()
 MultiInherit()
+
+print()
+
+
+class A(Protocol):
+    @abstractmethod
+    def __init__(self) -> None:
+        print("A.__init__")
+
+    @abstractmethod
+    def f(self):
+        print("A.f")
+
+
+class B(A):
+    def __init__(self) -> None:
+        super().__init__()
+        print("B.__init__")
+
+    def f(self):
+        super().f()
+        print("B.f")
