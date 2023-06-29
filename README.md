@@ -44,9 +44,9 @@ Yes. See the notable languages that don't make the list. However, instead of lan
 
 🇨 C: subset of C++
 
-🛠️ C++: high performance computing, desktop UI, improve Python performance
+🛠️ C++: high performance computing, desktop UI, games, improve Python performance, CLI tools (for computing bound)
 
-🦫 Go: high concurrency stuff, web backend, command line tools
+🦫 Go: high concurrency stuff, web backend, CLI tools (for IO bound)
 
 📜 JavaScript: subset of TypeScript
 
@@ -54,7 +54,7 @@ Yes. See the notable languages that don't make the list. However, instead of lan
 
 ## Notable other languages that didn't make the list:
 
-- Java: Easy to use, and fast (contrary to many's impression, JVM is awesomely fast). Also, has the last mover advantage, and **Java 14+ is awesome** to write. The only complaint I have regarding this language is its package system and build tools, which I feel a little cumbersome and very productive with.
+- Java: Easy to use, and fast (contrary to many's impression, JVM is awesomely fast). Also, has the last mover advantage, and **Java 14+ is awesome**. The only complaint I have regarding this language is its package system and build tools, which I feel a little cumbersome and very productive with.
 - Dart: **Flutter** is its killer application of this language. It also looks just like Java, which means it's simple and intuitive. However, popularity wise, it cannot compete with JS/TS.
 - Rust: This is an interesting case. I loved a lot about the language,however, the constant barrage of "rewrites" from enthusiasts are super annoying, as well as bragging about how difficult it is to learn. It also doesn't offer performance advantages against its main competitor, C++ (unlike Go which has a significantly lower foot print and goroutines baked into the language against compared to its rival Java). It also is quite funny how to appreciate Rust, you must be somewhat decent at C++ already, how does that help replace C++?. It has [no killer application](https://www.reddit.com/r/programmingcirclejerk/comments/hdqdjd/rust_is_the_wrong_solution_for_almost_everything/), high profile devs are leaving, would [never kill C++](https://www.quora.com/Will-Rust-replace-C++), and ugly syntax. Modern C++ also solves a lot of issues of older versions of C++, and I love it. Also, when performance is concered, Go/Java are already quite fast with managed memory, so unfortunately I don't really see a future where Rust will be mainstream.
 - Kotlin: Tried it, however, compared to Java's simplicity, it's complicated. I prefer simplicity. Also, most of its use is in Android, so I don't really need it (I could use Flutter).
