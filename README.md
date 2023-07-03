@@ -8,6 +8,10 @@ Snippets is a repository that stores snippets from languages I want to work on.
 
 It contains concepts and features, in programming languages (that I use), with which I sometimes get confused.
 
+## Since when do languages of a project matter?
+
+**It doesn't**. Users care about the end product, rather than how things are written. However, some languages are better at certain things than others. For me, I would like the minimum possible to be able to do everything I want to do. This is why I have a list of languages that I use.
+
 ## What languages are you interested in working on?
 
 I'm only interested in Python, Go, C/C++/CUDA, JavaScript/TypeScript. In fact, I'm only intereseted in writing stuff that makes me happy 😀.
@@ -26,38 +30,69 @@ Yes. See the notable languages that don't make the list. However, instead of lan
 
 ## Details of Languages that made the list:
 
-🐍 Python: Simple yet beautiful, it's **my favorite language**. Besides, it's an awesome glue language that exposes lots of C / C++ libraries, especially in machine learning. Really no alternative.
+### General purpose
 
-🇨 C: Simple to use, however quite dangerous. The language is also super fast. I'll use it for small programs where I don't need objects.
+🐍 Python:
 
-🛠️ C++: Complicated but useful. Super fast. Preferred when **performance** is needed. Modern C++ is also pleasant to write, except for debugging template errors.
+Simple yet beautiful, it's **my favorite language**. Besides, it's an awesome glue language that exposes lots of C / C++ libraries, especially in machine learning. Really no alternative.
 
-🦫 Go: Simple and easy to use, yet fast. Vibrant ecosystem. **Go routines** make it so easy to spawn "threads" and it's perfect for that kind of work. Seen as a modern replacement for Java. It's also my second favorite language.
+Usage: prototyping, machine learning, scripting, glue language for C++ libraries, not-so-performant solution for quick and easy tools / services
 
-📜 JavaScript: Really no alternative when **frontend / UI** is concered.
+🇨 C:
 
-⌨️ TypeScript: A better all around JavaScript. Love it.
+Simple to use, however quite dangerous. The language is also super fast. I'll use it for small programs where I don't need objects.
+
+Note: subset of C++
+
+🛠️ C++:
+
+Complicated but useful. Super fast. Preferred when **performance** is needed. Modern C++ is also pleasant to write, except for debugging template errors.
+
+Usage: high performance computing, desktop UI, games, improve Python performance, computing bound CLI tools, performant solution for long running tools / services
+
+🦫 Go:
+
+Simple and easy to use, yet fast. Vibrant ecosystem. **Go routines** make it so easy to spawn "threads" and it's perfect for that kind of work. Seen as a modern replacement for Java. It's also my second favorite language.
+
+Usage: high concurrency stuff, web backend, IO bound CLI tools, performant solution for short-ish running tools / services
+
+📜 JavaScript:
+
+Really no alternative when **frontend / UI** is concered.
+
+Note: subset of TypeScript
+
+⌨️ TypeScript:
+
+A better all around JavaScript. Love it.
+
+Usage: web frontend, mobile (react native)
+
+### Domain specific
 
 ## What I use those languages for:
 
-🐍 Python: machine learning, scripting, glue language for C++ libraries
 
-🇨 C: subset of C++
+### Domain specific:
 
-🛠️ C++: high performance computing, desktop UI, games, improve Python performance, CLI tools (for computing bound)
+🌚 Lua:
 
-🦫 Go: high concurrency stuff, web backend, CLI tools (for IO bound)
+Fast, efficient, and has an awesome JIT compiler / C interface.
 
-📜 JavaScript: subset of TypeScript
+Usage: game scripts / configuration language
 
-⌨️ TypeScript: Web frontend, mobile (react native)
+®️ R:
+
+Simple and straightforward. data.table is amazing.
+
+Usage: Statistics application
+
 
 ## Notable other languages that didn't make the list:
 
-- Java: Easy to use, and fast (contrary to many's impression, JVM is awesomely fast). Also, has the last mover advantage, and **Java 14+ is awesome**. The only complaint I have regarding this language is its package system and build tools, which I feel a little cumbersome and very productive with.
+- Java: Easy to write, fast, and Java 14+ has lots of QOL change. However, package system and build tools ecosystem is cumbersome and not very productive. Also, I find myself caring about C++ level performance optimization when writing Java, so I might as well write C++ `¯\_(ツ)_/¯`.
 - Dart: **Flutter** is its killer application of this language. It also looks just like Java, which means it's simple and intuitive. However, popularity wise, it cannot compete with JS/TS.
 - Rust: This is an interesting case. I loved a lot about the language,however, the constant barrage of "rewrites" from enthusiasts are super annoying, as well as bragging about how difficult it is to learn. It also doesn't offer performance advantages against its main competitor, C++ (unlike Go which has a significantly lower foot print and goroutines baked into the language against compared to its rival Java). It also is quite funny how to appreciate Rust, you must be somewhat decent at C++ already, how does that help replace C++?. It has [no killer application](https://www.reddit.com/r/programmingcirclejerk/comments/hdqdjd/rust_is_the_wrong_solution_for_almost_everything/), high profile devs are leaving, would [never](https://www.quora.com/Will-Rust-replace-C++) [replace](https://news.ycombinator.com/item?id=29905917) C++, and ugly syntax. Modern C++ also solves a lot of issues of older versions of C++, and I love it. Also, when performance is concered, Go/Java are already quite fast with managed memory, so unfortunately I don't really see a future where Rust will be mainstream.
 - Kotlin: Tried it, however, compared to Java's simplicity, it's complicated. I prefer simplicity. Also, most of its use is in Android, so I don't really need it (I could use Flutter).
-- Lua: Fast, efficient, and has an awesome JIT compiler / C interface. However, index starts at 1.
 - Scala: Has a killer application: Spark. However, it's trying to replace a simple language though (Java), and I prefer simplicity.
 - Carbon: Really depends on whether its package manager / ecosystem is good. Since it's just (C++)++ (100% compatible). Will probably kill Rust if it's much better than modern C++ (at least in enterprise, not in the hearts of enthusiasts).
