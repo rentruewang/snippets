@@ -10,21 +10,19 @@ jobs:
 
       # C part
       - name: 🏗️ 🏃 clang-format
-        uses: DoozyX/clang-format-lint-action@v0.14
+        uses: DoozyX/clang-format-lint-action@v0.16
         with:
           source: ./c
           extensions: h,c
-          clangFormatVersion: 14
-          inplace: True
+          clangFormatVersion: 16
 
       # C++ part
       - name: 🏗️ 🏃 clang-format
-        uses: DoozyX/clang-format-lint-action@v0.14
+        uses: DoozyX/clang-format-lint-action@v0.16
         with:
           source: ./cxx
           extensions: hxx,cxx
-          clangFormatVersion: 14
-          inplace: True
+          clangFormatVersion: 16
 
       # Go part
       - name: 🏗️ go runtime
@@ -33,7 +31,7 @@ jobs:
           go-version: ^1.20
       - name: 🏃 go fmt
         working-directory: ./go
-        run: go fmt ./...
+        run: gofmt -e . > /dev/null
 
       # JavaScript part
       - name: 🏗️ node
@@ -45,7 +43,7 @@ jobs:
         run: npm install
       - name: 🏃 prettier
         working-directory: ./javascript
-        run: npx prettier --write .
+        run: npx prettier --check .
 
       # TypeScript part
       - name: ⬇️ all packages
@@ -53,7 +51,7 @@ jobs:
         run: npm install
       - name: 🏃 prettier
         working-directory: ./typescript
-        run: npx prettier --write .
+        run: npx prettier --check .
 
       # Python part
       - name: 🏗️ python 3.10
@@ -70,16 +68,6 @@ jobs:
       - name: 🏃 autoflake, isort, black
         working-directory: ./python
         run: |
-          poetry run autoflake -ir . --remove-all-unused-imports
-          poetry run isort --profile black .
-          poetry run black .
-
-      # Add and commit all
-      - name: ⬆️ Add and Commit
-        uses: EndBug/add-and-commit@v9
-        with:
-          author_name: "github-actions[bot]"
-          author_email: "github-actions[bot]@users.noreply.github.com"
-          message: "🤖 RenTrueWang thinks you forgot to format your code!"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          poetry run autoflake -cr . --remove-all-unused-imports
+          poetry run isort --check .
+          poetry run black --check .
