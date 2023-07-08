@@ -17,9 +17,14 @@ void functionInB();
 // namespace "A" has no tag member named "ClassA"
 // class A::ClassA {};
 
+using namespace A;
 // The compiler doesn't know if this is a definition of a new function
 // or an implementation of the declaration in namespace.
-void functionInA() {
+// void functionInA() {
+//     cout << "A function\n";
+// }
+
+void A::functionInA() {
     cout << "A function\n";
 }
 
@@ -30,9 +35,8 @@ void functionInB() {
 }
 
 int main() {
-    // These will fail.
-    // A::functionInA();
-    // A::B::functionInB();
+    A::functionInA();
+    A::B::functionInB();
 
     return 0;
 }
