@@ -10,7 +10,7 @@ It contains concepts and features, in programming languages (that I use), with w
 
 ## Since when do languages of a project matter?
 
-**It doesn't**. Users care about the end product, rather than how things are written. However, some languages are better at certain things than others. For me, I would like the minimum possible to be able to do everything I want to do. This is why I have a list of languages that I use.
+**It doesn't**. [Any performant system comes down to algorithms and engineering](https://stackoverflow.com/a/4911818), and programming languages is just a small part of engineering (e.g. less than architecture design). Users care about the end product, rather than how things are written. Still, some languages are better at certain things than others. For me, I would like the minimum possible to be able to do everything I want to do. This is why I have a list of languages that I use.
 
 ## What languages are you interested in working on?
 
