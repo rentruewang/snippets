@@ -1,10 +1,9 @@
+// @ts-nocheck
 "use strict";
 
-// Defined to allow copy paste from sources using alert
-const alert = console.log;
 
 function thisIsAFunc(param) {
-  alert(param);
+  console.log(param);
 }
 
 thisIsAFunc();
@@ -12,20 +11,20 @@ thisIsAFunc();
 function showMessage(from, text) {
   from = "*" + from + "*"; // make "from" look nicer
 
-  alert(from + ": " + text);
+  console.log(from + ": " + text);
 }
 
 const from = "Ann";
 
 showMessage(from, "Hello");
-alert(from);
+console.log(from);
 
 showMessage("Ann");
 showMessage();
 
 function defValue(array = []) {
   array.push(0);
-  alert(array);
+  console.log(array);
 }
 
 defValue();
@@ -35,7 +34,7 @@ defValue();
 sayHi();
 
 function sayHi() {
-  alert("Hi");
+  console.log("Hi");
 }
 
 // Cannot use function expression before defined.
@@ -43,12 +42,12 @@ function sayHi() {
 // sayHello();
 
 const sayHello = function () {
-  alert("Hello");
+  console.log("Hello");
 };
 
-// alert(sayHi);
+// console.log(sayHi);
 
-const saySth = () => alert("Something");
+const saySth = () => console.log("Something");
 saySth();
 
 const getSth = () => {
@@ -56,7 +55,7 @@ const getSth = () => {
   return thing;
 };
 
-alert(getSth());
+console.log(getSth());
 
 function f(...a) {
   console.log(a);
@@ -64,7 +63,7 @@ function f(...a) {
 console.log(f.length);
 
 function say() {
-  alert(this.name);
+  console.log(this.name);
 }
 
 const user = { name: "John", say };
@@ -91,12 +90,12 @@ const group = {
 
 group.showList();
 
-function func1() {}
+function func1js() { }
 
-function func2(a, b) {}
+function func2js(a, b) { }
 
-console.log(func1.length);
+console.log(func1js.length);
 // expected output: 0
 
-console.log(func2.length);
+console.log(func2js.length);
 // expected output: 2

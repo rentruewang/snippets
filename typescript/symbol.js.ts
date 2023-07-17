@@ -1,3 +1,6 @@
+// @ts-nocheck
+"use strict";
+
 const user = {};
 const s1 = Symbol.for("11ww");
 const s2 = Symbol("11ww");

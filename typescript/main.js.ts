@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-
+// @ts-nocheck
 "use strict";
 
 // How to write good comments:

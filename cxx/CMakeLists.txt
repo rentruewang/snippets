@@ -13,3 +13,4 @@ endforeach(file ${files})
 
 subdirs("namespace")
 subdirs("calculator")
+subdirs("c")

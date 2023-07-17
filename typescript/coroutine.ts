@@ -14,7 +14,7 @@ const ttProm = thenProm.then((value) => {
 
 console.log(ttProm);
 
-async function f() {
+async function fSomething() {
   const promise = new Promise((resolve, _reject) => {
     setTimeout(() => resolve("done!"), 1000);
   });
@@ -23,25 +23,29 @@ async function f() {
   console.log("result", result);
 }
 
-f();
+fSomething();
+
+// https://stackoverflow.com/questions/49699067/property-has-no-initializer-and-is-not-definitely-assigned-in-the-construc
 
 class Thenable {
-  constructor(num) {
+  num: number;
+
+  constructor(num: number) {
     this.num = num;
   }
 
-  then(resolve, reject) {
+  then(resolve: (_: any) => any, _reject: (_: any) => any) {
     console.log(resolve);
     setTimeout(() => resolve(this.num * 2), 1000); // (*)
   }
 }
 
-async function g() {
+async function g1() {
   const result = await new Thenable(1);
   console.log(result);
 }
 
-g();
+g1();
 
 function* generateSequence() {
   yield 1242342;
@@ -57,12 +61,14 @@ for (const v of generateSequence()) {
   console.log(v);
 }
 
-function* gen() {
+// https://stackoverflow.com/questions/66922379/yield-expression-implicitly-results-in-an-any-type-because-its-containing-ge
+function* gen(): Generator<string, void, number | undefined> {
   const result = yield "2 + 2 = ?";
   console.log("gen", result);
 }
 
-async function* agen() {
+// https://stackoverflow.com/questions/40406264/typescript-async-generator
+async function* agen(): AsyncIterable<string> {
   const result = yield "2 + 2 = ?";
   console.log("agen", result);
 }

@@ -8,20 +8,12 @@ jobs:
       - name: 🔔 Check out
         uses: actions/checkout@v3
 
-      # C part
-      - name: 🏗️ 🏃 clang-format
-        uses: DoozyX/clang-format-lint-action@v0.14
-        with:
-          source: ./c
-          extensions: h,c
-          clangFormatVersion: 14
-
       # C++ part
       - name: 🏗️ 🏃 clang-format
         uses: DoozyX/clang-format-lint-action@v0.14
         with:
           source: ./cxx
-          extensions: hxx,cxx
+          extensions: h,c,hxx,cxx
           clangFormatVersion: 14
 
       # Go part
@@ -33,19 +25,11 @@ jobs:
         working-directory: ./go
         run: gofmt -e . > /dev/null
 
-      # JavaScript part
+      # TypeScript part
       - name: 🏗️ node
         uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: ⬇️ all packages
-        working-directory: ./javascript
-        run: npm install
-      - name: 🏃 prettier
-        working-directory: ./javascript
-        run: npx prettier --check .
-
-      # TypeScript part
       - name: ⬇️ all packages
         working-directory: ./typescript
         run: npm install

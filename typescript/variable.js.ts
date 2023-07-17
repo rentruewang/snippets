@@ -1,3 +1,6 @@
+// @ts-nocheck
+"use strict";
+
 // var and let have different scoping rules
 {
   var a = undefined;
@@ -48,9 +51,9 @@ for (const char of [12, , 5252, 1]) {
 //   console.log(item);
 // }
 
-const obj = { [-1]: 7, 1: 4, 2: 3, 0: 0, key: "value", length: 2 };
-const arr = Array.from(obj);
-console.log(arr);
-for (const item of arr) {
+const someInterestingStuff = { [-1]: 7, 1: 4, 2: 3, 0: 0, key: "value", length: 2 };
+const arrFromObj = Array.from(someInterestingStuff);
+console.log(arrFromObj);
+for (const item of arrFromObj) {
   console.log("item", item);
 }

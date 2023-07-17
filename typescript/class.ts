@@ -261,22 +261,22 @@ class Box<Type> {
   }
 }
 
-const b = new Box("hello!");
-console.log(b);
+const bbox = new Box("hello!");
+console.log(bbox);
 class MyC {
   name = "MyC";
   getName() {
     return this.name;
   }
 }
-const c = new MyC();
-const obj = {
+const cbox = new MyC();
+const objbox = {
   name: "obj",
-  getName: c.getName,
+  getName: cbox.getName,
 };
 
-// Prints "obj", not "MyC"
-console.log(obj.getName());
+// Prints "objbox", not "MyC"
+console.log(objbox.getName());
 
 class MyC2 {
   name = "MyC2";
@@ -366,8 +366,8 @@ class ClearableBox extends ThisBox {
     this.contents = "";
   }
 }
-const a = new ClearableBox();
-const whatType = a.setTo("hello");
+const abox = new ClearableBox();
+const whatType = abox.setTo("hello");
 
 class SameBox {
   content: string = "";
@@ -397,7 +397,7 @@ class FileSystemObject {
   isNetworked(): this is Networked & this {
     return this.networked;
   }
-  constructor(public path: string, private networked: boolean) {}
+  constructor(public path: string, private networked: boolean) { }
 }
 
 class FileRep extends FileSystemObject {
@@ -445,7 +445,7 @@ class Params {
     public readonly x: number,
     protected y: number,
     private z: number
-  ) {}
+  ) { }
 
   get all(): number {
     return this.x + this.y + this.z;
@@ -454,7 +454,7 @@ class Params {
 const param = new Params(1, 2, 3);
 console.log(param.x, param.all);
 // console.log(param.z);
-const someClass = class<Type> {
+const someClass = class <Type> {
   content: Type;
   constructor(value: Type) {
     this.content = value;
@@ -493,7 +493,7 @@ class Point2 {
 }
 
 // OK
-const p: Point1 = new Point2();
+const pp1: Point1 = new Point2();
 
 class PersonN {
   name: string = "";
@@ -511,7 +511,7 @@ const ps: PersonN = new EmployeeN();
 ps.age = 3;
 // ps.salary;
 // Same as go's interface{}
-class Empty {}
+class Empty { }
 
 function fn(x: Empty) {
   console.log(x);
@@ -519,5 +519,5 @@ function fn(x: Empty) {
 
 fn(1);
 fn(ps);
-fn(a);
+fn(abox);
 fn({});

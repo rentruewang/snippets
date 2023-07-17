@@ -37,3 +37,17 @@ function use_person(person: SomePerson) {
 }
 
 use_person(person);
+
+let person1 = {
+  name: "class",
+  hello: function (thing: any) {
+    console.log(this.name + " : " + thing);
+  },
+};
+
+person1.hello(1);
+person1.hello.call({ name: "call" }, 2);
+person1.hello.apply({ name: "apply" }, [3]);
+
+let another = person1.hello.bind({ name: "bind" });
+another(4);

@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use strict";
 
 const k = 5;
@@ -54,9 +55,9 @@ for (const code in codes) {
   console.log(typeof code, Number(code), code); // 1, 41, 44, 49
 }
 
-const array = [302942, 198352, 123141, 235292];
-for (const i in array) {
-  console.log(typeof i, Number(i), i, typeof array[i]);
+const array4 = [302942, 198352, 123141, 235292];
+for (const i in array4) {
+  console.log(typeof i, Number(i), i, typeof array4[i]);
 }
 
 const a = {};

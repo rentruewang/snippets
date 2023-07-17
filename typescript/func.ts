@@ -20,11 +20,11 @@ function longest<Type extends { length: number }>(a: Type, b: Type) {
 const longerArray = longest([1, 2], [1, , 3]);
 console.log(longerArray);
 
-function f(x?: number) {
+function someF(x?: number) {
   console.log(x);
 }
-f();
-f(10);
+someF();
+someF(10);
 
 function makeDate(timestamp: number): Date;
 function makeDate(m: number, d: number, y: number): Date;
@@ -126,9 +126,9 @@ function showMenu(
 }
 showMenu({ title: "a title" });
 
-function func1() {}
+function func1() { }
 
-function func2(_a: number, _b: number): void {}
+function func2(_a: number, _b: number): void { }
 
 console.log(func1.length);
 // expected output: 0
