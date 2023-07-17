@@ -51,7 +51,14 @@ for (const char of [12, , 5252, 1]) {
 //   console.log(item);
 // }
 
-const someInterestingStuff = { [-1]: 7, 1: 4, 2: 3, 0: 0, key: "value", length: 2 };
+const someInterestingStuff = {
+  [-1]: 7,
+  1: 4,
+  2: 3,
+  0: 0,
+  key: "value",
+  length: 2,
+};
 const arrFromObj = Array.from(someInterestingStuff);
 console.log(arrFromObj);
 for (const item of arrFromObj) {

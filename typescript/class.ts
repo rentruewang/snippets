@@ -397,7 +397,7 @@ class FileSystemObject {
   isNetworked(): this is Networked & this {
     return this.networked;
   }
-  constructor(public path: string, private networked: boolean) { }
+  constructor(public path: string, private networked: boolean) {}
 }
 
 class FileRep extends FileSystemObject {
@@ -445,7 +445,7 @@ class Params {
     public readonly x: number,
     protected y: number,
     private z: number
-  ) { }
+  ) {}
 
   get all(): number {
     return this.x + this.y + this.z;
@@ -454,7 +454,7 @@ class Params {
 const param = new Params(1, 2, 3);
 console.log(param.x, param.all);
 // console.log(param.z);
-const someClass = class <Type> {
+const someClass = class<Type> {
   content: Type;
   constructor(value: Type) {
     this.content = value;
@@ -511,7 +511,7 @@ const ps: PersonN = new EmployeeN();
 ps.age = 3;
 // ps.salary;
 // Same as go's interface{}
-class Empty { }
+class Empty {}
 
 function fn(x: Empty) {
   console.log(x);

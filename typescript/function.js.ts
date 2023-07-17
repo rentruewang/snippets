@@ -1,7 +1,6 @@
 // @ts-nocheck
 "use strict";
 
-
 function thisIsAFunc(param) {
   console.log(param);
 }
@@ -90,9 +89,9 @@ const group = {
 
 group.showList();
 
-function func1js() { }
+function func1js() {}
 
-function func2js(a, b) { }
+function func2js(a, b) {}
 
 console.log(func1js.length);
 // expected output: 0

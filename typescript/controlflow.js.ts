@@ -11,5 +11,5 @@ const bjs = 0;
 console.log(bjs ?? 1, bjs || 2);
 
 let ijs = 0;
-for (; ijs < 3; ++ijs) { }
+for (; ijs < 3; ++ijs) {}
 console.log(ijs);

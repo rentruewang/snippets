@@ -126,9 +126,9 @@ function showMenu(
 }
 showMenu({ title: "a title" });
 
-function func1() { }
+function func1() {}
 
-function func2(_a: number, _b: number): void { }
+function func2(_a: number, _b: number): void {}
 
 console.log(func1.length);
 // expected output: 0
