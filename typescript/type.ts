@@ -194,4 +194,4 @@ type DBFields = {
 
 type ObjectsNeedingGDPRDeletion = ExtractPII<DBFields>;
 const list = ["a", "b", "c"] as const;
-type NeededUnionType = typeof list[number];
+type NeededUnionType = (typeof list)[number];

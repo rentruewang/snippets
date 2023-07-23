@@ -30,6 +30,7 @@ defValue();
 defValue();
 
 // Using function declaration before defined
+// https://stackoverflow.com/questions/261599/why-can-i-use-a-function-before-its-defined-in-javascript
 sayHi();
 
 function sayHi() {
