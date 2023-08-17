@@ -16,6 +16,14 @@ jobs:
           extensions: h,c,hxx,cxx
           clangFormatVersion: 14
 
+      # Dart part
+      - name: 🏗️ dart
+        uses: dart-lang/setup-dart@v1
+      - name: 🏃 dart format
+        working-directory: ./dart
+        run: |
+          dart format --output=none --set-exit-if-changed .
+
       # Go part
       - name: 🏗️ go runtime
         uses: actions/setup-go@v3
@@ -24,18 +32,6 @@ jobs:
       - name: 🏃 go fmt
         working-directory: ./go
         run: gofmt -e . > /dev/null
-
-      # TypeScript part
-      - name: 🏗️ node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: ⬇️ all packages
-        working-directory: ./typescript
-        run: npm install
-      - name: 🏃 prettier
-        working-directory: ./typescript
-        run: npx prettier --check .
 
       # Python part
       - name: 🏗️ python 3.10
