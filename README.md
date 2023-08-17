@@ -18,7 +18,7 @@ I'm only interested in Python, Go, Modern C++/C/CUDA, JavaScript/TypeScript. In 
 
 Basically all software has been implemented with one of those technologies, so there is not a lot of need to acutally learn anything else (and I force myself not to jump at fancy things e.g. a rewrite in some particular language). Instead, algorithms are always more important than languages themselves anyways.
 
-Languages outside of those mentioned before will never make this list. Note that I only included general purpose langauges above because those have the most utility. I treat languages not making the list as domain specific and use them from time to time, but those aren't my focus.
+**Languages outside of those mentioned before will never make this list. Note that I only included general purpose langauges above because those have the most utility. I treat languages not making the list as domain specific and use them from time to time, but those aren't my focus.**
 
 Here's a question I ask myself when considering this list: When I start a company, do I want to see this language used? If so, put it here. Or else it's a waste of my time.
 
@@ -26,7 +26,7 @@ After all, why would I want to spend time on a language that'll probably die any
 
 ## Resources for learning those languages?
 
-See the concepts for [Python](./python/README.md), [Go](./go/README.md), [Modern C++](./cxx/README.md), [TypeScript](./typescript/README.md)
+See the concepts for [Python](./python/README.md), [Go](./go/README.md), [Modern C++](./cxx/README.md), [Dart](./dart/README.md)
 
 ## But do you know other languages?
 
@@ -52,16 +52,16 @@ Complicated but useful. Super fast (bascially the 1x on benchmarks). Preferred w
 
 Usage: high performance computing, desktop UI, games, improve Python performance, computing bound CLI tools, performant solution for long running tools / services
 
-⌨️ TypeScript (JavaScript):
+🎯 Dart:
 
-Really no alternative when **frontend / UI** is concered.
+**Frontend / UI** (**Flutter**).
 
-Usage: web frontend, electron, mobile (react native)
+Usage: web frontend, mobile (react native)
 
 ## Notable other languages that didn't make the list:
 
 - Java: Easy to write, fast, and Java 14+ has lots of QOL change. However, package system and build tools ecosystem is cumbersome and not very productive. Also, I find myself caring about C++ level performance optimization when writing Java, so I might as well write C++ `¯\_(ツ)_/¯`.
-- Dart: **Flutter** is its killer application of this language. It also looks just like Java, which means it's simple and intuitive. However, popularity wise, it cannot compete with JS/TS.
+- JavaScript / TypeScript: It's ok and widely adopted, but personally I prefer **Flutter** for UI and `Node.js` not a real replacement for backend stuff so I don't see me using JS/TS a lot in the future.
 - Lua: Fast, efficient, and has an awesome JIT compiler / C interface. However, uses 1-based arrays.
 - R: Simple and straightforward. data.table is amazing. However, not a lot of use cases outside statistics.
 - Rust: This is an interesting case. I loved a lot about the language, however, the constant barrage of "rewrites" from enthusiasts are super annoying, as well as bragging about how difficult it is to learn. It also doesn't offer performance advantages against its main competitor, C++ (unlike Go which has a significantly lower foot print and goroutines baked into the language against compared to its rival Java). It also is quite amusing that for the most part, you must be somewhat decent at C++ already in order to appreciate Rust, which does not help replace C++. It has [no killer application](https://www.reddit.com/r/programmingcirclejerk/comments/hdqdjd/rust_is_the_wrong_solution_for_almost_everything/) for anything of real value, high profile devs are leaving, would [never](https://www.quora.com/Will-Rust-replace-C++) [replace](https://news.ycombinator.com/item?id=29905917) [C++](https://www.reddit.com/r/rust/comments/12xgxfa/comment/jhjbtep/), and ugly syntax. Modern C++ also solves a lot of issues of older versions of C++, and I love it. Also, when performance is concered, Go/Java are already quite fast with managed memory, so unfortunately I don't really see a future where Rust will be mainstream.
