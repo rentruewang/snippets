@@ -16,6 +16,9 @@ func (f Foo) B() {
 func (f Foo) C() {
 	fmt.Println("C")
 }
+func (f Foo) D(g int) int {
+	return int(f) + g
+}
 
 func main() {
 	var f Foo
@@ -34,4 +37,5 @@ func main() {
 	}
 	barc("C")
 
+	fmt.Println(Foo.D(1, 2))
 }
