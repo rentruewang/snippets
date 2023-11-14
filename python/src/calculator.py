@@ -1,7 +1,8 @@
 from __future__ import annotations
 
+import abc
 import operator
-from abc import ABC, abstractmethod
+from abc import ABC
 from typing import Callable
 
 
@@ -18,7 +19,7 @@ class Expr(ABC):
     def simplify(self) -> Expr:
         return self
 
-    @abstractmethod
+    @abc.abstractmethod
     def show(self) -> str:
         ...
 

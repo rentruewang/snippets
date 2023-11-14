@@ -1,7 +1,7 @@
 from __future__ import annotations
 
+import dataclasses as dcls
 import functools
-from dataclasses import dataclass
 from types import MethodType
 from typing import Any
 
@@ -10,13 +10,13 @@ from typing import Any
 # So if I want to imitate a bound method, I'll have to provide a descriptor.
 
 
-@dataclass
+@dcls.dataclass
 class SomeCallable:
     def __call__(self, *args, **kwargs) -> None:
         print("some callable", self, args, kwargs)
 
 
-@dataclass
+@dcls.dataclass
 class SomeCallableWithDescriptor:
     def __call__(self, *args, **kwargs) -> None:
         print("some callable with descriptor", self, args, kwargs)
@@ -26,7 +26,7 @@ class SomeCallableWithDescriptor:
         return functools.partial(self, obj)
 
 
-@dataclass
+@dcls.dataclass
 class C1:
     def method(*args: Any, **kwargs: Any) -> None:
         print("c1 method", args, kwargs)
@@ -35,7 +35,7 @@ class C1:
         print("c1 call", args, kwargs)
 
 
-@dataclass
+@dcls.dataclass
 class C2:
     method = lambda *args, **kwargs: print("c2 method", args, kwargs)
     __call__ = lambda *args, **kwargs: print("c2 call", args, kwargs)
@@ -43,7 +43,7 @@ class C2:
     scwd = SomeCallableWithDescriptor()
 
 
-@dataclass
+@dcls.dataclass
 class C3:
     pass
 
@@ -54,7 +54,7 @@ C3.sc = SomeCallable()
 C3.scwd = SomeCallableWithDescriptor()
 
 
-@dataclass
+@dcls.dataclass
 class C4:
     pass
 

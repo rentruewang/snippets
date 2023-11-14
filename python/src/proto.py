@@ -1,13 +1,14 @@
-from abc import abstractmethod
-from typing import Protocol, runtime_checkable
+import abc
+import typing
+from typing import Protocol
 
 
-@runtime_checkable
+@typing.runtime_checkable
 class Proto(Protocol):
     member: int
 
     @property
-    @abstractmethod
+    @abc.abstractmethod
     def prop(self) -> int:
         ...
 

@@ -1,4 +1,5 @@
-from abc import ABC, abstractmethod
+import abc
+from abc import ABC
 
 
 class Base:
@@ -26,12 +27,12 @@ class StaticDerived(Base):
 
 
 class Abstract(ABC):
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self) -> None:
         super().__init__()
         print("this is abstract init")
 
-    @abstractmethod
+    @abc.abstractmethod
     def absmethod(self):
         print("this is abstract")
 

@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+import dataclasses as dcls
 
 import ray
 
@@ -9,7 +9,7 @@ def function(data, tag: str):
     return data
 
 
-@dataclass
+@dcls.dataclass
 class SomeClass:
     data: int
 

@@ -1,4 +1,4 @@
-from abc import abstractmethod
+import abc
 from typing import Protocol
 
 
@@ -61,11 +61,11 @@ print()
 
 
 class A(Protocol):
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self) -> None:
         print("A.__init__")
 
-    @abstractmethod
+    @abc.abstractmethod
     def f(self):
         print("A.f")
 

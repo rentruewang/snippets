@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from abc import abstractmethod
+import abc
 from typing import Generic, Protocol, TypeVar
 
 # Java is THE OOP language, so let's see how it handles generics and inheritance.
@@ -100,11 +100,11 @@ def g_g():
     SubCont = TypeVar("SubCont", contravariant=True, bound=SubClass)
 
     class GenericBase(Protocol[Cov, Cont]):
-        @abstractmethod
+        @abc.abstractmethod
         def cov(self) -> Cov:
             ...
 
-        @abstractmethod
+        @abc.abstractmethod
         def cont(self, sub: Cont) -> None:
             ...
 
@@ -114,11 +114,11 @@ def g_g():
     # in order not to break hierarchy. It's great for sharing code though.
     # In some way, python generic is similar to C++ templates (text replacement).
     class GenericSub(GenericBase[SubCov, SubCont]):
-        @abstractmethod
+        @abc.abstractmethod
         def cov(self) -> SubCov:
             ...
 
-        @abstractmethod
+        @abc.abstractmethod
         def cont(self, sub: SubCont) -> None:
             ...
 
@@ -388,7 +388,7 @@ def codependent():
         def attack(self, b: ProtoB) -> None:
             print(self, "attacking", b)
 
-        @abstractmethod
+        @abc.abstractmethod
         def visit(self, b: ProtoB) -> None:
             ...
 
@@ -399,7 +399,7 @@ def codependent():
         def defend(self, a: ProtoA) -> None:
             print(self, "defending", a)
 
-        @abstractmethod
+        @abc.abstractmethod
         def visit(self, a: ProtoA) -> None:
             ...
 
