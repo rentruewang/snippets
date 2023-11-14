@@ -1,10 +1,9 @@
 from dataclasses import dataclass
 
 import ray
-from ray import remote
 
 
-@remote
+@ray.remote
 def function(data, tag: str):
     print(id(data), data, tag)
     return data
