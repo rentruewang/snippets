@@ -14,7 +14,7 @@ It contains concepts and features, in programming languages (that I use), with w
 
 ## What languages are you interested in working on?
 
-I'm only interested in Python, Go, Modern C++/C/CUDA, JavaScript/TypeScript. In fact, I'm only intereseted in writing stuff that makes me happy 😀.
+I'm only interested in Python, Go, Modern C++/C/CUDA, Dart. In fact, I'm only intereseted in writing stuff that makes me happy 😀.
 
 Basically all software has been implemented with one of those technologies, so there is not a lot of need to acutally learn anything else (and I force myself not to jump at fancy things e.g. a rewrite in some particular language). Instead, algorithms are always more important than languages themselves anyways.
 
