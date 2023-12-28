@@ -1,4 +1,4 @@
-module github.com/rentruewang/quirks
+module github.com/rentruewang/snippets
 
 go 1.20
 
