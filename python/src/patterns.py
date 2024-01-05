@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from typing import Any, List, Sequence
+from collections.abc import Sequence
+from typing import Any
 
 
 def match_something(something: Any) -> None:
@@ -36,7 +37,7 @@ def match_end(seq: Sequence[int]):
             print("bye")
 
 
-def alarm(item: List[str]):
+def alarm(item: list[str]):
     match item:
         case ["evening", action]:
             print(f"It's late! Go {action} now")

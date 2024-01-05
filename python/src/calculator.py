@@ -3,7 +3,7 @@ from __future__ import annotations
 import abc
 import operator
 from abc import ABC
-from typing import Callable
+from collections.abc import Callable
 
 
 class Expr(ABC):
