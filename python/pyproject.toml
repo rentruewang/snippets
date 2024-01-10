@@ -1,24 +1,25 @@
-[tool.poetry]
-name = "source"
-version = "0.1.0"
+[project]
+name = "python"
+version = "0.0.0"
 description = "Python scripts"
-authors = ["RenChu Wang <patrick1031wang@gmail.com>"]
-license = "MIT"
+authors = [
+    {name = "RenChu Wang", email = "patrick1031wang@gmail.com"},
+]
+dependencies = []
+requires-python = "==3.10.*"
+readme = "README.md"
+license = {text = "MIT"}
 
-[tool.poetry.dependencies]
-python = "^3.10"
-ray = {extras = ["default"], version = "^2.4.0"}
 
-[tool.poetry.group.dev.dependencies]
-autoflake = "^1.4"
-black = "^23.3.0"
-mypy = "^1.4.1"
-ipython = "^8.14.0"
-isort = "^5.12.0"
+[tool.pdm]
+package-type = "application"
 
-[build-system]
-requires = ["poetry-core>=1.5.0"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.isort]
-profile = "black"
+[tool.pdm.dev-dependencies]
+format = [
+    "autoflake>=2.2.1",
+    "black>=23.12.1",
+    "isort>=5.13.2",
+]
+type = [
+    "mypy>=1.8.0",
+]

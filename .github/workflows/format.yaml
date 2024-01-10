@@ -38,16 +38,17 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
-      - name: ⬇️ Python Poetry
-        uses: abatilo/actions-poetry@v2
-        with:
-          poetry-version: 1.5
+      - name: ⬇️ Python PDM
+        uses: pdm-project/setup-pdm@v3
       - name: ⬇️ Python Dependencies
+        run: pdm install
         working-directory: ./python
-        run: poetry install
+      - name: 🚂 Activate environment
+        run: echo "$(pdm venv --path in-project)/bin" >> $GITHUB_PATH
+        working-directory: ./python
       - name: 🏃 autoflake, isort, black
         working-directory: ./python
         run: |
-          poetry run autoflake -cr . --remove-all-unused-imports
-          poetry run isort --check .
-          poetry run black --check .
+          autoflake -cr . --remove-all-unused-imports
+          isort --check .
+          black --check .
