@@ -2,6 +2,7 @@ name: Format
 on: [push]
 jobs:
   format-check:
+    name: 📀 Formatting
     runs-on: ubuntu-latest
     steps:
       # Global part
