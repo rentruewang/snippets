@@ -101,12 +101,10 @@ def g_g():
 
     class GenericBase(Protocol[Cov, Cont]):
         @abc.abstractmethod
-        def cov(self) -> Cov:
-            ...
+        def cov(self) -> Cov: ...
 
         @abc.abstractmethod
-        def cont(self, sub: Cont) -> None:
-            ...
+        def cont(self, sub: Cont) -> None: ...
 
     # Not all that useful, because now if I want to use generic,
     # I have to specify the reference type to be the broadest type.
@@ -115,12 +113,10 @@ def g_g():
     # In some way, python generic is similar to C++ templates (text replacement).
     class GenericSub(GenericBase[SubCov, SubCont]):
         @abc.abstractmethod
-        def cov(self) -> SubCov:
-            ...
+        def cov(self) -> SubCov: ...
 
         @abc.abstractmethod
-        def cont(self, sub: SubCont) -> None:
-            ...
+        def cont(self, sub: SubCont) -> None: ...
 
 
 def codependent():
@@ -389,8 +385,7 @@ def codependent():
             print(self, "attacking", b)
 
         @abc.abstractmethod
-        def visit(self, b: ProtoB) -> None:
-            ...
+        def visit(self, b: ProtoB) -> None: ...
 
     class ProtoB(Protocol):
         def accept(self, a: ProtoA) -> None:
@@ -400,8 +395,7 @@ def codependent():
             print(self, "defending", a)
 
         @abc.abstractmethod
-        def visit(self, a: ProtoA) -> None:
-            ...
+        def visit(self, a: ProtoA) -> None: ...
 
     class DA1(ProtoA):
         def attack(self, b: ProtoB) -> None:

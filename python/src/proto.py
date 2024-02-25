@@ -9,8 +9,7 @@ class Proto(Protocol):
 
     @property
     @abc.abstractmethod
-    def prop(self) -> int:
-        ...
+    def prop(self) -> int: ...
 
 
 class A(Proto):

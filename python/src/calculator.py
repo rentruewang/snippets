@@ -20,8 +20,7 @@ class Expr(ABC):
         return self
 
     @abc.abstractmethod
-    def show(self) -> str:
-        ...
+    def show(self) -> str: ...
 
     def toString(self) -> str:
         return self.show()
