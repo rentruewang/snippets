@@ -30,12 +30,18 @@ void A::functionInA() {
 
 using namespace A::B;
 
-void functionInB() {
+// undefined reference to `A::B::functionInB()'
+// void functionInB() {
+//     cout << "B function\n";
+// }
+
+void A::B::functionInB() {
     cout << "B function\n";
 }
 
 int main() {
     A::functionInA();
+
     A::B::functionInB();
 
     return 0;
