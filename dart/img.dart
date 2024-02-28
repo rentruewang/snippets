@@ -1,7 +1,7 @@
 import 'dart:async';
-
-import 'package:image/image.dart';
 import 'dart:io';
+
+import 'package:image/image.dart' as image;
 
 Future<void> slow() => Future.delayed(Duration(seconds: 1), () {
       print('hi');
@@ -15,7 +15,7 @@ void sslow() async {
 void main(List<String> args) {
   var arr = List.generate(2000 * 1000 * 3, (index) => 0);
 
-  var img = Image.fromBytes(2000, 1000, arr, format: Format.rgb);
+  var img = image.Image.fromBytes(2000, 1000, arr, format: image.Format.rgb);
   // print('${img.width}, ${img.height}');
 
   for (int i = 0; i < 2000 * 1000; ++i) {
@@ -24,7 +24,7 @@ void main(List<String> args) {
       stdout.write('$i $img\r');
     }
   }
-  File('file.png').writeAsBytesSync(encodePng(img));
+  File('file.png').writeAsBytesSync(image.encodePng(img));
   print('');
   slow();
   sslow();
