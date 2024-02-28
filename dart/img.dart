@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:image/image.dart' as image;
 
@@ -13,13 +14,16 @@ void sslow() async {
 }
 
 void main(List<String> args) {
-  var arr = List.generate(2000 * 1000 * 3, (index) => 0);
-
-  var img = image.Image.fromBytes(2000, 1000, arr, format: image.Format.rgb);
-  // print('${img.width}, ${img.height}');
+  var bytes = Uint8List(2000 * 1000 * 3);
+  var img = image.Image.fromBytes(
+      width: 2000,
+      height: 1000,
+      bytes: bytes.buffer,
+      format: image.Format.uint8);
+  print('${img.width}, ${img.height}');
 
   for (int i = 0; i < 2000 * 1000; ++i) {
-    img.setPixelRgba(i ~/ 1000, i % 1000, 0xff, 0xff, 0xff);
+    img.setPixelRgba(i ~/ 1000, i % 1000, 0xff, 0xff, 0xff, 0);
     if (i % 1000 == 0) {
       stdout.write('$i $img\r');
     }
