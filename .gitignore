@@ -1,7 +1,2 @@
-.DS_Store
-
 /.vscode/
 /.devcontainer/
-
-/package.json
-/package-lock.json
