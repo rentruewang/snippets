@@ -17,14 +17,6 @@ jobs:
           extensions: h,c,hxx,cxx
           clangFormatVersion: 14
 
-      # Dart part
-      - name: 🏗️ dart
-        uses: dart-lang/setup-dart@v1
-      - name: 🏃 dart format
-        working-directory: ./dart
-        run: |
-          dart format --output=none --set-exit-if-changed .
-
       # Go part
       - name: 🏗️ go runtime
         uses: actions/setup-go@v3
