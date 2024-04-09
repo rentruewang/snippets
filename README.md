@@ -52,6 +52,8 @@ Complicated but useful. Super fast (bascially the 1x on benchmarks). Preferred w
 
 Usage: high performance computing, desktop UI, games, improve Python performance, computing bound CLI tools, performant solution for long running tools / services, any sort of low level stuff
 
+**NOTE** These languages are ubiquitous and don't have a lot of [deficiencies](https://softwareengineering.stackexchange.com/questions/329728/are-design-patterns-frowned-upon). They also don't have overalpping use cases.
+
 ## Notable other languages that didn't make the list:
 
 - Java: Easy to write, fast, and Java 14+ has lots of QOL change. However, package system and build tools ecosystem is cumbersome and not very productive. Also, I find myself caring about C++ level performance optimization when writing Java, so I might as well write C++ `¯\_(ツ)_/¯`.
