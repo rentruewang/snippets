@@ -22,7 +22,7 @@ class Expr(ABC):
     @abc.abstractmethod
     def show(self) -> str: ...
 
-    def toString(self) -> str:
+    def __str__(self) -> str:
         return self.show()
 
 
@@ -82,8 +82,8 @@ class Calc(Expr):
             return Calc(l, r, self._tok, self._fn)
 
     def show(self) -> str:
-        l = self._left.show()
-        r = self._right.show()
+        l = str(self._left)
+        r = str(self._right)
         return f"({l} {self._tok} {r})"
 
 
