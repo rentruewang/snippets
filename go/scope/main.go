@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/rentruewang/quirks/scope/subdir"
+	"github.com/rentruewang/snippets/scope/subdir"
 )
 
 func main() {

@@ -2,7 +2,7 @@
 
 Snippets is a repository that stores snippets from languages I want to work on.
 
-[![Code Formatted](https://github.com/rentruewang/quirks/actions/workflows/format.yaml/badge.svg)](https://github.com/rentruewang/quirks/actions/workflows/format.yaml)
+[![Code Formatted](https://github.com/rentruewang/snippets/actions/workflows/format.yaml/badge.svg)](https://github.com/rentruewang/snippets/actions/workflows/format.yaml)
 
 ## What does this repository contain?
 
