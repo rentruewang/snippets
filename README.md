@@ -36,15 +36,15 @@ Yes. See the notable languages that don't make the list. However, instead of lan
 
 🐍 Python:
 
-Simple yet beautiful, it's **my favorite language**. Besides, it's an awesome glue language that exposes lots of C / C++ libraries, especially in machine learning. Really no alternative.
+Simple and beautiful, it's **my favorite language**. Besides, it's an awesome glue language that exposes lots of C / C++ libraries, especially in machine learning. Really no alternative. My favorite scripting language.
 
 Usage: prototyping, machine learning, scripting, glue language for C++ libraries, not-so-performant solution for quick and easy tools / services
 
 🦫 Go:
 
-Simple and easy to use, yet fast. Vibrant ecosystem. **Go routines** make it so easy to spawn "threads" and it's perfect for that kind of work. Seen as a modern replacement for Java. It's also my second favorite language.
+Simple and easy to use, yet fast. Vibrant ecosystem. **Go routines** make it so easy to spawn "threads" and it's perfect for that kind of work. Seen as a modern replacement for Java. My favorite compiled language.
 
-Usage: high concurrency stuff, web backend, IO bound CLI tools, performant solution for short-ish running tools / services
+Usage: high concurrency stuff, web backend, IO bound CLI tools (or CLI tools in general), performant solution for short-ish running tools / services
 
 🛠️ Modern C++ (Old C++, C, Cuda):
 
