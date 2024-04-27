@@ -5,6 +5,8 @@ import (
 	"reflect"
 )
 
+// This is called method expressions.
+
 type Foo int
 
 func (f Foo) A() {
