@@ -23,3 +23,17 @@ format = [
 type = [
     "mypy>=1.8.0",
 ]
+
+[tool.autoflake]
+in-place = true
+recursive = true
+exclude = "__init__.py"
+expand-star-imports = true
+remove-all-unused-imports = true
+remove-duplicate-keys = true
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"

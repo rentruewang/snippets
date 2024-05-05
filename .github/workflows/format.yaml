@@ -17,15 +17,6 @@ jobs:
           extensions: h,c,hxx,cxx
           clangFormatVersion: 14
 
-      # Go part
-      - name: 🏗️ go runtime
-        uses: actions/setup-go@v3
-        with:
-          go-version: ^1.20
-      - name: 🏃 go fmt
-        working-directory: ./go
-        run: gofmt -e . > /dev/null
-
       # Python part
       - name: 🏗️ python 3.10
         uses: actions/setup-python@v4
@@ -42,6 +33,6 @@ jobs:
       - name: 🏃 autoflake, isort, black
         working-directory: ./python
         run: |
-          autoflake -cr . --remove-all-unused-imports
+          autoflake --check .
           isort --check .
           black --check .

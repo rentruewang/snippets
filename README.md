@@ -12,7 +12,7 @@ It contains concepts and features, in programming languages (that I use), with w
 
 I'm only interested in Python and Modern C++/C/CUDA. [Any performant system comes down to algorithms and engineering](https://stackoverflow.com/a/4911818), and programming languages is just a small part of engineering (e.g. less than architecture design). Python and C++ are more than enough to cover my use cases (because I don't enjoy doing frontend).
 
-Personally, I treat all other languages as domain specific and use them from time to time, but those aren't my focus.
+Personally, I treat all other languages as domain specific and use them from time to time, but those aren't my focus. **Languages are the same anyways (except maybe functional languages), so they can be picked up easily**.
 
 ## Resources for learning those languages?
 
