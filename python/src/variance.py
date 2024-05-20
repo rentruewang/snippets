@@ -174,7 +174,7 @@ def codependent():
     sa.attack(sb)
     sb.defend(sa)
 
-    # FIXME: How to make SubA use things only SubB has?
+    # NOTE: How to make SubA use things only SubB has?
     print()
     print("B is now part of A")
 
@@ -200,7 +200,7 @@ def codependent():
             return "A1"
 
     class SubB1(B1):
-        # FIXME: Still a problem here:
+        # NOTE: Still a problem here:
         # error: Argument 1 of "defend" is incompatible with supertype "B1";
         # supertype defines the argument type as "A1"
         #
