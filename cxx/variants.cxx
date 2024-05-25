@@ -1,22 +1,29 @@
+// Copyright (c) 2024 RenChu Wang - All Rights Reserved
+
 #include <iostream>
 #include <variant>
 #include <vector>
 
-// Inheritance
+/// Inheritance Base
 struct NodeBase {};
+/// Inheritance A
 struct NodeA : public NodeBase {};
+/// Inheritance B
 struct NodeB : public NodeBase {};
+/// Inheritance C
 struct NodeC : public NodeBase {};
 
-// No inheritance
+/// No inheritance D
 struct NodeD {};
+/// No inheritance E
 struct NodeE {};
+/// No inheritance F
 struct NodeF {};
 
 using NodesI = std::variant<NodeA, NodeB, NodeC>;
 using NodesNI = std::variant<NodeD, NodeE, NodeF>;
 
-// Visitor can be reused!
+/// Visitor can be reused!
 struct Visitor {
     // For inheritance.
     void operator()(const NodeA&) { std::cout << "NodeA" << std::endl; }

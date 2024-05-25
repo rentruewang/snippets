@@ -1,3 +1,5 @@
+// Copyright (c) 2024 RenChu Wang - All Rights Reserved
+
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>

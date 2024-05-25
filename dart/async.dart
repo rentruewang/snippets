@@ -1,3 +1,5 @@
+// Copyright (c) 2024 RenChu Wang - All Rights Reserved
+
 class C {
   int? _val;
   int? get val => _val;

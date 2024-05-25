@@ -1,7 +1,9 @@
+// Copyright (c) 2024 RenChu Wang - All Rights Reserved
+
 import 'dart:async';
+import 'dart:io';
 
 import 'package:image/image.dart';
-import 'dart:io';
 
 Future<void> slow() => Future.delayed(Duration(seconds: 1), () {
       print('hi');
