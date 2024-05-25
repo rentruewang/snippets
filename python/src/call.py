@@ -1,4 +1,4 @@
-from __future__ import annotations
+# Copyright (c) 2024 RenChu Wang - All Rights Reserved
 
 import dataclasses as dcls
 import functools

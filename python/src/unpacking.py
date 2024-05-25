@@ -1,3 +1,6 @@
+# Copyright (c) 2024 RenChu Wang - All Rights Reserved
+
+
 class CustomIter:
     def __iter__(self):
         return iter(range(3))

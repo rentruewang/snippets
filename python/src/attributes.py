@@ -1,3 +1,6 @@
+# Copyright (c) 2024 RenChu Wang - All Rights Reserved
+
+
 class TestClass:
     def __init__(self) -> None:
         self.x = 1

@@ -1,3 +1,6 @@
+# Copyright (c) 2024 RenChu Wang - All Rights Reserved
+
+
 def f():
     yield 1
     yield 2

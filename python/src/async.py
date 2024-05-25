@@ -1,4 +1,11 @@
+# Copyright (c) 2024 RenChu Wang - All Rights Reserved
+
 import asyncio
+
+
+async def wait(time: int) -> None:
+    await asyncio.sleep(time)
+    print(f"After waiting: {time}s")
 
 
 async def aprint(string, seconds):
@@ -7,6 +14,13 @@ async def aprint(string, seconds):
 
 
 async def main():
+    tasks = []
+    tasks.append(asyncio.create_task(wait(5)))
+    tasks.append(asyncio.create_task(wait(3)))
+
+    for task in tasks:
+        await task
+
     async def print_something():
         await aprint("b", 3)
         await aprint("c", 1)

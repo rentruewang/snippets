@@ -1,3 +1,5 @@
+# Copyright (c) 2024 RenChu Wang - All Rights Reserved
+
 import time
 from multiprocessing.pool import ThreadPool
 

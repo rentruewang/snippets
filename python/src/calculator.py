@@ -1,22 +1,23 @@
-from __future__ import annotations
+# Copyright (c) 2024 RenChu Wang - All Rights Reserved
 
 import abc
 import operator
 from abc import ABC
 from collections.abc import Callable
+from typing import Self
 
 
 class Expr(ABC):
-    def Add(self, other: Expr) -> Expr:
+    def Add(self, other: Self) -> Self:
         return Add(self, other)
 
-    def Sub(self, other: Expr) -> Expr:
+    def Sub(self, other: Self) -> Self:
         return Sub(self, other)
 
-    def Mul(self, other: Expr) -> Expr:
+    def Mul(self, other: Self) -> Self:
         return Mul(self, other)
 
-    def simplify(self) -> Expr:
+    def simplify(self) -> Self:
         return self
 
     @abc.abstractmethod

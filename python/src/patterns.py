@@ -1,4 +1,4 @@
-from __future__ import annotations
+# Copyright (c) 2024 RenChu Wang - All Rights Reserved
 
 from collections.abc import Sequence
 from typing import Any

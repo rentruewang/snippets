@@ -1,3 +1,6 @@
+# Copyright (c) 2024 RenChu Wang - All Rights Reserved
+
+
 class CoopFoo:
     def __init__(self, **kwargs):
         super().__init__(**kwargs)  # forwards all unused arguments
