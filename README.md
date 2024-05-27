@@ -10,15 +10,15 @@ It contains concepts and features, in programming languages (that I use), with w
 
 ## What languages are you interested in working on?
 
-I'm only interested in Python, Modern C++/C/CUDA, and Flutter (Dart) for building UI. [Any performant system comes down to algorithms and engineering](https://stackoverflow.com/a/4911818), and programming languages is just a small part of engineering (e.g. less than architecture design). These are more than enough to cover my use cases.
+I'm only interested in Python, and Modern C++/C/CUDA. [Any performant system comes down to algorithms and engineering](https://stackoverflow.com/a/4911818), and programming languages is just a small part of engineering (e.g. less than architecture design). These are more than enough to cover my use cases (I do not build too much frontend).
 
 Personally, I treat all other languages as domain specific and use them from time to time, but those aren't my focus. **Languages are the same anyways (except maybe functional languages), so they can be picked up easily**.
 
 ## Resources for learning those languages?
 
-See the concepts for [Python](./python/README.md), [Modern C++](./cxx/README.md), [Dart](./dart/README.md)
+See the concepts for [Python](./python/README.md), [Modern C++](./cxx/README.md)
 
-## What do I use Python, C++, and Dart for?
+## What do I use Python and C++ for?
 
 🐍 Python:
 
@@ -31,12 +31,6 @@ Usage: prototyping, machine learning, scripting, glue language for C++ libraries
 Complicated but useful. Super fast (bascially the 1x on benchmarks). Preferred when **performance** is needed. Modern C++ is also pleasant to write, except for debugging template errors.
 
 Usage: high performance computing, desktop UI, games, improve Python performance, computing bound CLI tools, performant solution for long running tools / services, any sort of low level stuff
-
-🎯 Dart:
-
-Flutter is too good to pass on.
-
-Usage: Frontend stuff.
 
 **NOTE** Python and C++ are ubiquitous and don't have a lot of [deficiencies](https://softwareengineering.stackexchange.com/questions/329728/are-design-patterns-frowned-upon). They also don't have very few overalpping use cases.
 
