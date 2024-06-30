@@ -11,7 +11,7 @@ class CustomIter:
 # no key collision dict merging.
 # This means that only PyMapping_Keys and PyObject_GetItem are called on the kwargs.
 class CustomMapping:
-    def keys(self):
+    def keys(self) -> map[str]:
         return map(str, range(3))
 
     def __getitem__(self, key: str) -> str:
