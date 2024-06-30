@@ -48,7 +48,7 @@ and [Turing Completeness](https://en.wikipedia.org/wiki/Turing_completeness)
 
 > In computability theory, a system of data-manipulation rules (such as a model of computation, a computer's instruction set, a programming language, or a cellular automaton) is said to be Turing-complete or computationally universal if it can be used to simulate any Turing machine.
 
-[Church–Turing thesis](https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis)https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis states that **any function that is computable by an algorithm is a [computable function](https://en.wikipedia.org/wiki/Computable_function)**.
+[Church–Turing thesis](https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis) states that **any function that is computable by an algorithm is a [computable function](https://en.wikipedia.org/wiki/Computable_function)**.
 
 [Computational Theory](https://en.wikipedia.org/wiki/Computability_theory) states that:
 
