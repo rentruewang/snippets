@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+
 /// https://stackoverflow.com/questions/315948/c-catching-all-exceptions
 int main() {
     try {

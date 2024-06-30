@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.22)
-project(Namespaces)
+project(Overflows)
 
 set(CMAKE_CXX_STANDARD 20)
-set(EXTENSION ".cxx")
+set(EXTENSION ".cpp")
 
 file(GLOB files RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *${EXTENSION})
 

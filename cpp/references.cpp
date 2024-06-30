@@ -2,29 +2,29 @@
 
 #include <iostream>
 
-class ViewConstructors {
+class view_constructor {
    public:
-    ViewConstructors(int data) : data_(data) {
+    view_constructor(int data) : data_(data) {
         std::cout << "ViewConstructors(" << data << ") called\n";
     }
 
-    ViewConstructors(const ViewConstructors& other) : data_(other.data_) {
+    view_constructor(const view_constructor& other) : data_(other.data_) {
         std::cout << "ViewConstructors(const&" << data_ << ") called\n";
     }
 
-    ViewConstructors(ViewConstructors&& other) : data_(other.data_) {
+    view_constructor(view_constructor&& other) : data_(other.data_) {
         std::cout << "ViewConstructors(&&" << data_ << ") called\n";
     }
 
     int data() const { return data_; }
 
     friend std::ostream& operator<<(std::ostream& os,
-                                    const ViewConstructors& vc) {
+                                    const view_constructor& vc) {
         os << vc.data_;
         return os;
     }
 
-    ~ViewConstructors() {
+    ~view_constructor() {
         std::cout << "~ViewConstructors(" << data_ << ") called\n";
     }
 
@@ -32,8 +32,8 @@ class ViewConstructors {
     int data_;
 };
 
-ViewConstructors f(int i) {
-    return ViewConstructors(i);
+view_constructor f(int i) {
+    return view_constructor(i);
 }
 
 int main() {

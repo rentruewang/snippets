@@ -7,24 +7,24 @@ using namespace std;
 
 #define NOT_USED [[maybe_unused]]
 
-class OnlyCopy {
+class only_copy {
    public:
-    OnlyCopy(string member) : member_(member) { cout << "init only copy\n"; }
-    OnlyCopy(const OnlyCopy& other) : member_(other.member_) {
+    only_copy(string member) : member_(member) { cout << "init only copy\n"; }
+    only_copy(const only_copy& other) : member_(other.member_) {
         cout << "copy only copy\n";
     }
-    OnlyCopy(OnlyCopy&& other) = delete;
+    only_copy(only_copy&& other) = delete;
     const string& member() const { return member_; }
 
    private:
     string member_;
 };
 
-class OnlyMove {
+class only_move {
    public:
-    OnlyMove(string member) : member_(member) { cout << "init only move\n"; }
-    OnlyMove(const OnlyMove& other) = delete;
-    OnlyMove(OnlyMove&& other) : member_(move(other.member_)) {
+    only_move(string member) : member_(member) { cout << "init only move\n"; }
+    only_move(const only_move& other) = delete;
+    only_move(only_move&& other) : member_(std::move(other.member_)) {
         cout << "move only move\n";
     }
     const string& member() const { return member_; }
@@ -33,13 +33,13 @@ class OnlyMove {
     string member_;
 };
 
-class CopyAndMove {
+class have_both {
    public:
-    CopyAndMove(string member) : member_(member) { cout << "init both\n"; }
-    CopyAndMove(const CopyAndMove& other) : member_(other.member_) {
+    have_both(string member) : member_(member) { cout << "init both\n"; }
+    have_both(const have_both& other) : member_(other.member_) {
         cout << "copy both\n";
     }
-    CopyAndMove(CopyAndMove&& other) : member_(move(other.member_)) {
+    have_both(have_both&& other) : member_(std::move(other.member_)) {
         cout << "move both\n";
     }
     const string& member() const { return member_; }
@@ -49,69 +49,69 @@ class CopyAndMove {
 };
 
 template <typename T>
-class DoesNotUse {
+class does_not_use {
    public:
     void call_copy(NOT_USED const T& obj) {}
     void call_move(NOT_USED T&& obj) {}
 };
 
 template <typename T>
-class UseCopy {
+class use_copy {
    public:
     void call_copy(const T& obj) { T copied(obj); }
     void call_move(NOT_USED T&& obj) {}
 };
 
 template <typename T>
-class UseMove {
+class use_move {
    public:
     void call_copy(NOT_USED const T& obj) {}
-    void call_move(T&& obj) { T moved(move(obj)); }
+    void call_move(T&& obj) { T moved(std::move(obj)); }
 };
 
 template <typename T>
-class UseBoth {
+class use_both {
    public:
     void call_copy(const T& obj) { T copied(obj); }
-    void call_move(T&& obj) { T moved(move(obj)); }
+    void call_move(T&& obj) { T moved(std::move(obj)); }
 };
 
 template <typename T>
-class MoveIsCopy {
+class move_is_copy {
    public:
     void call_copy(NOT_USED const T& obj) {}
     void call_move(T&& obj) { T moved(obj); }
 };
 
 template <typename T>
-class CopyIsMove {
+class copy_is_move {
    public:
-    void call_copy(const T& obj) { T copied(move(obj)); }
+    void call_copy(const T& obj) { T copied(std::move(obj)); }
     void call_move(NOT_USED T&& obj) {}
 };
 
 int main() {
-    OnlyCopy has_copy{"copy"};
-    OnlyMove has_move{"move"};
-    CopyAndMove has_both{"both"};
+    only_copy has_copy{"copy"};
+    only_move has_move{"move"};
+    have_both has_both{"both"};
 
-    NOT_USED DoesNotUse<OnlyCopy> dnu_copy;
-    NOT_USED DoesNotUse<OnlyMove> dnu_move;
-    NOT_USED DoesNotUse<CopyAndMove> dnu_both;
+    NOT_USED does_not_use<only_copy> dnu_copy;
+    NOT_USED does_not_use<only_move> dnu_move;
+    NOT_USED does_not_use<have_both> dnu_both;
 
-    NOT_USED UseCopy<OnlyCopy> uc_copy;
-    NOT_USED UseCopy<OnlyMove> uc_move;
-    NOT_USED UseCopy<CopyAndMove> uc_both;
+    NOT_USED use_copy<only_copy> uc_copy;
+    NOT_USED use_copy<only_move> uc_move;
+    NOT_USED use_copy<have_both> uc_both;
 
-    NOT_USED UseMove<OnlyCopy> um_copy;
-    NOT_USED UseMove<OnlyMove> um_move;
-    NOT_USED UseMove<CopyAndMove> um_both;
+    NOT_USED use_move<only_copy> um_copy;
+    NOT_USED use_move<only_move> um_move;
+    NOT_USED use_move<have_both> um_both;
 
     cout << "Use copy\n";
 
-    UseCopy<OnlyCopy> uc_used_copy;
-    NOT_USED UseCopy<OnlyMove> uc_used_move;
-    UseCopy<CopyAndMove> uc_used_both;
+    use_copy<only_copy> uc_used_copy;
+    NOT_USED use_copy<only_move> uc_used_move;
+    use_copy<have_both> uc_used_both;
 
     uc_used_copy.call_copy(has_copy);
 
@@ -124,9 +124,9 @@ int main() {
 
     cout << "Use move\n";
 
-    NOT_USED UseMove<OnlyCopy> um_used_copy;
-    UseMove<OnlyMove> um_used_move;
-    UseMove<CopyAndMove> um_used_both;
+    NOT_USED use_move<only_copy> um_used_copy;
+    use_move<only_move> um_used_move;
+    use_move<have_both> um_used_both;
 
     // error: rvalue reference to type 'OnlyCopy' cannot bind to lvalue of type
     // 'OnlyCopy'
@@ -135,18 +135,18 @@ int main() {
     // error: call to deleted constructor of 'OnlyCopy'
     // um_used_copy.call_move(move(has_copy));
 
-    um_used_move.call_move(move(has_move));
-    um_used_both.call_move(move(has_both));
+    um_used_move.call_move(std::move(has_move));
+    um_used_both.call_move(std::move(has_both));
 
     cout << "\n";
 
     cout << "Move is copy\n";
 
-    MoveIsCopy<OnlyCopy> mic_used_copy;
-    NOT_USED MoveIsCopy<OnlyMove> mic_used_move;
-    MoveIsCopy<CopyAndMove> mic_used_both;
+    move_is_copy<only_copy> mic_used_copy;
+    NOT_USED move_is_copy<only_move> mic_used_move;
+    move_is_copy<have_both> mic_used_both;
 
-    mic_used_copy.call_move(move(has_copy));
+    mic_used_copy.call_move(std::move(has_copy));
 
     // error: rvalue reference to type 'OnlyCopy' cannot bind to lvalue of type
     // 'OnlyCopy'
@@ -159,7 +159,7 @@ int main() {
     // 'OnlyMove'
     // mic_used_move.call_move(has_move);
 
-    mic_used_both.call_move(move(has_both));
+    mic_used_both.call_move(std::move(has_both));
 
     cout << "\n";
 
@@ -169,24 +169,24 @@ int main() {
     // https://stackoverflow.com/questions/63466914/move-semantics-vs-const-reference
     // https://stackoverflow.com/questions/4938875/do-rvalue-references-to-const-have-any-use
 
-    CopyIsMove<OnlyCopy> cim_used_copy;
-    NOT_USED CopyIsMove<OnlyMove> cim_used_move;
-    CopyIsMove<CopyAndMove> cim_used_both;
+    copy_is_move<only_copy> cim_used_copy;
+    NOT_USED copy_is_move<only_move> cim_used_move;
+    copy_is_move<have_both> cim_used_both;
 
     cim_used_copy.call_copy(has_copy);
-    cim_used_copy.call_copy(move(has_copy));
+    cim_used_copy.call_copy(std::move(has_copy));
 
     // error: call to deleted constructor of 'OnlyMove'
-    // cim_used_move.call_copy(move(has_move));
+    // cim_used_move.call_copy(std::move(has_move));
 
     // error: call to deleted constructor of 'OnlyMove'
     // cim_used_move.call_copy(has_move);
 
-    cim_used_both.call_copy(move(has_both));
+    cim_used_both.call_copy(std::move(has_both));
 
-    UseBoth<OnlyCopy> ub_copy;
-    UseBoth<OnlyMove> ub_move;
-    UseBoth<CopyAndMove> ub_both;
+    use_both<only_copy> ub_copy;
+    use_both<only_move> ub_move;
+    use_both<have_both> ub_both;
 
     ub_copy.call_copy(has_copy);
 
@@ -199,10 +199,10 @@ int main() {
 
     // error: call to deleted constructor of 'OnlyMove'
     // ub_move.call_copy(has_move);
-    ub_move.call_move(move(has_move));
+    ub_move.call_move(std::move(has_move));
 
     ub_both.call_copy(has_both);
-    ub_both.call_move(move(has_both));
+    ub_both.call_move(std::move(has_both));
 
     return 0;
 }

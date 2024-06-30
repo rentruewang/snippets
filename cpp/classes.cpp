@@ -2,16 +2,16 @@
 
 #include <iostream>
 
-class SomeClass {
+class some_class {
    public:
-    SomeClass(int i) : member(i) {}
+    some_class(int i) : member(i) {}
     int& alias = member;
     const int& const_alias = member;
     int member;
 };
 
 int main() {
-    auto sc = SomeClass{1};
+    auto sc = some_class{1};
     std::cout << sc.member << ' ' << sc.alias << ' ' << sc.const_alias << '\n';
     sc.member = 2;
     std::cout << sc.member << ' ' << sc.alias << ' ' << sc.const_alias << '\n';
