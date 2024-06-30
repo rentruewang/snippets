@@ -48,10 +48,8 @@ and [Turing Completeness](https://en.wikipedia.org/wiki/Turing_completeness)
 
 > In computability theory, a system of data-manipulation rules (such as a model of computation, a computer's instruction set, a programming language, or a cellular automaton) is said to be Turing-complete or computationally universal if it can be used to simulate any Turing machine.
 
-[Church–Turing thesis](https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis)https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis states that **any function that is computable by an algorithm is a [computable function](https://en.wikipedia.org/wiki/Computable_function)**,
+[Church–Turing thesis](https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis)https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis states that **any function that is computable by an algorithm is a [computable function](https://en.wikipedia.org/wiki/Computable_function)**.
 
-
-> A related concept is that of Turing equivalence – two computers P and Q are called equivalent if P can simulate Q and Q can simulate P. The Church–Turing thesis conjectures that any function whose values can be computed by an algorithm can be computed by a Turing machine, and therefore that if any real-world computer can simulate a Turing machine, it is Turing equivalent to a Turing machine. A universal Turing machine can be used to simulate any Turing machine and by extension the purely computational aspects of any possible real-world computer.
 
 
 
@@ -60,5 +58,10 @@ and [Turing Completeness](https://en.wikipedia.org/wiki/Turing_completeness)
 > A set of natural numbers is said to be a computable set (also called a decidable, recursive, or Turing computable set) if there is a Turing machine that, given a number n, halts with output 1 if n is in the set and halts with output 0 if n is not in the set.
 
 With all these information, one can conclude that anything that is computable must be able to be compiled (transformed) to an algorithm running on a Turing machine.
+
+Csondiering that
+
+> A related concept is that of Turing equivalence – two computers P and Q are called equivalent if P can simulate Q and Q can simulate P. The Church–Turing thesis conjectures that any function whose values can be computed by an algorithm can be computed by a Turing machine, and therefore that if any real-world computer can simulate a Turing machine, it is Turing equivalent to a Turing machine. A universal Turing machine can be used to simulate any Turing machine and by extension the purely computational aspects of any possible real-world computer.
+
 
 As a [compiler](https://en.wikipedia.org/wiki/Compiler) is simply a translator between different languages, the best transformation (best software desgin) is therefore the best transformation from the source (map domain, physics domain etc) to the language understood by the Turing machine (your software), with structures mimicking the problems in the domains we aim to solve.
