@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 find_package(fmt CONFIG REQUIRED)
 
-file(GLOB files "*.cxx")
-add_executable(Calculator ${files})
+file(GLOB FILES "*.cxx")
+add_executable(Calculator ${FILES})
 
 target_link_libraries(Calculator PRIVATE fmt::fmt)

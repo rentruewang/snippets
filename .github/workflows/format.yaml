@@ -11,11 +11,11 @@ jobs:
 
       # C++ part
       - name: 🏗️ 🏃 clang-format
-        uses: DoozyX/clang-format-lint-action@v0.14
+        uses: DoozyX/clang-format-lint-action@v0.16
         with:
-          source: ./cxx
-          extensions: h,c,hxx,cxx
-          clangFormatVersion: 14
+          source: ./cpp
+          extensions: h,c,hpp,cpp
+          clangFormatVersion: 16
 
       # Python part
       - name: 🏗️ python 3.11
