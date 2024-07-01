@@ -4,7 +4,7 @@
 
 1. Use ISO Cpp's code style (`snake_case_everything`).
 2. Except for private member variable, (`suffix_with_underscore_`).
-3. Use `clang-format` (`BasedOnStyle: Chromium; IndentWidth: 4`).
+3. Use `clang-format` (`BasedOnStyle: Chromium; IndentWidth: 4; IncludeBlocks: Regroup`).
 4. Use `=` initialization only for pointer / reference types.
 5. Use `{}` universal initialization for everything else.
 6. Except when ambiguous, then use `()` normal initialization.
