@@ -54,7 +54,7 @@ and [Turing Completeness](https://en.wikipedia.org/wiki/Turing_completeness)
 
 > A set of natural numbers is said to be a computable set (also called a decidable, recursive, or Turing computable set) if there is a Turing machine that, given a number n, halts with output 1 if n is in the set and halts with output 0 if n is not in the set.
 
-With all these information, one can conclude that anything that is computable must be able to be compiled (transformed) to an algorithm running on a Turing machine.
+With all these information, one can conclude that anything that is computable must be able to be compiled (transformed) to an algorithm running on a Turing machine, where compiling means transforming between different langauge / instruction set.
 
 Csondiering that
 
