@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+using namespace std;
+
 class some_class {
    public:
     some_class(int i) : member(i) {}
@@ -12,14 +14,14 @@ class some_class {
 
 int main() {
     auto sc = some_class{1};
-    std::cout << sc.member << ' ' << sc.alias << ' ' << sc.const_alias << '\n';
+    cout << sc.member << ' ' << sc.alias << ' ' << sc.const_alias << '\n';
     sc.member = 2;
-    std::cout << sc.member << ' ' << sc.alias << ' ' << sc.const_alias << '\n';
+    cout << sc.member << ' ' << sc.alias << ' ' << sc.const_alias << '\n';
     sc.alias = 3;
-    std::cout << sc.member << ' ' << sc.alias << ' ' << sc.const_alias << '\n';
+    cout << sc.member << ' ' << sc.alias << ' ' << sc.const_alias << '\n';
 
     // expression must be a modifiable lvalue
     // sc.const_alias = 4;
-    // std::cout << sc.member << ' ' << sc.alias << ' ' << sc.const_alias <<
+    // cout << sc.member << ' ' << sc.alias << ' ' << sc.const_alias <<
     // '\n';
 }

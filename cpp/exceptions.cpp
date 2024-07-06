@@ -3,16 +3,18 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 /// https://stackoverflow.com/questions/315948/c-catching-all-exceptions
 int main() {
     try {
-        throw std::string("anything would be caught");
-    } catch (const std::string& str) {
-        std::cout << "Caught string: " << str << '\n';
+        throw string("anything would be caught");
+    } catch (const string& str) {
+        cout << "Caught string: " << str << '\n';
     } catch (...) {
-        std::cout << "Default pattern\n";
+        cout << "Default pattern\n";
     }
-    std::cout << "done\n";
+    cout << "done\n";
 
     return 0;
 }

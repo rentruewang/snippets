@@ -20,7 +20,7 @@
 // @param s1: The second int instance.
 // @return A positive integer if s0 > s1,
 // negative integer if s0 < s1, 0 if s0 == s1.
-typedef int (*Comparator)(int s0, int s1);
+typedef int (*comparator)(int s0, int s1);
 
 // Sorter is used to abstract away the sorting method.
 // It takes in an array, its size, and a Comparator.
@@ -28,22 +28,22 @@ typedef int (*Comparator)(int s0, int s1);
 // @param size: The length of the array.
 // @param cmp: The comparator function.
 // @return 0 if completed successfully. 1 otherwise.
-typedef void (*Sorter)(int* array, int size, Comparator cmp);
+typedef void (*sorter)(int* array, int size, comparator cmp);
 
 // Merge sort.
-void merge_sort(int* array, int size, Comparator cmp);
+void merge_sort(int* array, int size, comparator cmp);
 
 // Heap sort.
-void heap_sort(int* array, int size, Comparator cmp);
+void heap_sort(int* array, int size, comparator cmp);
 
 // Insertion sort.
-void insertion_sort(int* array, int size, Comparator cmp);
+void insertion_sort(int* array, int size, comparator cmp);
 
-static void merge(int* array, int half, int end, Comparator cmp);
-static void build_max_heap(int* array, int size, Comparator cmp);
-static void down_heap(int* array, int index, int size, Comparator cmp);
+static void merge(int* array, int half, int end, comparator cmp);
+static void build_max_heap(int* array, int size, comparator cmp);
+static void down_heap(int* array, int index, int size, comparator cmp);
 
-void merge_sort(int* array, int size, Comparator cmp) {
+void merge_sort(int* array, int size, comparator cmp) {
     // No need to sort if size is small enough.
     if (size <= 1) {
         return;
@@ -61,7 +61,7 @@ void merge_sort(int* array, int size, Comparator cmp) {
     merge(array, half, size, cmp);
 }
 
-void heap_sort(int* array, int size, Comparator cmp) {
+void heap_sort(int* array, int size, comparator cmp) {
     build_max_heap(array, size, cmp);
 
     // Sorting this array by always extracting the tip of the heap.
@@ -75,7 +75,7 @@ void heap_sort(int* array, int size, Comparator cmp) {
     }
 }
 
-void insertion_sort(int* array, int size, Comparator cmp) {
+void insertion_sort(int* array, int size, comparator cmp) {
     // Pick the element first.
     for (int i = 1; i < size; ++i) {
         // Then insert it into the priority queue in order.
@@ -85,7 +85,7 @@ void insertion_sort(int* array, int size, Comparator cmp) {
     }
 }
 
-void merge(int* array, int half, int end, Comparator cmp) {
+void merge(int* array, int half, int end, comparator cmp) {
     // The index of the eventual sorted array.
     int index = 0;
     int* sorted_array = calloc(end, sizeof(int));
@@ -115,14 +115,14 @@ void merge(int* array, int half, int end, Comparator cmp) {
     free(sorted_array);
 }
 
-void build_max_heap(int* array, int size, Comparator cmp) {
+void build_max_heap(int* array, int size, comparator cmp) {
     for (int i = (size >> 1) - 1; i >= 0; --i) {
         // Perform down heap on index i.
         down_heap(array, i, size, cmp);
     }
 }
 
-void down_heap(int* array, int idx, int size, Comparator cmp) {
+void down_heap(int* array, int idx, int size, comparator cmp) {
     // Index of left child.
     int left_idx = LEFT_CHILD(idx);
 

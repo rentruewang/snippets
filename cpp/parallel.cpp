@@ -4,19 +4,21 @@
 #include <iostream>
 #include <vector>
 
+using namespace std;
+
 template <typename T>
-void print_vector(std::vector<T> vec) {
-    std::cout << "[ ";
+void print_vector(vector<T> vec) {
+    cout << "[ ";
     for (auto iter = vec.begin(); iter != vec.end(); ++iter) {
-        std::cout << *iter << " ";
+        cout << *iter << " ";
     }
-    std::cout << "]\n";
+    cout << "]\n";
 }
 
 int main() {
-    std::vector<std::string> vec = {"a", "b", "c"};
+    vector<string> vec = {"a", "b", "c"};
     print_vector(vec);
 
-    std::for_each(vec.begin(), vec.end(), [](auto& item) { item += "_mod"; });
+    for_each(vec.begin(), vec.end(), [](auto& item) { item += "_mod"; });
     print_vector(vec);
 }
