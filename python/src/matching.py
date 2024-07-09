@@ -17,6 +17,11 @@ class MissingMatcher:
         return "hello"
 
 
+@dcls.dataclass(frozen=True)
+class Nested:
+    item: DataClass
+
+
 class CustomMatcher:
     @property
     def __match_args__(self):
@@ -57,3 +62,9 @@ if __name__ == "__main__":
             print(h, w)
         case _:
             raise ValueError
+
+    nested = Nested(dc)
+
+    match nested:
+        case Nested(item=DataClass(value=val, name=nam)):
+            print(val, nam)
