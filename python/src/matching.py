@@ -37,6 +37,10 @@ class CustomMatcher:
         return "world"
 
 
+class NotDecomposable:
+    pass
+
+
 if __name__ == "__main__":
     dc = DataClass(name="name", value=3)
 
@@ -68,3 +72,16 @@ if __name__ == "__main__":
     match nested:
         case Nested(item=DataClass(value=val, name=nam)):
             print(val, nam)
+
+    nd = NotDecomposable()
+
+    match nd:
+        case NotDecomposable():
+            print("Still matches.")
+
+            try:
+                _ = nd.__match_args__
+
+                raise ValueError("Unreachable.")
+            except AttributeError:
+                pass
