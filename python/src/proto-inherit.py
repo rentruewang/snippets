@@ -54,14 +54,6 @@ class MultiInherit(QuackMixin, BaseClass):
         print("i inherit so much")
 
 
-MultiInheritNoParent()
-print()
-print()
-MultiInherit()
-
-print()
-
-
 class A(Protocol):
     @abc.abstractmethod
     def __init__(self) -> None:
@@ -80,3 +72,12 @@ class B(A):
     def f(self):
         super().f()
         print("B.f")
+
+
+if __name__ == "__main__":
+    MultiInheritNoParent()
+    print()
+    print()
+    MultiInherit()
+
+    print()

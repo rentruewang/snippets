@@ -460,6 +460,29 @@ def codependent():
             self.b.defend(self.a)
 
 
+def codependent_generic():
+    # Using generic to solve this.
+    # I think I noticed this is possible by reading the source code of spark.
+    _B = TypeVar("_B", bound="B")
+    _A = TypeVar("_A", bound="A")
+
+    class A(Generic[_B]):
+        def attack(self, b: _B) -> None:
+            print(self, "attacking", b)
+
+    class B(Generic("_A")):
+        def defend(self, a: "_A") -> None:
+            print(self, "defending", a)
+
+    class SubA(A[SubB]):
+        def attack(self, b: "SubB") -> None:
+            return super().attack(b)
+
+    class SubB(B["SubA"]):
+        def defend(self, a: "SubA") -> None:
+            return super().defend(a)
+
+
 if __name__ == "__main__":
     g_ng()
     ng_g()
@@ -478,3 +501,6 @@ if __name__ == "__main__":
     print()
     print("co dependent generics")
     codependent()
+
+    # How come I din't think of this?
+    codependent_generic()

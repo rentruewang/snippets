@@ -23,4 +23,7 @@ def print_args_kwargs(*args, **kwargs):
     print(kwargs)
 
 
-print_args_kwargs(*CustomIter(), **CustomMapping())
+if __name__ == "__main__":
+    # Despite them not being `Iterable` or `Mapping` subclasses,
+    # it still would work.
+    print_args_kwargs(*CustomIter(), **CustomMapping())
