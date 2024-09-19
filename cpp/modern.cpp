@@ -33,10 +33,12 @@ int main() {
 
     // This should be UB.
     function<int(void)> y{nullptr};
+
     {
         auto x{make_shared<int>(4)};
         y = f(x);
     }
+
     cout << y() << endl;
 
     // This is uninitialized.

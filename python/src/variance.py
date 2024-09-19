@@ -462,7 +462,8 @@ def codependent():
 
 def codependent_generic():
     # Using generic to solve this.
-    # I think I noticed this is possible by reading the source code of spark.
+    # I think I noticed this is possible by first thinking how `typing.Self` is implemented,
+    # then expanded horizons by reading the source code of spark.
     _B = TypeVar("_B", bound="B")
     _A = TypeVar("_A", bound="A")
 
