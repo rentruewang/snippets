@@ -1,6 +1,6 @@
 # Snippets
 
-Snippets is a repository that stores snippets from languages I want to work on.
+_Snippets is a repository that stores snippets from languages I want to work on, as well as some theories / thoughts that I have on the same topic._
 
 [![Code Formatted](https://github.com/rentruewang/snippets/actions/workflows/format.yaml/badge.svg)](https://github.com/rentruewang/snippets/actions/workflows/format.yaml)
 
