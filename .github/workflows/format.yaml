@@ -11,11 +11,11 @@ jobs:
 
       # C++ part
       - name: 🏗️ 🏃 clang-format
-        uses: DoozyX/clang-format-lint-action@v0.18
+        uses: DoozyX/clang-format-lint-action@v0.17
         with:
           source: ./cpp
           extensions: h,c,hpp,cpp
-          clangFormatVersion: 18
+          clangFormatVersion: 17
 
       # Python part
       - name: 🏗️ python 3.11
@@ -24,13 +24,14 @@ jobs:
           python-version: "3.11"
 
       - name: ⬇️ Python Poetry
-        uses: pdm-project/setup-pdm@v3
-
-      - name: ⬇️ Python Poetry
         uses: snok/install-poetry@v1
         with:
           version: 1.8.4
           installer-parallel: true
+
+      - name: ⬇️ Python Dependencies
+        run: poetry install
+        working-directory: ./python
 
       - name: 🏃 autoflake, isort, black
         working-directory: ./python
