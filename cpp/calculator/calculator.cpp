@@ -1,6 +1,6 @@
-// Copyright (c) 2024 RenChu Wang - All Rights Reserved
+/// Copyright (c) RenChu Wang - All Rights Reserved
 
-#include "calculator.hxx"
+#include "calculator.hpp"
 
 #include <fmt/core.h>
 

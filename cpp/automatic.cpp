@@ -1,4 +1,4 @@
-// Copyright (c) 2024 RenChu Wang - All Rights Reserved
+/// Copyright (c) RenChu Wang - All Rights Reserved
 
 auto main() -> int {
     // https://stackoverflow.com/a/21369192
