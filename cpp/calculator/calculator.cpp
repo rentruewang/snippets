@@ -8,20 +8,26 @@ using namespace std;
 
 shared_ptr<expression> expression::operator+(
     const shared_ptr<expression>& other) const {
-    return make_unique<evaluation>(shared_from_this(), other, "+",
+    return make_shared<evaluation>(shared_from_this(), other, "+",
                                    [](int a, int b) { return a + b; });
 }
 
 shared_ptr<expression> expression::operator-(
     const shared_ptr<expression>& other) const {
-    return make_unique<evaluation>(shared_from_this(), other, "-",
+    return make_shared<evaluation>(shared_from_this(), other, "-",
                                    [](int a, int b) { return a - b; });
 }
 
 shared_ptr<expression> expression::operator*(
     const shared_ptr<expression>& other) const {
-    return make_unique<evaluation>(shared_from_this(), other, "*",
+    return make_shared<evaluation>(shared_from_this(), other, "*",
                                    [](int a, int b) { return a * b; });
+}
+
+shared_ptr<expression> expression::operator/(
+    const shared_ptr<expression>& other) const {
+    return make_shared<evaluation>(shared_from_this(), other, "/",
+                                   [](int a, int b) { return a / b; });
 }
 
 expression::~expression() {}

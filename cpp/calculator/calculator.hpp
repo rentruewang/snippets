@@ -16,6 +16,7 @@ class expression : public enable_shared_from_this<expression> {
     shared_ptr<expression> operator+(const shared_ptr<expression>& other) const;
     shared_ptr<expression> operator-(const shared_ptr<expression>& other) const;
     shared_ptr<expression> operator*(const shared_ptr<expression>& other) const;
+    shared_ptr<expression> operator/(const shared_ptr<expression>& other) const;
 
     virtual shared_ptr<const expression> simplify() const = 0;
     virtual string to_string() const = 0;
