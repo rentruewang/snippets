@@ -17,7 +17,7 @@ void function_in_b();
 }  // namespace a
 
 // namespace "a" has no tag member named "class_a"
-// class a::class_a {};
+// class a::ClassA {};
 
 using namespace a;
 // The compiler doesn't know if this is a definition of a new function

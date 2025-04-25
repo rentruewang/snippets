@@ -8,7 +8,7 @@ namespace a {
 
 void function_in_a();
 
-class class_in_a {
+class ClassInA {
    public:
     void method();
 };
@@ -17,7 +17,7 @@ namespace b {
 
 void function_in_b();
 
-class class_in_b {
+class ClassInB {
    public:
     void method();
 };
@@ -34,7 +34,7 @@ void function_in_a() {
 
 using namespace a;
 
-void class_in_a::method() {
+void ClassInA::method() {
     cout << "A.method\n";
 }
 
@@ -44,7 +44,7 @@ void b::function_in_b() {
 
 using namespace a::b;
 
-void class_in_b::method() {
+void ClassInB::method() {
     cout << "B.method\n";
 }
 
@@ -52,8 +52,8 @@ int main() {
     a::function_in_a();
     a::b::function_in_b();
 
-    a::class_in_a().method();
-    a::b::class_in_b().method();
+    a::ClassInA().method();
+    a::b::ClassInB().method();
 
     using namespace a::b;
     function_in_b();

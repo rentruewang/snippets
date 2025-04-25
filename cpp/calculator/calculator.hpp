@@ -11,61 +11,61 @@ using namespace std;
 /// API: Lit, Var create two pointer to expressions.
 /// that has simplify(), to_string(), Add, Sub, Mul as methods.
 
-class expression : public enable_shared_from_this<expression> {
+class Expr : public enable_shared_from_this<Expr> {
    public:
-    shared_ptr<expression> operator+(const shared_ptr<expression>& other) const;
-    shared_ptr<expression> operator-(const shared_ptr<expression>& other) const;
-    shared_ptr<expression> operator*(const shared_ptr<expression>& other) const;
-    shared_ptr<expression> operator/(const shared_ptr<expression>& other) const;
+    shared_ptr<Expr> operator+(const shared_ptr<Expr>& other) const;
+    shared_ptr<Expr> operator-(const shared_ptr<Expr>& other) const;
+    shared_ptr<Expr> operator*(const shared_ptr<Expr>& other) const;
+    shared_ptr<Expr> operator/(const shared_ptr<Expr>& other) const;
 
-    virtual shared_ptr<const expression> simplify() const = 0;
+    virtual shared_ptr<const Expr> simplify() const = 0;
     virtual string to_string() const = 0;
 
-    virtual ~expression();
+    virtual ~Expr();
 };
 
-class literal : public expression {
+class Lit : public Expr {
    public:
-    literal(int data);
+    Lit(int data);
 
     string to_string() const override;
-    shared_ptr<const expression> simplify() const override;
+    shared_ptr<const Expr> simplify() const override;
 
     int data() const;
 
-    ~literal() override;
+    ~Lit() override;
 
    private:
     int data_;
 };
 
-class variable : public expression {
+class Var : public Expr {
    public:
-    variable(string data);
+    Var(string data);
 
     string to_string() const override;
-    shared_ptr<const expression> simplify() const override;
+    shared_ptr<const Expr> simplify() const override;
 
-    ~variable() override;
+    ~Var() override;
 
    private:
     string data_;
 };
 
-class evaluation : public expression {
+class Eval : public Expr {
    public:
-    evaluation(shared_ptr<const expression> left,
-               shared_ptr<const expression> right,
+    Eval(shared_ptr<const Expr> left,
+               shared_ptr<const Expr> right,
                string token,
                function<int(int, int)> func);
-    ~evaluation() override;
+    ~Eval() override;
 
     string to_string() const override;
-    shared_ptr<const expression> simplify() const override;
+    shared_ptr<const Expr> simplify() const override;
 
    private:
-    shared_ptr<const expression> left_;
-    shared_ptr<const expression> right_;
+    shared_ptr<const Expr> left_;
+    shared_ptr<const Expr> right_;
     string token_;
     function<int(int, int)> func_;
 };

@@ -5,38 +5,38 @@
 
 using namespace std;
 
-class base_1 {
+class Base {
    public:
-    base_1() { cout << "In Base1()\n"; }
+    Base() { cout << "In Base1()\n"; }
 
-    virtual ~base_1() { cout << "In ~Base1()\n"; }
+    virtual ~Base() { cout << "In ~Base1()\n"; }
 };
 
-class derived_1 : public base_1 {
+class Der1 : public Base {
    public:
-    derived_1() : base_1() { cout << "In Derived1()\n"; }
+    Der1() : Base() { cout << "In Derived1()\n"; }
 
-    ~derived_1() override { cout << "In ~Derived1()\n"; }
+    ~Der1() override { cout << "In ~Derived1()\n"; }
 };
 
-class derived_2 {
+class Der2 {
    public:
-    derived_2() { cout << "In Base2()\n"; }
+    Der2() { cout << "In Base2()\n"; }
 
     // This is undefined behavior.
-    ~derived_2() { cout << "In ~Base2()\n"; }
+    ~Der2() { cout << "In ~Base2()\n"; }
 };
 
-class derived_3 : public derived_2 {
+class Der3 : public Der2 {
    public:
-    derived_3() : derived_2() { cout << "In Derived2()\n"; }
+    Der3() : Der2() { cout << "In Derived2()\n"; }
 
-    ~derived_3() { cout << "In ~Derived2()\n"; }
+    ~Der3() { cout << "In ~Derived2()\n"; }
 };
 
 int main() {
-    { unique_ptr<base_1> ptr1 = make_unique<derived_1>(); }
+    { unique_ptr<Base> ptr1 = make_unique<Der1>(); }
     cout << "\n";
-    { unique_ptr<derived_2> ptr2 = make_unique<derived_3>(); }
+    { unique_ptr<Der2> ptr2 = make_unique<Der3>(); }
     cout << "\n";
 }

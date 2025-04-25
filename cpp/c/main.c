@@ -7,13 +7,13 @@
 void c_function(const void* p) {}
 void function(void* p) {}
 
-typedef struct pointer {
+typedef struct Pointer {
     void* pointer;
-} pointer;
+} Pointer;
 
-typedef struct c_ptr {
+typedef struct CPointer {
     const void* pointer;
-} c_ptr;
+} CPointer;
 
 int main(int argc, char const* argv[]) {
     int* array = calloc(100, sizeof(int));
@@ -25,12 +25,12 @@ int main(int argc, char const* argv[]) {
     c_function(array);
 
     // Warning on this line.
-    pointer ptr_arr = {.pointer = array};
+    Pointer ptr_arr = {.pointer = array};
     function(ptr_arr.pointer);
     c_function(ptr_arr.pointer);
 
     // This is ok.
-    const pointer const_ptr_arr = {.pointer = array};
+    const Pointer const_ptr_arr = {.pointer = array};
 
     function(const_ptr_arr.pointer);
     c_function(const_ptr_arr.pointer);

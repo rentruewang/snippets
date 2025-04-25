@@ -4,16 +4,16 @@
 
 using namespace std;
 
-class some_class {
+class SomeClass {
    public:
-    some_class(int i) : member(i) {}
+    SomeClass(int i) : member(i) {}
     int& alias = member;
     const int& const_alias = member;
     int member;
 };
 
 int main() {
-    auto sc = some_class{1};
+    auto sc = SomeClass{1};
     cout << sc.member << ' ' << sc.alias << ' ' << sc.const_alias << '\n';
     sc.member = 2;
     cout << sc.member << ' ' << sc.alias << ' ' << sc.const_alias << '\n';

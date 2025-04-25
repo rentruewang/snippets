@@ -2,18 +2,18 @@
 
 #include <stdio.h>
 
-typedef struct array {
+typedef struct Array {
     int array[4];
-} array;
+} Array;
 
 int main() {
-    array a = {.array = {1, 2, 3, 42}};
+    Array a = {.array = {1, 2, 3, 42}};
     for (int i = 0; i < 4; ++i) {
         printf("%d ", a.array[i]);
     }
     printf("\n");
 
-    array b = a;
+    Array b = a;
     b.array[2] -= 100;
     for (int i = 0; i < 4; ++i) {
         printf("%d ", a.array[i]);

@@ -4,28 +4,28 @@
 
 using namespace std;
 
-class view_constructor {
+class ViewInit {
    public:
-    view_constructor(int data) : data_(data) {
+    ViewInit(int data) : data_(data) {
         cout << "ViewConstructors(" << data << ") called\n";
     }
 
-    view_constructor(const view_constructor& other) : data_(other.data_) {
+    ViewInit(const ViewInit& other) : data_(other.data_) {
         cout << "ViewConstructors(const&" << data_ << ") called\n";
     }
 
-    view_constructor(view_constructor&& other) : data_(other.data_) {
+    ViewInit(ViewInit&& other) : data_(other.data_) {
         cout << "ViewConstructors(&&" << data_ << ") called\n";
     }
 
     int data() const { return data_; }
 
-    friend ostream& operator<<(ostream& os, const view_constructor& vc) {
+    friend ostream& operator<<(ostream& os, const ViewInit& vc) {
         os << vc.data_;
         return os;
     }
 
-    ~view_constructor() {
+    ~ViewInit() {
         cout << "~ViewConstructors(" << data_ << ") called\n";
     }
 
@@ -33,8 +33,8 @@ class view_constructor {
     int data_;
 };
 
-view_constructor f(int i) {
-    return view_constructor(i);
+ViewInit f(int i) {
+    return ViewInit(i);
 }
 
 int main() {
