@@ -1,16 +1,16 @@
 /// Copyright (c) RenChu Wang - All Rights Reserved
 
-class ConstMem {
+class ConstMember {
    public:
-    ConstMem(int x) : member_(x) {}
+    ConstMember(int x) : member_(x) {}
 
    private:
     const int member_;
 };
 
-class NormMem {
+class NormalMember {
    public:
-    NormMem(int x) : member_(x) {}
+    NormalMember(int x) : member_(x) {}
 
    private:
     int member_;
@@ -18,14 +18,14 @@ class NormMem {
 
 int main() {
     // No problem doing this.
-    NormMem nm{3};
-    nm = NormMem{4};
+    NormalMember nm{3};
+    nm = NormalMember{4};
 
-    ConstMem cm{9};
-    // const_member& const_member::operator=(const_member&&)’ is implicitly
+    ConstMember cm{9};
+    // ConstMember& ConstMember::operator=(ConstMember&&)’ is implicitly
     // deleted because the default definition would be ill-formed
     //
     // operator= is deleted because of const member.
     //
-    //  cm = const_member{100};
+    //  cm = ConstMember{100};
 }

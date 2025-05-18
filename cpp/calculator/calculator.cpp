@@ -61,9 +61,9 @@ string Var::to_string() const {
 Var::~Var() {}
 
 Eval::Eval(shared_ptr<const Expr> left,
-                       shared_ptr<const Expr> right,
-                       string token,
-                       function<int(int, int)> func)
+           shared_ptr<const Expr> right,
+           string token,
+           function<int(int, int)> func)
     : left_(left), right_(right), token_(token), func_(func) {}
 
 shared_ptr<const Expr> Eval::simplify() const {

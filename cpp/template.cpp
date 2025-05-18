@@ -15,13 +15,13 @@ bool operator<<(T a, T b) {
 }
 
 template <typename T>
-class container {
+class Container {
    public:
-    container(T value) noexcept { value_ = value; }
+    Container(T value) noexcept { value_ = value; }
 
     T operator()() const { return value_; }
 
-    bool operator<(const container& other) const {
+    bool operator<(const Container& other) const {
         cout << "   --- Container cmp called. ---   ";
         return value_ < other.value_;
     }
@@ -38,7 +38,7 @@ int main() {
     cout << k << endl;
     cout << n << endl;
 
-    cout << "1 << 2: " << (container<int>(1) << container<int>(2)) << endl;
-    cout << "1 << 0: " << (container<int>(1) << container<int>(0)) << endl;
+    cout << "1 << 2: " << (Container<int>(1) << Container<int>(2)) << endl;
+    cout << "1 << 0: " << (Container<int>(1) << Container<int>(0)) << endl;
     return 0;
 }

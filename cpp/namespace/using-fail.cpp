@@ -16,7 +16,7 @@ void function_in_b();
 
 }  // namespace a
 
-// namespace "a" has no tag member named "class_a"
+// namespace "a" has no tag member named "ClassA"
 // class a::ClassA {};
 
 using namespace a;

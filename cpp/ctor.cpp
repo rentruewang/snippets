@@ -8,11 +8,13 @@ using namespace std;
 #define NOT_USED [[maybe_unused]]
 
 class OnlyCopy {
+class OnlyCopy {
    public:
     OnlyCopy(string member) : member_(member) { cout << "init only copy\n"; }
     OnlyCopy(const OnlyCopy& other) : member_(other.member_) {
         cout << "copy only copy\n";
     }
+    OnlyCopy(OnlyCopy&& other) = delete;
     OnlyCopy(OnlyCopy&& other) = delete;
     const string& member() const { return member_; }
 
@@ -25,6 +27,9 @@ class OnlyMove {
     OnlyMove(string member) : member_(member) { cout << "init only move\n"; }
     OnlyMove(const OnlyMove& other) = delete;
     OnlyMove(OnlyMove&& other) : member_(std::move(other.member_)) {
+    OnlyMove(string member) : member_(member) { cout << "init only move\n"; }
+    OnlyMove(const OnlyMove& other) = delete;
+    OnlyMove(OnlyMove&& other) : member_(std::move(other.member_)) {
         cout << "move only move\n";
     }
     const string& member() const { return member_; }
@@ -33,6 +38,7 @@ class OnlyMove {
     string member_;
 };
 
+class HaveBoth {
 class HaveBoth {
    public:
     HaveBoth(string member) : member_(member) { cout << "init both\n"; }
@@ -49,13 +55,14 @@ class HaveBoth {
 };
 
 template <typename T>
-class NoUse {
+class DoesNotUse {
    public:
     void call_copy(NOT_USED const T& obj) {}
     void call_move(NOT_USED T&& obj) {}
 };
 
 template <typename T>
+class UseCopy {
 class UseCopy {
    public:
     void call_copy(const T& obj) { T copied(obj); }
@@ -64,27 +71,28 @@ class UseCopy {
 
 template <typename T>
 class UseMove {
+class UseMove {
    public:
     void call_copy(NOT_USED const T& obj) {}
     void call_move(T&& obj) { T moved(std::move(obj)); }
 };
 
 template <typename T>
-class UseBoth {
+class BothCopyMove {
    public:
     void call_copy(const T& obj) { T copied(obj); }
     void call_move(T&& obj) { T moved(std::move(obj)); }
 };
 
 template <typename T>
-class MoveIsCopy {
+class MoveCopies {
    public:
     void call_copy(NOT_USED const T& obj) {}
     void call_move(T&& obj) { T moved(obj); }
 };
 
 template <typename T>
-class CopyIsMove {
+class CopyMoves {
    public:
     void call_copy(const T& obj) { T copied(std::move(obj)); }
     void call_move(NOT_USED T&& obj) {}
@@ -94,11 +102,17 @@ int main() {
     OnlyCopy has_copy{"copy"};
     OnlyMove has_move{"move"};
     HaveBoth has_both{"both"};
+    OnlyCopy has_copy{"copy"};
+    OnlyMove has_move{"move"};
+    HaveBoth has_both{"both"};
 
-    NOT_USED NoUse<OnlyCopy> dnu_copy;
-    NOT_USED NoUse<OnlyMove> dnu_move;
-    NOT_USED NoUse<HaveBoth> dnu_both;
+    NOT_USED DoesNotUse<OnlyCopy> dnu_copy;
+    NOT_USED DoesNotUse<OnlyMove> dnu_move;
+    NOT_USED DoesNotUse<HaveBoth> dnu_both;
 
+    NOT_USED UseCopy<OnlyCopy> uc_copy;
+    NOT_USED UseCopy<OnlyMove> uc_move;
+    NOT_USED UseCopy<HaveBoth> uc_both;
     NOT_USED UseCopy<OnlyCopy> uc_copy;
     NOT_USED UseCopy<OnlyMove> uc_move;
     NOT_USED UseCopy<HaveBoth> uc_both;
@@ -106,9 +120,15 @@ int main() {
     NOT_USED UseMove<OnlyCopy> um_copy;
     NOT_USED UseMove<OnlyMove> um_move;
     NOT_USED UseMove<HaveBoth> um_both;
+    NOT_USED UseMove<OnlyCopy> um_copy;
+    NOT_USED UseMove<OnlyMove> um_move;
+    NOT_USED UseMove<HaveBoth> um_both;
 
     cout << "Use copy\n";
 
+    UseCopy<OnlyCopy> uc_used_copy;
+    NOT_USED UseCopy<OnlyMove> uc_used_move;
+    UseCopy<HaveBoth> uc_used_both;
     UseCopy<OnlyCopy> uc_used_copy;
     NOT_USED UseCopy<OnlyMove> uc_used_move;
     UseCopy<HaveBoth> uc_used_both;
@@ -127,6 +147,9 @@ int main() {
     NOT_USED UseMove<OnlyCopy> um_used_copy;
     UseMove<OnlyMove> um_used_move;
     UseMove<HaveBoth> um_used_both;
+    NOT_USED UseMove<OnlyCopy> um_used_copy;
+    UseMove<OnlyMove> um_used_move;
+    UseMove<HaveBoth> um_used_both;
 
     // error: rvalue reference to type 'OnlyCopy' cannot bind to lvalue of type
     // 'OnlyCopy'
@@ -142,9 +165,9 @@ int main() {
 
     cout << "Move is copy\n";
 
-    MoveIsCopy<OnlyCopy> mic_used_copy;
-    NOT_USED MoveIsCopy<OnlyMove> mic_used_move;
-    MoveIsCopy<HaveBoth> mic_used_both;
+    MoveCopies<OnlyCopy> mic_used_copy;
+    NOT_USED MoveCopies<OnlyMove> mic_used_move;
+    MoveCopies<HaveBoth> mic_used_both;
 
     mic_used_copy.call_move(std::move(has_copy));
 
@@ -169,9 +192,9 @@ int main() {
     // https://stackoverflow.com/questions/63466914/move-semantics-vs-const-reference
     // https://stackoverflow.com/questions/4938875/do-rvalue-references-to-const-have-any-use
 
-    CopyIsMove<OnlyCopy> cim_used_copy;
-    NOT_USED CopyIsMove<OnlyMove> cim_used_move;
-    CopyIsMove<HaveBoth> cim_used_both;
+    CopyMoves<OnlyCopy> cim_used_copy;
+    NOT_USED CopyMoves<OnlyMove> cim_used_move;
+    CopyMoves<HaveBoth> cim_used_both;
 
     cim_used_copy.call_copy(has_copy);
     cim_used_copy.call_copy(std::move(has_copy));
@@ -184,9 +207,9 @@ int main() {
 
     cim_used_both.call_copy(std::move(has_both));
 
-    UseBoth<OnlyCopy> ub_copy;
-    UseBoth<OnlyMove> ub_move;
-    UseBoth<HaveBoth> ub_both;
+    BothCopyMove<OnlyCopy> ub_copy;
+    BothCopyMove<OnlyMove> ub_move;
+    BothCopyMove<HaveBoth> ub_both;
 
     ub_copy.call_copy(has_copy);
 
