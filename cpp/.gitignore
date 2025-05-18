@@ -31,4 +31,10 @@
 *.out
 *.app
 
+# The build folder.
 build/
+
+# Vcpkg related files.
+vcpkg*
+CMakePresets.json
+CMakeUserPresets.json
