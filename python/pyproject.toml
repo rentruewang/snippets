@@ -1,24 +1,30 @@
-[tool.poetry]
+[project]
 name = "snippets"
-version = "0.0.0"
 description = "Python scripts"
-authors = ["RenChu Wang <patrick1031wang@gmail.com>"]
-license = "MIT"
+authors = [
+    {name = "RenChu Wang",email = "patrick1031wang@gmail.com"}
+]
+license = {text = "MIT"}
 readme = "README.md"
-package-mode = false
-
-[tool.poetry.dependencies]
-python = "^3.11"
-
-[tool.poetry.group.dev.dependencies]
-black = "^24.10.0"
-isort = "^5.13.2"
-autoflake = "^2.3.1"
-mypy = "^1.13.0"
+dynamic = ["version"]
+requires-python = ">=3.13"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools", "wheel", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+
+[tool.pdm]
+distribution = false
+
+[dependency-groups]
+dev = [
+    "autoflake>=2.3.1",
+    "black>=25.1.0",
+    "isort>=6.0.1",
+    "mypy>=1.16.0",
+]
 
 [tool.autoflake]
 in-place = true
