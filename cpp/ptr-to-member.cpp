@@ -20,7 +20,7 @@ class Member {
 
 int main() {
     // declare pointer to data member
-    int Member::*ptiptr = &Member::a;
+    int Member::* ptiptr = &Member::a;
 
     // declare a pointer to member function
     void (Member::*ptfptr)(int) = &Member::f;

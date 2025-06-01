@@ -25,9 +25,7 @@ class ViewInit {
         return os;
     }
 
-    ~ViewInit() {
-        cout << "~ViewConstructors(" << data_ << ") called\n";
-    }
+    ~ViewInit() { cout << "~ViewConstructors(" << data_ << ") called\n"; }
 
    private:
     int data_;

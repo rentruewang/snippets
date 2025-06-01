@@ -55,9 +55,9 @@ class Var : public Expr {
 class Eval : public Expr {
    public:
     Eval(shared_ptr<const Expr> left,
-               shared_ptr<const Expr> right,
-               string token,
-               function<int(int, int)> func);
+         shared_ptr<const Expr> right,
+         string token,
+         function<int(int, int)> func);
     ~Eval() override;
 
     string to_string() const override;

@@ -35,8 +35,12 @@ class Derived2 : public Base2 {
 };
 
 int main() {
-    { unique_ptr<Base1> ptr1 = make_unique<Derived1>(); }
+    {
+        unique_ptr<Base1> ptr1 = make_unique<Derived1>();
+    }
     cout << "\n";
-    { unique_ptr<Base2> ptr2 = make_unique<Derived2>(); }
+    {
+        unique_ptr<Base2> ptr2 = make_unique<Derived2>();
+    }
     cout << "\n";
 }

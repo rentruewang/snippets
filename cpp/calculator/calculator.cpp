@@ -6,28 +6,24 @@
 
 using namespace std;
 
-shared_ptr<Expr> Expr::operator+(
-    const shared_ptr<Expr>& other) const {
+shared_ptr<Expr> Expr::operator+(const shared_ptr<Expr>& other) const {
     return make_shared<Eval>(shared_from_this(), other, "+",
-                                   [](int a, int b) { return a + b; });
+                             [](int a, int b) { return a + b; });
 }
 
-shared_ptr<Expr> Expr::operator-(
-    const shared_ptr<Expr>& other) const {
+shared_ptr<Expr> Expr::operator-(const shared_ptr<Expr>& other) const {
     return make_shared<Eval>(shared_from_this(), other, "-",
-                                   [](int a, int b) { return a - b; });
+                             [](int a, int b) { return a - b; });
 }
 
-shared_ptr<Expr> Expr::operator*(
-    const shared_ptr<Expr>& other) const {
+shared_ptr<Expr> Expr::operator*(const shared_ptr<Expr>& other) const {
     return make_shared<Eval>(shared_from_this(), other, "*",
-                                   [](int a, int b) { return a * b; });
+                             [](int a, int b) { return a * b; });
 }
 
-shared_ptr<Expr> Expr::operator/(
-    const shared_ptr<Expr>& other) const {
+shared_ptr<Expr> Expr::operator/(const shared_ptr<Expr>& other) const {
     return make_shared<Eval>(shared_from_this(), other, "/",
-                                   [](int a, int b) { return a / b; });
+                             [](int a, int b) { return a / b; });
 }
 
 Expr::~Expr() {}

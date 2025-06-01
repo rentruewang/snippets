@@ -10,7 +10,7 @@ class Printable {
 class CustomInt;
 class CustomFloat;
 
-class CustomInt: public Printable {
+class CustomInt : public Printable {
    public:
     CustomInt();
     CustomInt(int number);
@@ -27,7 +27,7 @@ class CustomInt: public Printable {
     int value_;
 };
 
-class CustomFloat: public Printable {
+class CustomFloat : public Printable {
    public:
     CustomFloat();
     CustomFloat(float a);
@@ -48,16 +48,24 @@ class CustomFloat: public Printable {
 
 CustomInt::CustomInt() : value_(0) {}
 CustomInt::CustomInt(int number) : value_(number) {}
-CustomInt::operator int() const { return value_; }
-CustomInt::operator float() const { return static_cast<float>(value_); }
+CustomInt::operator int() const {
+    return value_;
+}
+CustomInt::operator float() const {
+    return static_cast<float>(value_);
+}
 CustomInt::operator CustomFloat() const {
     return CustomFloat(static_cast<float>(value_));
 }
 
 CustomFloat::CustomFloat() : value_(0.0f) {}
 CustomFloat::CustomFloat(float a) : value_(a) {}
-CustomFloat::operator int() const { return static_cast<int>(value_); }
-CustomFloat::operator float() const { return value_; }
+CustomFloat::operator int() const {
+    return static_cast<int>(value_);
+}
+CustomFloat::operator float() const {
+    return value_;
+}
 CustomFloat::operator CustomInt() const {
     return CustomInt(static_cast<int>(value_));
 }

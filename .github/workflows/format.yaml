@@ -2,9 +2,6 @@ name: Format
 on: [push]
 jobs:
   format-cpp:
-    defaults:
-      run:
-        working-directory: ./cpp/
     name: 📀 Formatting
     runs-on: ubuntu-latest
     steps:
@@ -41,7 +38,7 @@ jobs:
           cache: true
 
       - name: ⬇️ Python Dependencies
-        run: pdm sync -G:all
+        run: pdm install -G:all
 
       - name: 🚂 Activate environment
         run: echo "$(pdm venv --path in-project)/bin" >> $GITHUB_PATH
