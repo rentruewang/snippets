@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class Member {
+class member {
    public:
     int a;
     void f(int b) {
@@ -12,7 +12,7 @@ class Member {
         cout << "Address of this is " << *this << endl;
     }
 
-    friend ostream& operator<<(ostream& os, const Member& x) {
+    friend ostream& operator<<(ostream& os, const member& x) {
         os << "{a: " << x.a << "}";
         return os;
     }
@@ -20,13 +20,13 @@ class Member {
 
 int main() {
     // declare pointer to data member
-    int Member::* ptiptr = &Member::a;
+    int member::* ptiptr = &member::a;
 
     // declare a pointer to member function
-    void (Member::*ptfptr)(int) = &Member::f;
+    void (member::*ptfptr)(int) = &member::f;
 
     // create an object of class type X
-    Member some_object;
+    member some_object;
 
     // initialize data member
     some_object.*ptiptr = 10;

@@ -2,22 +2,22 @@
 
 #include <iostream>
 
-class Printable {
+class printer {
    public:
     virtual void print() const = 0;
 };
 
-class CustomInt;
-class CustomFloat;
+class custom_int;
+class custom_float;
 
-class CustomInt : public Printable {
+class custom_int : public printer {
    public:
-    CustomInt();
-    CustomInt(int number);
+    custom_int();
+    custom_int(int number);
 
     operator int() const;
     operator float() const;
-    operator CustomFloat() const;
+    operator custom_float() const;
 
     void print() const override {
         std::cout << "CustomInt: " << value_ << std::endl;
@@ -27,14 +27,14 @@ class CustomInt : public Printable {
     int value_;
 };
 
-class CustomFloat : public Printable {
+class custom_float : public printer {
    public:
-    CustomFloat();
-    CustomFloat(float a);
+    custom_float();
+    custom_float(float a);
 
     operator int() const;
     operator float() const;
-    operator CustomInt() const;
+    operator custom_int() const;
 
     void print() const override {
         std::cout << "CustomFloat: " << value_ << std::endl;
@@ -46,41 +46,41 @@ class CustomFloat : public Printable {
 
 // Implementations
 
-CustomInt::CustomInt() : value_(0) {}
-CustomInt::CustomInt(int number) : value_(number) {}
-CustomInt::operator int() const {
+custom_int::custom_int() : value_(0) {}
+custom_int::custom_int(int number) : value_(number) {}
+custom_int::operator int() const {
     return value_;
 }
-CustomInt::operator float() const {
+custom_int::operator float() const {
     return static_cast<float>(value_);
 }
-CustomInt::operator CustomFloat() const {
-    return CustomFloat(static_cast<float>(value_));
+custom_int::operator custom_float() const {
+    return custom_float(static_cast<float>(value_));
 }
 
-CustomFloat::CustomFloat() : value_(0.0f) {}
-CustomFloat::CustomFloat(float a) : value_(a) {}
-CustomFloat::operator int() const {
+custom_float::custom_float() : value_(0.0f) {}
+custom_float::custom_float(float a) : value_(a) {}
+custom_float::operator int() const {
     return static_cast<int>(value_);
 }
-CustomFloat::operator float() const {
+custom_float::operator float() const {
     return value_;
 }
-CustomFloat::operator CustomInt() const {
-    return CustomInt(static_cast<int>(value_));
+custom_float::operator custom_int() const {
+    return custom_int(static_cast<int>(value_));
 }
 
 int main() {
-    CustomInt custom_int(5);
-    CustomFloat custom_float(3.14f);
+    custom_int custom_int(5);
+    custom_float custom_float(3.14f);
 
     custom_int.print();
     custom_float.print();
 
-    auto casted_float = static_cast<CustomFloat>(custom_int);
+    auto casted_float = static_cast<class custom_float>(custom_int);
     casted_float.print();
 
-    auto casted_int = static_cast<CustomInt>(custom_float);
+    auto casted_int = static_cast<class custom_int>(custom_float);
     casted_int.print();
 
     return 0;

@@ -4,35 +4,35 @@
 
 using namespace std;
 
-class ViewInit {
+class view_init {
    public:
-    ViewInit(int data) : data_(data) {
+    view_init(int data) : data_(data) {
         cout << "ViewConstructors(" << data << ") called\n";
     }
 
-    ViewInit(const ViewInit& other) : data_(other.data_) {
+    view_init(const view_init& other) : data_(other.data_) {
         cout << "ViewConstructors(const&" << data_ << ") called\n";
     }
 
-    ViewInit(ViewInit&& other) : data_(other.data_) {
+    view_init(view_init&& other) : data_(other.data_) {
         cout << "ViewConstructors(&&" << data_ << ") called\n";
     }
 
     int data() const { return data_; }
 
-    friend ostream& operator<<(ostream& os, const ViewInit& vc) {
+    friend ostream& operator<<(ostream& os, const view_init& vc) {
         os << vc.data_;
         return os;
     }
 
-    ~ViewInit() { cout << "~ViewConstructors(" << data_ << ") called\n"; }
+    ~view_init() { cout << "~ViewConstructors(" << data_ << ") called\n"; }
 
    private:
     int data_;
 };
 
-ViewInit f(int i) {
-    return ViewInit(i);
+view_init f(int i) {
+    return view_init(i);
 }
 
 int main() {
