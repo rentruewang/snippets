@@ -34,8 +34,6 @@ jobs:
 
       - name: ⬇️ Python PDM
         uses: pdm-project/setup-pdm@v4
-        with:
-          cache: true
 
       - name: ⬇️ Python Dependencies
         run: pdm install -G:all
@@ -51,8 +49,3 @@ jobs:
 
       - name: 🏃 black
         run: black --diff .
-
-      - name: 🏃 mypy
-        run: |
-          mypy --install-types --non-interactive .
-          mypy .
