@@ -2,7 +2,7 @@ name: Format
 on: [push]
 jobs:
   format-cpp:
-    name: 📀 Formatting
+    name: 📀 Formatting C++
     runs-on: ubuntu-latest
     steps:
       # Global part
@@ -11,17 +11,17 @@ jobs:
 
       # C++ part
       - name: 🏗️ 🏃 clang-format
-        uses: DoozyX/clang-format-lint-action@v0.17
+        uses: DoozyX/clang-format-lint-action@v0.20
         with:
           source: ./cpp
           extensions: h,c,hpp,cpp
-          clangFormatVersion: 17
+          clangFormatVersion: 20
 
   formta-py:
     defaults:
       run:
         working-directory: ./python
-    name: 📀 Formatting
+    name: 📀 Formatting Python
     runs-on: ubuntu-latest
     steps:
       - name: 🔔 Check out
