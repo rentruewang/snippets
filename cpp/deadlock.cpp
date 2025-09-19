@@ -49,9 +49,10 @@ class scoped_semaphore {
     string by_;
 };
 // The semaphore class. Simulate a fixed amount of resources (threads).
-class with_semaphore {
+class sema {
    protected:
-    with_semaphore(counting_semaphore<>& sem) : sem_(sem) {}
+    // Using a reference s.t. the semaphore don't get copied.
+    sema(counting_semaphore<>& sem) : sem_(sem) {}
     scoped_semaphore acquire_semaphore(string by) {
         // Using copy elision, to avoid acquiring and releasing and acquiring.
         return scoped_semaphore(sem_, by);
@@ -167,20 +168,19 @@ class cache : public compute {
 // For example, when budget = 1, a depending on b,
 // a would require a thread to run, and then b would require a thread to run,
 // exceeding the budget (a runs first before b).
-class task_literal : public literal, with_semaphore {
+class task_literal : public literal, sema {
    public:
-    task_literal(int i, counting_semaphore<>& sem)
-        : literal(i), with_semaphore(sem) {}
+    task_literal(int i, counting_semaphore<>& sem) : literal(i), sema(sem) {}
 
     int get() override {
         auto sem{acquire_semaphore("task_lit_" + str())};
         return literal::get();
     }
 };
-class task_summation : public summation, with_semaphore {
+class task_summation : public summation, sema {
    public:
     task_summation(vector<shared_ptr<compute>> op, counting_semaphore<>& sem)
-        : summation(op), with_semaphore(sem) {}
+        : summation(op), sema(sem) {}
 
     int get() override {
         auto sem{acquire_semaphore("task_sum_" + str())};
@@ -191,20 +191,19 @@ class task_summation : public summation, with_semaphore {
 // Lazy classes doesn't cause deadlocks,
 // because they are reduced from the leaves of the expression tree,
 // which can be linearly ordered (no deadlock so long as semaphore > 1).
-class lazy_literal : public literal, with_semaphore {
+class lazy_literal : public literal, sema {
    public:
-    lazy_literal(int i, counting_semaphore<>& sem)
-        : literal(i), with_semaphore(sem) {}
+    lazy_literal(int i, counting_semaphore<>& sem) : literal(i), sema(sem) {}
     int get() override {
         // As literal has no children, this can be the same as `literal_task`.
         auto sem{acquire_semaphore("lazy_lit_" + str())};
         return literal::get();
     }
 };
-class lazy_summation : public summation, with_semaphore {
+class lazy_summation : public summation, sema {
    public:
     lazy_summation(vector<shared_ptr<compute>> op, counting_semaphore<>& sem)
-        : summation(op), with_semaphore(sem) {}
+        : summation(op), sema(sem) {}
     int get() override {
         vector<int> values;
 
