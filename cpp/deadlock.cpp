@@ -4,6 +4,7 @@
 #include <chrono>
 #include <cstdlib>
 #include <exception>
+#include <future>
 #include <iostream>
 #include <memory>
 #include <numeric>
@@ -36,14 +37,14 @@ class compute : enable_shared_from_this<compute> {
     size_t call_count_;
 };
 
-class scoped_semaphore {
+class semaphore_guard {
    public:
-    scoped_semaphore(counting_semaphore<>& sem, const string& by)
+    semaphore_guard(counting_semaphore<>& sem, const string& by)
         : sem_(sem), by_(by) {
         cout << "acq(" << by_ << ")\n";
         sem_.acquire();
     }
-    ~scoped_semaphore() {
+    ~semaphore_guard() {
         cout << "rel(" << by_ << ")\n";
         sem_.release();
     }
@@ -58,9 +59,9 @@ class sema {
    protected:
     // Using a reference s.t. the semaphore don't get copied.
     sema(counting_semaphore<>& sem) : sem_(sem) {}
-    scoped_semaphore acquire_semaphore(const string& by) {
+    semaphore_guard acquire(const string& by) {
         // Using copy elision, to avoid acquiring and releasing and acquiring.
-        return scoped_semaphore(sem_, by);
+        return semaphore_guard(sem_, by);
     }
 
    private:
@@ -178,7 +179,7 @@ class task_literal : public literal, sema {
     task_literal(int i, counting_semaphore<>& sem) : literal(i), sema(sem) {}
 
     int eval() override {
-        auto sem{acquire_semaphore("task_lit_" + str())};
+        auto sem{acquire("task_lit_" + str())};
         return literal::eval();
     }
 };
@@ -188,7 +189,7 @@ class task_summation : public summation, sema {
         : summation(op), sema(sem) {}
 
     int eval() override {
-        auto sem{acquire_semaphore("task_sum_" + str())};
+        auto sem{acquire("task_sum_" + str())};
         return summation::eval();
     }
 };
@@ -201,7 +202,7 @@ class lazy_literal : public literal, sema {
     lazy_literal(int i, counting_semaphore<>& sem) : literal(i), sema(sem) {}
     int eval() override {
         // As literal has no children, this can be the same as `literal_task`.
-        auto sem{acquire_semaphore("lazy_lit_" + str())};
+        auto sem{acquire("lazy_lit_" + str())};
         return literal::eval();
     }
 };
@@ -223,15 +224,19 @@ class lazy_summation : public summation, sema {
         // Previous I put this into the for loop, before the child call,
         // but this just means that we are acquiring twice for the child call,
         // and none for the current call.
-        auto sem{acquire_semaphore("lazy_sum_" + str())};
+        auto sem{acquire("lazy_sum_" + str())};
         return accumulate(values.begin(), values.end(), 0);
     }
 };
 
-void raise_error_on_deadlock(counting_semaphore<>& sem) {
+void raise_error_on_deadlock(counting_semaphore<>& sem, future<string> fut) {
     for (;;) {
         if (!sem.try_acquire()) {
             throw runtime_error("--- deadlock! ---");
+        }
+
+        if (fut.wait_for(chrono::seconds(0)) == future_status::ready) {
+            return;
         }
 
         // Lock is acquired.
@@ -241,16 +246,28 @@ void raise_error_on_deadlock(counting_semaphore<>& sem) {
     }
 }
 
-class scoped_deadlock_detection {
+class deadlock_detection_guard {
    public:
-    scoped_deadlock_detection(counting_semaphore<>& sem)
-        : sem_(sem), th_(thread(raise_error_on_deadlock, ref(sem))) {}
+    deadlock_detection_guard(size_t count)
+        : sem_(counting_semaphore<>(count)), prom_(promise<string>()) {
+        th_ = thread(raise_error_on_deadlock, ref(sem_), prom_.get_future());
+    }
 
-    ~scoped_deadlock_detection() { th_.join(); }
+    void cancel() {
+        prom_.set_value("done");
+        th_.join();
+        cout << "Thread is being cancelled...\n";
+    }
+    counting_semaphore<>& sema() { return sem_; }
+
+    ~deadlock_detection_guard() {
+        cancel();
+    }
 
    private:
-    counting_semaphore<>& sem_;
+    counting_semaphore<> sem_;
     thread th_;
+    promise<string> prom_;
 };
 
 int main() {
@@ -258,6 +275,7 @@ int main() {
     expr one, two, three, sum_six, prod_six, twelve, thrity_six;
     vector<expr> one_two_three, six_six;
 
+    cout << "---- Normal section ----\n";
     {
         one = make_shared<literal>(1);
         two = make_shared<literal>(2);
@@ -290,36 +308,41 @@ int main() {
 
         cout << "twelve = " << (*twelve)() << "\n";
         cout << "thrity_six = " << (*thrity_six)() << "\n";
-        cout << "Done normal\n\n\n\n";
+        cout << "Done normal\n";
     }
+    cout<<"\n\n\n\n";
 
-    counting_semaphore<> sem(1);
-    scoped_deadlock_detection sdd(sem);
+    cout << "---- Lazy section ----\n";
     {
-        one = make_shared<lazy_literal>(1, sem);
-        two = make_shared<lazy_literal>(2, sem);
-        three = make_shared<lazy_literal>(3, sem);
+        deadlock_detection_guard sdd(1);
+        one = make_shared<lazy_literal>(1, sdd.sema());
+        two = make_shared<lazy_literal>(2, sdd.sema());
+        three = make_shared<lazy_literal>(3, sdd.sema());
 
         one_two_three = {one, two, three};
-        sum_six = make_shared<lazy_summation>(one_two_three, sem);
+        sum_six = make_shared<lazy_summation>(one_two_three, sdd.sema());
         six_six = {sum_six, sum_six};
-        twelve = make_shared<lazy_summation>(six_six, sem);
+        twelve = make_shared<lazy_summation>(six_six, sdd.sema());
         assert((*twelve)() == 12);
-        cout << "Done lazy\n\n\n\n";
+        cout << "Done lazy\n";
     }
+    cout<<"\n\n\n\n";
 
+    cout << "---- Task section ----\n";
     {
-        one = make_shared<task_literal>(1, sem);
-        two = make_shared<task_literal>(2, sem);
-        three = make_shared<task_literal>(3, sem);
+        deadlock_detection_guard sdd(1);
+        one = make_shared<task_literal>(1, sdd.sema());
+        two = make_shared<task_literal>(2, sdd.sema());
+        three = make_shared<task_literal>(3, sdd.sema());
 
         one_two_three = {one, two, three};
-        sum_six = make_shared<task_summation>(one_two_three, sem);
+        sum_six = make_shared<task_summation>(one_two_three, sdd.sema());
         six_six = {sum_six, sum_six};
-        twelve = make_shared<task_summation>(six_six, sem);
+        twelve = make_shared<task_summation>(six_six, sdd.sema());
         assert((*twelve)() == 12);
 
         // Impossible to achieve.
         cout << "Done deadlock\n";
     }
+    cout<<"\n\n\n\n";
 }
