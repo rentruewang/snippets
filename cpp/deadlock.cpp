@@ -260,9 +260,7 @@ class deadlock_detection_guard {
     }
     counting_semaphore<>& sema() { return sem_; }
 
-    ~deadlock_detection_guard() {
-        cancel();
-    }
+    ~deadlock_detection_guard() { cancel(); }
 
    private:
     counting_semaphore<> sem_;
@@ -310,7 +308,7 @@ int main() {
         cout << "thrity_six = " << (*thrity_six)() << "\n";
         cout << "Done normal\n";
     }
-    cout<<"\n\n\n\n";
+    cout << "\n\n\n\n";
 
     cout << "---- Lazy section ----\n";
     {
@@ -326,7 +324,7 @@ int main() {
         assert((*twelve)() == 12);
         cout << "Done lazy\n";
     }
-    cout<<"\n\n\n\n";
+    cout << "\n\n\n\n";
 
     cout << "---- Task section ----\n";
     {
@@ -344,5 +342,5 @@ int main() {
         // Impossible to achieve.
         cout << "Done deadlock\n";
     }
-    cout<<"\n\n\n\n";
+    cout << "\n\n\n\n";
 }
