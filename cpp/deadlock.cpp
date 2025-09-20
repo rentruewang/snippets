@@ -1,11 +1,15 @@
 /// Copyright (c) RenChu Wang - All Rights Reserved
 
 #include <cassert>
+#include <chrono>
+#include <cstdlib>
+#include <exception>
 #include <iostream>
 #include <memory>
 #include <numeric>
 #include <semaphore>
 #include <sstream>
+#include <thread>
 #include <vector>
 
 using namespace std;
@@ -33,7 +37,7 @@ class compute : enable_shared_from_this<compute> {
 
 class scoped_semaphore {
    public:
-    scoped_semaphore(counting_semaphore<>& sem, string by)
+    scoped_semaphore(counting_semaphore<>& sem, const string& by)
         : sem_(sem), by_(by) {
         cout << "acq(" << by_ << ")\n";
         sem_.acquire();
@@ -223,6 +227,31 @@ class lazy_summation : public summation, sema {
     }
 };
 
+void raise_error_on_deadlock(counting_semaphore<>& sem) {
+    for (;;) {
+        if (!sem.try_acquire()) {
+            cout << "--- deadlock! ---\n";
+            abort();
+        }
+
+        // Lock is acquired.
+        cout << "Acquired in deadlock detection. No deadlock\n";
+        sem.release();
+        this_thread::sleep_for(chrono::seconds(3));
+    }
+}
+
+class scoped_deadlock_detection {
+   public:
+    scoped_deadlock_detection(counting_semaphore<>& sem)
+        : sem_(sem), th_(thread(raise_error_on_deadlock, ref(sem))) {}
+
+    ~scoped_deadlock_detection() { th_.join(); }
+
+   private:
+    counting_semaphore<>& sem_;
+    thread th_;
+};
 int main() {
     using expr = shared_ptr<compute>;
     expr one, two, three, sum_six, prod_six, twelve, thrity_six;
@@ -264,6 +293,7 @@ int main() {
     }
 
     counting_semaphore<> sem(1);
+    scoped_deadlock_detection sdd(sem);
     {
         one = make_shared<lazy_literal>(1, sem);
         two = make_shared<lazy_literal>(2, sem);
