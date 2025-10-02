@@ -36,7 +36,7 @@ class compute : enable_shared_from_this<compute> {
    private:
     size_t call_count_;
 };
-
+namespace {
 class semaphore_guard {
    public:
     semaphore_guard(counting_semaphore<>& sem, const string& by)
@@ -54,6 +54,7 @@ class semaphore_guard {
     counting_semaphore<>& sem_;
     string by_;
 };
+}  // namespace
 // The semaphore class. Simulate a fixed amount of resources (threads).
 class sema {
    protected:
@@ -143,26 +144,26 @@ class product : public compute {
 
 class cache : public compute {
    public:
-    cache(shared_ptr<compute> op) : operand(op) {}
+    cache(shared_ptr<compute> op) : operand_(op) {}
 
     int eval() override {
         if (value_ >= 0) {
             return value_;
         }
 
-        value_ = (*operand)();
+        value_ = (*operand_)();
         return value_;
     }
 
-    vector<shared_ptr<compute>> children() const override { return {operand}; }
+    vector<shared_ptr<compute>> children() const override { return {operand_}; }
     string str() const override {
         stringstream out;
-        out << "c(" << operand->str() << ")";
+        out << "c(" << operand_->str() << ")";
         return out.str();
     }
 
    private:
-    shared_ptr<compute> operand;
+    shared_ptr<compute> operand_;
     int value_ = -1;
 };
 
