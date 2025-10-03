@@ -172,6 +172,12 @@ class cache : public compute {
 // but depends on other `Task`s,
 // so this means that recursively triggering the tasks can cause a deadlock,
 // due to the limited budget smaller than the dependencies.
+//
+// This is because in the worst case (and in this case where releasing is dumb),
+// it's holding on to resources as long as the call stack (last in first out),
+// it acquires in pre-order (to the expression tree), but releases in post-order,
+// so the number of concurrent tasks are the size of the entire sub-tree.
+//
 // For example, when budget = 1, a depending on b,
 // a would require a thread to run, and then b would require a thread to run,
 // exceeding the budget (a runs first before b).
@@ -198,6 +204,8 @@ class task_summation : public summation, sema {
 // Lazy classes doesn't cause deadlocks,
 // because they are reduced from the leaves of the expression tree,
 // which can be linearly ordered (no deadlock so long as semaphore > 1).
+//
+// The tasks are scheduled in post-order traversal of the expression tree.
 class lazy_literal : public literal, sema {
    public:
     lazy_literal(int i, counting_semaphore<>& sem) : literal(i), sema(sem) {}
